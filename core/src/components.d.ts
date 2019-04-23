@@ -2737,6 +2737,10 @@ export namespace Components {
     */
     'insertPages': (insertIndex: number, insertComponents: NavComponent[], opts?: NavOptions | null | undefined, done?: TransitionDoneFn | undefined) => Promise<boolean>;
     /**
+    * Returns the number of views
+    */
+    'length': () => Promise<number>;
+    /**
     * Call to navigate back from a current component. Similar to push(), you can also pass navigation options.
     */
     'pop': (opts?: NavOptions | null | undefined, done?: TransitionDoneFn | undefined) => Promise<boolean>;
