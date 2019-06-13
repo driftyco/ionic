@@ -590,6 +590,8 @@ proxyInputs(IonRadioGroup, ['allowEmptySelection', 'name', 'value']);
 export declare interface IonRange extends StencilComponents<'IonRange'> {}
 @Component({ selector: 'ion-range', changeDetection: 0, template: '<ng-content></ng-content>', inputs: ['color', 'mode', 'debounce', 'name', 'dualKnobs', 'min', 'max', 'pin', 'snaps', 'step', 'ticks', 'disabled', 'value'] })
 export class IonRange {
+  ionStart!: EventEmitter<CustomEvent>;
+  ionEnd!: EventEmitter<CustomEvent>;
   ionChange!: EventEmitter<CustomEvent>;
   ionFocus!: EventEmitter<CustomEvent>;
   ionBlur!: EventEmitter<CustomEvent>;
@@ -597,7 +599,7 @@ export class IonRange {
   constructor(c: ChangeDetectorRef, r: ElementRef) {
     c.detach();
     this.el = r.nativeElement;
-    proxyOutputs(this, this.el, ['ionChange', 'ionFocus', 'ionBlur']);
+    proxyOutputs(this, this.el, ['ionStart', 'ionEnd', 'ionChange', 'ionFocus', 'ionBlur']);
   }
 }
 proxyInputs(IonRange, ['color', 'mode', 'debounce', 'name', 'dualKnobs', 'min', 'max', 'pin', 'snaps', 'step', 'ticks', 'disabled', 'value']);

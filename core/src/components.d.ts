@@ -3619,9 +3619,17 @@ export namespace Components {
     */
     'onIonChange'?: (event: CustomEvent<RangeChangeEventDetail>) => void;
     /**
+    * Emitted after the range has changed.
+    */
+    'onIonEnd'?: (event: CustomEvent<RangeChangeEventDetail>) => void;
+    /**
     * Emitted when the range has focus.
     */
     'onIonFocus'?: (event: CustomEvent<void>) => void;
+    /**
+    * Emitted before the range changes.
+    */
+    'onIonStart'?: (event: CustomEvent<RangeChangeEventDetail>) => void;
     /**
     * If `true`, a pin with integer value is shown when the knob is pressed.
     */

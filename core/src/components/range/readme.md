@@ -211,7 +211,9 @@ export default {
 | ----------- | -------------------------------------------- | ------------------------------------- |
 | `ionBlur`   | Emitted when the range loses focus.          | `CustomEvent<void>`                   |
 | `ionChange` | Emitted when the value property has changed. | `CustomEvent<RangeChangeEventDetail>` |
+| `ionEnd`    | Emitted after the range has changed.         | `CustomEvent<RangeChangeEventDetail>` |
 | `ionFocus`  | Emitted when the range has focus.            | `CustomEvent<void>`                   |
+| `ionStart`  | Emitted before the range changes.            | `CustomEvent<RangeChangeEventDetail>` |
 
 
 ## Slots
