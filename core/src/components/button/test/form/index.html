@@ -22,7 +22,7 @@
 
     <ion-content class="ion-padding ion-text-center" id="content" no-bounce>
 
-      <form onsubmit="return validate(event)" action="http://httpbin.org/get" method="GET">
+      <form id="myForm"  onsubmit="return validate(event)" action="http://httpbin.org/get" method="GET">
 
         <div>
           <input name="name" required>
@@ -35,7 +35,11 @@
       </form>
 
     </ion-content>
-
+    <ion-footer>
+      <ion-button type="submit" form="myForm">
+        Outside Submit Form
+      </ion-button>
+    </ion-footer>
   </ion-app>
 
   <script>

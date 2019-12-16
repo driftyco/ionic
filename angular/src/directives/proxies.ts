@@ -61,7 +61,7 @@ export class IonBadge {
 proxyInputs(IonBadge, ['color', 'mode']);
 
 export declare interface IonButton extends Components.IonButton {}
-@Component({ selector: 'ion-button', changeDetection: ChangeDetectionStrategy.OnPush, template: '<ng-content></ng-content>', inputs: ['buttonType', 'color', 'disabled', 'download', 'expand', 'fill', 'href', 'mode', 'rel', 'routerDirection', 'shape', 'size', 'strong', 'target', 'type'] })
+@Component({ selector: 'ion-button', changeDetection: ChangeDetectionStrategy.OnPush, template: '<ng-content></ng-content>', inputs: ['buttonType', 'color', 'disabled', 'download', 'expand', 'fill', 'form', 'href', 'mode', 'rel', 'routerDirection', 'shape', 'size', 'strong', 'target', 'type'] })
 export class IonButton {
   ionFocus!: EventEmitter<CustomEvent>;
   ionBlur!: EventEmitter<CustomEvent>;
@@ -72,7 +72,7 @@ export class IonButton {
     proxyOutputs(this, this.el, ['ionFocus', 'ionBlur']);
   }
 }
-proxyInputs(IonButton, ['buttonType', 'color', 'disabled', 'download', 'expand', 'fill', 'href', 'mode', 'rel', 'routerDirection', 'shape', 'size', 'strong', 'target', 'type']);
+proxyInputs(IonButton, ['buttonType', 'color', 'disabled', 'download', 'expand', 'fill', 'form', 'href', 'mode', 'rel', 'routerDirection', 'shape', 'size', 'strong', 'target', 'type']);
 
 export declare interface IonButtons extends Components.IonButtons {}
 @Component({ selector: 'ion-buttons', changeDetection: ChangeDetectionStrategy.OnPush, template: '<ng-content></ng-content>', inputs: ['collapse'] })
