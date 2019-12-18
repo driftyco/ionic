@@ -1905,6 +1905,10 @@ export namespace Components {
     */
     'allowEmptySelection': boolean;
     /**
+    * If `true`, the user cannot interact with the radio.
+    */
+    'disabled': boolean;
+    /**
     * The name of the control, which is submitted with the form data.
     */
     'name': string;
@@ -5133,6 +5137,10 @@ declare namespace LocalJSX {
     * If `true`, the radios can be deselected.
     */
     'allowEmptySelection'?: boolean;
+    /**
+    * If `true`, the user cannot interact with the radio.
+    */
+    'disabled'?: boolean;
     /**
     * The name of the control, which is submitted with the form data.
     */

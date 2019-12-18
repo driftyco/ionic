@@ -555,7 +555,7 @@ export class IonRadio {
 proxyInputs(IonRadio, ['checked', 'color', 'disabled', 'mode', 'name', 'value']);
 
 export declare interface IonRadioGroup extends Components.IonRadioGroup {}
-@Component({ selector: 'ion-radio-group', changeDetection: ChangeDetectionStrategy.OnPush, template: '<ng-content></ng-content>', inputs: ['allowEmptySelection', 'name', 'value'] })
+@Component({ selector: 'ion-radio-group', changeDetection: ChangeDetectionStrategy.OnPush, template: '<ng-content></ng-content>', inputs: ['allowEmptySelection', 'disabled', 'name', 'value'] })
 export class IonRadioGroup {
   ionChange!: EventEmitter<CustomEvent>;
   protected el: HTMLElement;
@@ -565,7 +565,7 @@ export class IonRadioGroup {
     proxyOutputs(this, this.el, ['ionChange']);
   }
 }
-proxyInputs(IonRadioGroup, ['allowEmptySelection', 'name', 'value']);
+proxyInputs(IonRadioGroup, ['allowEmptySelection', 'disabled', 'name', 'value']);
 
 export declare interface IonRange extends Components.IonRange {}
 @Component({ selector: 'ion-range', changeDetection: ChangeDetectionStrategy.OnPush, template: '<ng-content></ng-content>', inputs: ['color', 'debounce', 'disabled', 'dualKnobs', 'max', 'min', 'mode', 'name', 'pin', 'snaps', 'step', 'ticks', 'value'] })

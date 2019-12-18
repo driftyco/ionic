@@ -26,6 +26,11 @@ export class RadioGroup implements ComponentInterface {
   @Prop() name: string = this.inputId;
 
   /**
+   * If `true`, the user cannot interact with the radio.
+   */
+  @Prop() disabled = false;
+
+  /**
    * the value of the radio group.
    */
   @Prop({ mutable: true }) value?: any | null;
@@ -34,6 +39,11 @@ export class RadioGroup implements ComponentInterface {
   valueChanged(value: any | undefined) {
     this.updateRadios();
     this.ionChange.emit({ value });
+  }
+
+  @Watch('disabled')
+  disabledChanged() {
+    this.getRadios().then(radios => radios.forEach(radio => radio.disabled = this.disabled));
   }
 
   /**
@@ -73,6 +83,7 @@ export class RadioGroup implements ComponentInterface {
       }
     });
     this.updateRadios();
+    this.disabledChanged();
   }
 
   disconnectedCallback() {

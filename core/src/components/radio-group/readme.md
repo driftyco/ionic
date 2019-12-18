@@ -148,6 +148,7 @@ export const RadioGroupExample: React.FC = () => (
 | Property              | Attribute               | Description                                                     | Type      | Default        |
 | --------------------- | ----------------------- | --------------------------------------------------------------- | --------- | -------------- |
 | `allowEmptySelection` | `allow-empty-selection` | If `true`, the radios can be deselected.                        | `boolean` | `false`        |
+| `disabled`            | `disabled`              | If `true`, the user cannot interact with the radio.             | `boolean` | `false`        |
 | `name`                | `name`                  | The name of the control, which is submitted with the form data. | `string`  | `this.inputId` |
 | `value`               | `value`                 | the value of the radio group.                                   | `any`     | `undefined`    |
 
