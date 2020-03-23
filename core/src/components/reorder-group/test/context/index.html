@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html dir="ltr">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Reorder - Data</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link href="../../../../../css/ionic.bundle.css" rel="stylesheet">
+  <link href="../../../../../scripts/testing/styles.css" rel="stylesheet">
+  <script src="../../../../../scripts/testing/scripts.js"></script>
+  <script nomodule src="../../../../../dist/ionic/ionic.js"></script>
+  <script type="module" src="../../../../../dist/ionic/ionic.esm.js"></script></head>
+
+<body onLoad="render()">
+  <ion-app>
+
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Reorder - Data</ion-title>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content id="content" style="--overflow: hidden;">
+      <style>
+        /* width */
+        ::-webkit-scrollbar {
+          height: 0px;
+        }
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+          background: darkorange;
+          border-radius: 10px;
+        }
+        </style>
+        <p>Reorder group with styled scrollbar</p>
+      <div id="divID" style="height: 300px; overflow: auto;">
+      <ion-list>
+        <ion-reorder-group id="reorderGroup" disabled="false" context="divID">
+          <!-- items will be inserted here -->
+        </ion-reorder-group>
+      </ion-list>
+    </div>
+    <br>
+    <p>Other Content...</p>
+    </ion-content>
+
+  </ion-app>
+
+  <script>
+    let items = [];
+    for (var i = 0; i < 30; i++) {
+      items.push(i + 1);
+    }
+    const reorderGroup = document.getElementById('reorderGroup');
+
+    function render() {
+      let html = '';
+      for(let item of items) {
+        html += `
+          <ion-item>
+            <ion-label>${item}</ion-label>
+            <ion-reorder slot="end"></ion-reorder>
+          </ion-item>`;
+      }
+      reorderGroup.innerHTML = html;
+    }
+
+    reorderGroup.addEventListener('ionItemReorder', ({detail}) => {
+      console.log('Dragged from index', detail.from, 'to', detail.to);
+
+      console.log('Before complete', items);
+      items = detail.complete(items);
+      console.log('After complete', items);
+    });
+  </script>
+</body>
+
+</html>

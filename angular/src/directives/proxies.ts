@@ -613,8 +613,8 @@ export class IonReorder {
 }
 
 export declare interface IonReorderGroup extends Components.IonReorderGroup {}
-@ProxyCmp({inputs: ['disabled'], 'methods': ['complete']})
-@Component({ selector: 'ion-reorder-group', changeDetection: ChangeDetectionStrategy.OnPush, template: '<ng-content></ng-content>', inputs: ['disabled'] })
+@ProxyCmp({inputs: ['context', 'disabled'], 'methods': ['complete']})
+@Component({ selector: 'ion-reorder-group', changeDetection: ChangeDetectionStrategy.OnPush, template: '<ng-content></ng-content>', inputs: ['context', 'disabled'] })
 export class IonReorderGroup {
   ionItemReorder!: EventEmitter<CustomEvent>;
   protected el: HTMLElement;

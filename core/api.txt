@@ -884,6 +884,7 @@ ion-refresher-content,prop,refreshingText,string | undefined,undefined,false,fal
 ion-reorder,shadow
 
 ion-reorder-group,none
+ion-reorder-group,prop,context,string | undefined,undefined,false,false
 ion-reorder-group,prop,disabled,boolean,true,false,false
 ion-reorder-group,method,complete,complete(listOrReorder?: boolean | any[] | undefined) => Promise<any>
 ion-reorder-group,event,ionItemReorder,ItemReorderEventDetail,true
