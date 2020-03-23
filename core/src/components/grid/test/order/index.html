@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html dir="ltr">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Grid - Order</title>
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link href="../../../../../css/ionic.bundle.css" rel="stylesheet">
+  <link href="../../../../../scripts/testing/styles.css" rel="stylesheet">
+  <script src="../../../../../scripts/testing/scripts.js"></script>
+  <script nomodule src="../../../../../dist/ionic/ionic.js"></script>
+  <script type="module" src="../../../../../dist/ionic/ionic.esm.js"></script>
+</head>
+
+<body>
+  <ion-app>
+
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Grid - Order</ion-title>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content id="content" class="grid-demo">
+      <h2 class="ion-padding-start">Order</h2>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="auto" order="12">
+            <div>
+              first, order 12 but last
+            </div>
+          </ion-col>
+          <ion-col size="auto" order="1">
+            <div>
+              last, order 1 but first
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <ion-grid>
+        <ion-row>
+          <ion-col size="auto" order="12" order-md="6" order-lg="1">
+            <div>
+              first, order="12" order-md="6" order-lg="1"
+            </div>
+          </ion-col>
+          <ion-col size="auto" order="1" order-md="12" order-lg="6">
+            <div>
+              second, order="1" order-md="12" order-lg="6"
+            </div>
+          </ion-col>
+          <ion-col size="auto" order="6" order-md="1" order-lg="12">
+            <div>
+              last, order="6" order-md="1" order-lg="12"
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <h2 class="ion-padding-start">First and Last</h2>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="auto" order="last">
+            <div>
+              first, order last but last
+            </div>
+          </ion-col>
+          <ion-col size="auto">
+            <div>
+              second
+            </div>
+          </ion-col>
+          <ion-col size="auto" order="first">
+            <div>
+              last, order first but first
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <h2 class="ion-padding-start">First, Last and Auto</h2>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="auto">
+            <div>
+              first
+            </div>
+          </ion-col>
+          <ion-col size="auto" order="first" order-md="auto" order-lg="last">
+            <div>
+              second, order="first" order-md="auto" order-lg="last"
+            </div>
+          </ion-col>
+          <ion-col size="auto">
+            <div>
+              last
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-content>
+
+
+    <style>
+      .grid-demo ion-col div {
+        background-color: #f7f7f7;
+        border: 1px solid #ddd;
+        padding: 10px 5px;
+      }
+    </style>
+  </ion-app>
+</body>
+
+</html>

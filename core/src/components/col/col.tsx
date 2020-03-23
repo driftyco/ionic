@@ -53,6 +53,54 @@ export class Col implements ComponentInterface {
   @Prop() offsetXl?: string;
 
   /**
+   * The order of the column, in terms of the order relative to the rest of the columns.
+   * If `"first"` is passed, the column will receive the order -1 and is displayed first.
+   * If `"last"` is passed, the column will receive the order 13 and is displayed last.
+   * If `"auto"` is passed, the column will receive the order 0 and stays unordered.
+   */
+  @Prop() order?: string;
+
+  /**
+   * The order of the column for xs screens, in terms of the order relative to the rest of the columns.
+   * If `"first"` is passed, the column will receive the order -1 and is displayed first.
+   * If `"last"` is passed, the column will receive the order 13 and is displayed last.
+   * If `"auto"` is passed, the column will receive the order 0 and stays unordered.
+   */
+  @Prop() orderXs?: string;
+
+  /**
+   * The order of the column for sm screens, in terms of the order relative to the rest of the columns.
+   * If `"first"` is passed, the column will receive the order -1 and is displayed first.
+   * If `"last"` is passed, the column will receive the order 13 and is displayed last.
+   * If `"auto"` is passed, the column will receive the order 0 and stays unordered.
+   */
+  @Prop() orderSm?: string;
+
+  /**
+   * The order of the column for md screens, in terms of the order relative to the rest of the columns.
+   * If `"first"` is passed, the column will receive the order -1 and is displayed first.
+   * If `"last"` is passed, the column will receive the order 13 and is displayed last.
+   * If `"auto"` is passed, the column will receive the order 0 and stays unordered.
+   */
+  @Prop() orderMd?: string;
+
+  /**
+   * The order of the column for lg screens, in terms of the order relative to the rest of the columns.
+   * If `"first"` is passed, the column will receive the order -1 and is displayed first.
+   * If `"last"` is passed, the column will receive the order 13 and is displayed last.
+   * If `"auto"` is passed, the column will receive the order 0 and stays unordered.
+   */
+  @Prop() orderLg?: string;
+
+  /**
+   * The order of the column for xl screens, in terms of the order relative to the rest of the columns.
+   * If `"first"` is passed, the column will receive the order -1 and is displayed first.
+   * If `"last"` is passed, the column will receive the order 13 and is displayed last.
+   * If `"auto"` is passed, the column will receive the order 0 and stays unordered.
+   */
+  @Prop() orderXl?: string;
+
+  /**
    * The amount to pull the column, in terms of how many columns it should shift to the start of
    * the total available.
    */
@@ -210,6 +258,25 @@ export class Col implements ComponentInterface {
     };
   }
 
+  private calculateOrder() {
+    const columns = this.getColumns('order');
+
+    if (!columns) {
+      return;
+    }
+
+    // If the order is set to auto then don't change the order
+    const orderSize = (columns === 'auto')
+      ? 0
+      : (columns === 'first') ? -1
+        : (columns === 'last') ? 13
+          : columns;
+
+    return {
+      'order': `${orderSize}`
+    };
+  }
+
   // Called by push, pull, and offset since they use the same calculations
   private calculatePosition(property: string, modifier: string) {
     const columns = this.getColumns(property);
@@ -256,6 +323,7 @@ export class Col implements ComponentInterface {
           ...this.calculateOffset(isRTL),
           ...this.calculatePull(isRTL),
           ...this.calculatePush(isRTL),
+          ...this.calculateOrder(),
           ...this.calculateSize(),
         }}
       >

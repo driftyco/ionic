@@ -484,6 +484,30 @@ export namespace Components {
     */
     'offsetXs'?: string;
     /**
+    * The order of the column, in terms of the order relative to the rest of the columns. If `"first"` is passed, the column will receive the order -1 and is displayed first. If `"last"` is passed, the column will receive the order 13 and is displayed last. If `"auto"` is passed, the column will receive the order 0 and stays unordered.
+    */
+    'order'?: string;
+    /**
+    * The order of the column for lg screens, in terms of the order relative to the rest of the columns. If `"first"` is passed, the column will receive the order -1 and is displayed first. If `"last"` is passed, the column will receive the order 13 and is displayed last. If `"auto"` is passed, the column will receive the order 0 and stays unordered.
+    */
+    'orderLg'?: string;
+    /**
+    * The order of the column for md screens, in terms of the order relative to the rest of the columns. If `"first"` is passed, the column will receive the order -1 and is displayed first. If `"last"` is passed, the column will receive the order 13 and is displayed last. If `"auto"` is passed, the column will receive the order 0 and stays unordered.
+    */
+    'orderMd'?: string;
+    /**
+    * The order of the column for sm screens, in terms of the order relative to the rest of the columns. If `"first"` is passed, the column will receive the order -1 and is displayed first. If `"last"` is passed, the column will receive the order 13 and is displayed last. If `"auto"` is passed, the column will receive the order 0 and stays unordered.
+    */
+    'orderSm'?: string;
+    /**
+    * The order of the column for xl screens, in terms of the order relative to the rest of the columns. If `"first"` is passed, the column will receive the order -1 and is displayed first. If `"last"` is passed, the column will receive the order 13 and is displayed last. If `"auto"` is passed, the column will receive the order 0 and stays unordered.
+    */
+    'orderXl'?: string;
+    /**
+    * The order of the column for xs screens, in terms of the order relative to the rest of the columns. If `"first"` is passed, the column will receive the order -1 and is displayed first. If `"last"` is passed, the column will receive the order 13 and is displayed last. If `"auto"` is passed, the column will receive the order 0 and stays unordered.
+    */
+    'orderXs'?: string;
+    /**
     * The amount to pull the column, in terms of how many columns it should shift to the start of the total available.
     */
     'pull'?: string;
@@ -3717,6 +3741,30 @@ declare namespace LocalJSX {
     * The amount to offset the column for xs screens, in terms of how many columns it should shift to the end of the total available.
     */
     'offsetXs'?: string;
+    /**
+    * The order of the column, in terms of the order relative to the rest of the columns. If `"first"` is passed, the column will receive the order -1 and is displayed first. If `"last"` is passed, the column will receive the order 13 and is displayed last. If `"auto"` is passed, the column will receive the order 0 and stays unordered.
+    */
+    'order'?: string;
+    /**
+    * The order of the column for lg screens, in terms of the order relative to the rest of the columns. If `"first"` is passed, the column will receive the order -1 and is displayed first. If `"last"` is passed, the column will receive the order 13 and is displayed last. If `"auto"` is passed, the column will receive the order 0 and stays unordered.
+    */
+    'orderLg'?: string;
+    /**
+    * The order of the column for md screens, in terms of the order relative to the rest of the columns. If `"first"` is passed, the column will receive the order -1 and is displayed first. If `"last"` is passed, the column will receive the order 13 and is displayed last. If `"auto"` is passed, the column will receive the order 0 and stays unordered.
+    */
+    'orderMd'?: string;
+    /**
+    * The order of the column for sm screens, in terms of the order relative to the rest of the columns. If `"first"` is passed, the column will receive the order -1 and is displayed first. If `"last"` is passed, the column will receive the order 13 and is displayed last. If `"auto"` is passed, the column will receive the order 0 and stays unordered.
+    */
+    'orderSm'?: string;
+    /**
+    * The order of the column for xl screens, in terms of the order relative to the rest of the columns. If `"first"` is passed, the column will receive the order -1 and is displayed first. If `"last"` is passed, the column will receive the order 13 and is displayed last. If `"auto"` is passed, the column will receive the order 0 and stays unordered.
+    */
+    'orderXl'?: string;
+    /**
+    * The order of the column for xs screens, in terms of the order relative to the rest of the columns. If `"first"` is passed, the column will receive the order -1 and is displayed first. If `"last"` is passed, the column will receive the order 13 and is displayed last. If `"auto"` is passed, the column will receive the order 0 and stays unordered.
+    */
+    'orderXs'?: string;
     /**
     * The amount to pull the column, in terms of how many columns it should shift to the start of the total available.
     */

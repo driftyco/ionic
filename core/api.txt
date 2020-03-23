@@ -250,6 +250,12 @@ ion-col,prop,offsetMd,string | undefined,undefined,false,false
 ion-col,prop,offsetSm,string | undefined,undefined,false,false
 ion-col,prop,offsetXl,string | undefined,undefined,false,false
 ion-col,prop,offsetXs,string | undefined,undefined,false,false
+ion-col,prop,order,string | undefined,undefined,false,false
+ion-col,prop,orderLg,string | undefined,undefined,false,false
+ion-col,prop,orderMd,string | undefined,undefined,false,false
+ion-col,prop,orderSm,string | undefined,undefined,false,false
+ion-col,prop,orderXl,string | undefined,undefined,false,false
+ion-col,prop,orderXs,string | undefined,undefined,false,false
 ion-col,prop,pull,string | undefined,undefined,false,false
 ion-col,prop,pullLg,string | undefined,undefined,false,false
 ion-col,prop,pullMd,string | undefined,undefined,false,false
