@@ -147,13 +147,15 @@ export declare interface IonCheckbox extends Components.IonCheckbox {}
 @Component({ selector: 'ion-checkbox', changeDetection: ChangeDetectionStrategy.OnPush, template: '<ng-content></ng-content>', inputs: ['checked', 'color', 'disabled', 'indeterminate', 'mode', 'name', 'value'] })
 export class IonCheckbox {
   ionChange!: EventEmitter<CustomEvent>;
+  ionCheck!: EventEmitter<CustomEvent>;
+  ionUncheck!: EventEmitter<CustomEvent>;
   ionFocus!: EventEmitter<CustomEvent>;
   ionBlur!: EventEmitter<CustomEvent>;
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
-    proxyOutputs(this, this.el, ['ionChange', 'ionFocus', 'ionBlur']);
+    proxyOutputs(this, this.el, ['ionChange', 'ionCheck', 'ionUncheck', 'ionFocus', 'ionBlur']);
   }
 }
 

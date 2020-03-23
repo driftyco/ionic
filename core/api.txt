@@ -223,7 +223,9 @@ ion-checkbox,prop,name,string,this.inputId,false,false
 ion-checkbox,prop,value,string,'on',false,false
 ion-checkbox,event,ionBlur,void,true
 ion-checkbox,event,ionChange,CheckboxChangeEventDetail,true
+ion-checkbox,event,ionCheck,void,true
 ion-checkbox,event,ionFocus,void,true
+ion-checkbox,event,ionUncheck,void,true
 ion-checkbox,css-prop,--background
 ion-checkbox,css-prop,--background-checked
 ion-checkbox,css-prop,--border-color

@@ -3670,9 +3670,17 @@ declare namespace LocalJSX {
     */
     'onIonChange'?: (event: CustomEvent<CheckboxChangeEventDetail>) => void;
     /**
+    * Emitted when the checkbox is checked.
+    */
+    'onIonCheck'?: (event: CustomEvent<void>) => void;
+    /**
     * Emitted when the toggle has focus.
     */
     'onIonFocus'?: (event: CustomEvent<void>) => void;
+    /**
+    * Emitted when the checkbox is unchecked.
+    */
+    'onIonUncheck'?: (event: CustomEvent<void>) => void;
     /**
     * The value of the toggle does not mean if it's checked or not, use the `checked` property for that.  The value of a toggle is analogous to the value of a `<input type="checkbox">`, it's only used when the toggle participates in a native `<form>`.
     */

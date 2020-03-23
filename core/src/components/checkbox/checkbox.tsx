@@ -65,6 +65,16 @@ export class Checkbox implements ComponentInterface {
   @Event() ionChange!: EventEmitter<CheckboxChangeEventDetail>;
 
   /**
+   * Emitted when the checkbox is checked.
+   */
+  @Event() ionCheck!: EventEmitter<void>;
+
+  /**
+   * Emitted when the checkbox is unchecked.
+   */
+  @Event() ionUncheck!: EventEmitter<void>;
+
+  /**
    * Emitted when the toggle has focus.
    */
   @Event() ionFocus!: EventEmitter<void>;
@@ -115,6 +125,12 @@ export class Checkbox implements ComponentInterface {
     this.setFocus();
     this.checked = !this.checked;
     this.indeterminate = false;
+
+    if (this.checked) {
+      this.ionCheck.emit();
+    } else {
+      this.ionUncheck.emit();
+    }
   }
 
   private onFocus = () => {
