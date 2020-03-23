@@ -65,6 +65,11 @@ export class Toggle implements ComponentInterface {
   @Event() ionChange!: EventEmitter<ToggleChangeEventDetail>;
 
   /**
+   * Emitted when the toggle is being toggled manually.
+   */
+  @Event() ionToggle!: EventEmitter<ToggleChangeEventDetail>;
+
+  /**
    * Emitted when the toggle has focus.
    */
   @Event() ionFocus!: EventEmitter<void>;
@@ -161,6 +166,11 @@ export class Toggle implements ComponentInterface {
   private onClick = () => {
     if (this.lastDrag + 300 < Date.now()) {
       this.checked = !this.checked;
+
+      this.ionToggle.emit({
+        checked: this.checked,
+        value: this.value
+      });
     }
   }
 

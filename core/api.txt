@@ -1249,6 +1249,7 @@ ion-toggle,prop,value,null | string | undefined,'on',false,false
 ion-toggle,event,ionBlur,void,true
 ion-toggle,event,ionChange,ToggleChangeEventDetail,true
 ion-toggle,event,ionFocus,void,true
+ion-toggle,event,ionToggle,ToggleChangeEventDetail,true
 ion-toggle,css-prop,--background
 ion-toggle,css-prop,--background-checked
 ion-toggle,css-prop,--border-radius
