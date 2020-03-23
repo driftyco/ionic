@@ -125,3 +125,10 @@
 :host(.in-item[slot="start"]) {
   @include padding($toggle-md-item-start-padding-top, $toggle-md-item-start-padding-end, $toggle-md-item-start-padding-bottom, $toggle-md-item-start-padding-start);
 }
+
+// Hide IO labels in md 
+//.........................
+
+:host(.io-labeled) .toggle-label-container {
+  display: none;
+}

@@ -26,6 +26,9 @@ export const ToggleExamples: React.FC = () => {
           <IonItemDivider>Checked Toggle</IonItemDivider>
           <IonItem><IonToggle checked /></IonItem>
 
+          <IonItemDivider>Checked With IO labels</IonItemDivider>
+          <IonItem><IonToggle ioIOSLabels={true}/></IonItem>
+
           <IonItemDivider>Toggle Colors</IonItemDivider>
           <IonItem><IonToggle color="primary" /></IonItem>
           <IonItem><IonToggle color="secondary" /></IonItem>
@@ -47,6 +50,11 @@ export const ToggleExamples: React.FC = () => {
           <IonItem>
             <IonLabel>Mushrooms</IonLabel>
             <IonToggle value="mushrooms" />
+          </IonItem>
+
+          <IonItem>
+            <IonLabel>Tuna</IonLabel>
+            <IonToggle value="tuna" ioIOSLabels={true}/>
           </IonItem>
         </IonList>
       </IonContent>

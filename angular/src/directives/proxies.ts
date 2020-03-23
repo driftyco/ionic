@@ -862,8 +862,8 @@ export class IonTitle {
 }
 
 export declare interface IonToggle extends Components.IonToggle {}
-@ProxyCmp({inputs: ['checked', 'color', 'disabled', 'mode', 'name', 'value']})
-@Component({ selector: 'ion-toggle', changeDetection: ChangeDetectionStrategy.OnPush, template: '<ng-content></ng-content>', inputs: ['checked', 'color', 'disabled', 'mode', 'name', 'value'] })
+@ProxyCmp({inputs: ['checked', 'color', 'disabled', 'ioLabels', 'mode', 'name', 'value']})
+@Component({ selector: 'ion-toggle', changeDetection: ChangeDetectionStrategy.OnPush, template: '<ng-content></ng-content>', inputs: ['checked', 'color', 'disabled', 'ioLabels', 'mode', 'name', 'value'] })
 export class IonToggle {
   ionChange!: EventEmitter<CustomEvent>;
   ionFocus!: EventEmitter<CustomEvent>;

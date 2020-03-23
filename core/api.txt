@@ -1243,6 +1243,7 @@ ion-toggle,shadow
 ion-toggle,prop,checked,boolean,false,false,false
 ion-toggle,prop,color,string | undefined,undefined,false,false
 ion-toggle,prop,disabled,boolean,false,false,false
+ion-toggle,prop,ioLabels,boolean,true,false,false
 ion-toggle,prop,mode,"ios" | "md",undefined,false,false
 ion-toggle,prop,name,string,this.inputId,false,false
 ion-toggle,prop,value,null | string | undefined,'on',false,false

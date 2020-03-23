@@ -51,6 +51,11 @@ export class Toggle implements ComponentInterface {
   @Prop() disabled = false;
 
   /**
+   * If `true`, enabling On / Off labels for IOS toggles only.
+   */
+  @Prop() ioIOSLabels = false;
+
+  /**
    * The value of the toggle does not mean if it's checked or not, use the `checked`
    * property for that.
    *
@@ -182,7 +187,6 @@ export class Toggle implements ComponentInterface {
       label.id = labelId;
     }
     renderHiddenInput(true, el, this.name, (checked ? value : ''), disabled);
-
     return (
       <Host
         onClick={this.onClick}
@@ -197,11 +201,19 @@ export class Toggle implements ComponentInterface {
           'toggle-activated': activated,
           'toggle-checked': checked,
           'toggle-disabled': disabled,
+          'io-labeled': this.ioIOSLabels,
           'interactive': true
         }}
       >
         <div class="toggle-icon">
           <div class="toggle-inner"/>
+          {
+          this.ioIOSLabels ?
+            <div class="toggle-label-container">
+              <i class="toggle-i-label">I</i>
+              <i class="toggle-o-label">O</i>
+            </div> : ''
+          }
         </div>
         <button
           type="button"

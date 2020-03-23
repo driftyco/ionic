@@ -8,6 +8,9 @@
 <!-- Checked Toggle -->
 <ion-toggle checked></ion-toggle>
 
+<!-- IO Labeled Toggle -->
+<ion-toggle ioIOSLabels ></ion-toggle>
+
 <!-- Toggle Colors -->
 <ion-toggle color="primary"></ion-toggle>
 <ion-toggle color="secondary"></ion-toggle>
@@ -30,6 +33,11 @@
   <ion-item>
     <ion-label>Mushrooms</ion-label>
     <ion-toggle [(ngModel)]="mushrooms"></ion-toggle>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Tuna</ion-label>
+    <ion-toggle [(ngModel)]="tuna" ioIOSLabels ></ion-toggle>
   </ion-item>
 </ion-list>
 ```

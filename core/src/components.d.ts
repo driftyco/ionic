@@ -2579,6 +2579,10 @@ export namespace Components {
     */
     'disabled': boolean;
     /**
+    * If `true`, enabling On / Off labels for IOS toggles only.
+    */
+    'ioLabels': boolean;
+    /**
     * The mode determines which platform styles to use.
     */
     'mode'?: "ios" | "md";
@@ -5736,6 +5740,10 @@ declare namespace LocalJSX {
     * If `true`, the user cannot interact with the toggle.
     */
     'disabled'?: boolean;
+    /**
+    * If `true`, enabling On / Off labels for IOS toggles only.
+    */
+    'ioLabels'?: boolean;
     /**
     * The mode determines which platform styles to use.
     */

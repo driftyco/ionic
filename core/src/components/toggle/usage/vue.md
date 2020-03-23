@@ -8,6 +8,9 @@
 
   <!-- Checked Toggle -->
   <ion-toggle checked></ion-toggle>
+  
+  <!-- IO Labeled Toggle-->
+  <ion-toggle ioIOSLabels ></ion-toggle>
 
   <!-- Toggle Colors -->
   <ion-toggle color="primary"></ion-toggle>
@@ -43,6 +46,15 @@
         @ionChange="toppings.push($event.target.value)"
         value="mushrooms"
         :checked="toppings.indexOf('pepperoni') !== -1">
+      </ion-toggle>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Tuna</ion-label>
+      <ion-toggle
+        @ionChange="toppings.push($event.target.value)"
+        value="mushrooms"
+        :ioIOSLabels="true">
       </ion-toggle>
     </ion-item>
   </ion-list>

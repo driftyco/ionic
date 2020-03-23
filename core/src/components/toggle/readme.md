@@ -21,6 +21,9 @@ Toggles change the state of a single option. Toggles can be switched on or off b
 <!-- Checked Toggle -->
 <ion-toggle checked></ion-toggle>
 
+<!-- IO Labeled Toggle -->
+<ion-toggle ioLabels ></ion-toggle>
+
 <!-- Toggle Colors -->
 <ion-toggle color="primary"></ion-toggle>
 <ion-toggle color="secondary"></ion-toggle>
@@ -44,6 +47,11 @@ Toggles change the state of a single option. Toggles can be switched on or off b
     <ion-label>Mushrooms</ion-label>
     <ion-toggle [(ngModel)]="mushrooms"></ion-toggle>
   </ion-item>
+
+  <ion-item>
+    <ion-label>Tuna</ion-label>
+    <ion-toggle [(ngModel)]="tuna" ioLabels ></ion-toggle>
+  </ion-item>
 </ion-list>
 ```
 
@@ -59,6 +67,9 @@ Toggles change the state of a single option. Toggles can be switched on or off b
 
 <!-- Checked Toggle -->
 <ion-toggle checked></ion-toggle>
+
+<!-- IO Labeled Toggle -->
+<ion-toggle ioLabels ></ion-toggle>
 
 <!-- Toggle Colors -->
 <ion-toggle color="primary"></ion-toggle>
@@ -82,6 +93,11 @@ Toggles change the state of a single option. Toggles can be switched on or off b
   <ion-item>
     <ion-label>Mushrooms</ion-label>
     <ion-toggle slot="end" value="mushrooms"></ion-toggle>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Tuna</ion-label>
+    <ion-toggle  slot="end" value="tuna" ioLabels ></ion-toggle>
   </ion-item>
 </ion-list>
 ```
@@ -117,6 +133,9 @@ export const ToggleExamples: React.FC = () => {
           <IonItemDivider>Checked Toggle</IonItemDivider>
           <IonItem><IonToggle checked /></IonItem>
 
+          <IonItemDivider>Checked With IO labels</IonItemDivider>
+          <IonItem><IonToggle ioLabels={true}/></IonItem>
+
           <IonItemDivider>Toggle Colors</IonItemDivider>
           <IonItem><IonToggle color="primary" /></IonItem>
           <IonItem><IonToggle color="secondary" /></IonItem>
@@ -139,6 +158,11 @@ export const ToggleExamples: React.FC = () => {
             <IonLabel>Mushrooms</IonLabel>
             <IonToggle value="mushrooms" />
           </IonItem>
+
+          <IonItem>
+            <IonLabel>Tuna</IonLabel>
+            <IonToggle value="tuna" ioLabels={true}/>
+          </IonItem>
         </IonList>
       </IonContent>
     </IonPage>
@@ -159,6 +183,9 @@ export const ToggleExamples: React.FC = () => {
 
   <!-- Checked Toggle -->
   <ion-toggle checked></ion-toggle>
+  
+  <!-- IO Labeled Toggle-->
+  <ion-toggle ioLabels ></ion-toggle>
 
   <!-- Toggle Colors -->
   <ion-toggle color="primary"></ion-toggle>
@@ -196,6 +223,15 @@ export const ToggleExamples: React.FC = () => {
         :checked="toppings.indexOf('pepperoni') !== -1">
       </ion-toggle>
     </ion-item>
+
+    <ion-item>
+      <ion-label>Tuna</ion-label>
+      <ion-toggle
+        @ionChange="toppings.push($event.target.value)"
+        value="mushrooms"
+        :ioLabels="true">
+      </ion-toggle>
+    </ion-item>
   </ion-list>
 </template>
 ```
@@ -204,14 +240,15 @@ export const ToggleExamples: React.FC = () => {
 
 ## Properties
 
-| Property   | Attribute  | Description                                                                                                                                                                                                                                                            | Type                          | Default        |
-| ---------- | ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------- | -------------- |
-| `checked`  | `checked`  | If `true`, the toggle is selected.                                                                                                                                                                                                                                     | `boolean`                     | `false`        |
-| `color`    | `color`    | The color to use from your application's color palette. Default options are: `"primary"`, `"secondary"`, `"tertiary"`, `"success"`, `"warning"`, `"danger"`, `"light"`, `"medium"`, and `"dark"`. For more information on colors, see [theming](/docs/theming/basics). | `string \| undefined`         | `undefined`    |
-| `disabled` | `disabled` | If `true`, the user cannot interact with the toggle.                                                                                                                                                                                                                   | `boolean`                     | `false`        |
-| `mode`     | `mode`     | The mode determines which platform styles to use.                                                                                                                                                                                                                      | `"ios" \| "md"`               | `undefined`    |
-| `name`     | `name`     | The name of the control, which is submitted with the form data.                                                                                                                                                                                                        | `string`                      | `this.inputId` |
-| `value`    | `value`    | The value of the toggle does not mean if it's checked or not, use the `checked` property for that.  The value of a toggle is analogous to the value of a `<input type="checkbox">`, it's only used when the toggle participates in a native `<form>`.                  | `null \| string \| undefined` | `'on'`         |
+| Property   | Attribute   | Description                                                                                                                                                                                                                                                            | Type                          | Default        |
+| ---------- | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------- | -------------- |
+| `checked`  | `checked`   | If `true`, the toggle is selected.                                                                                                                                                                                                                                     | `boolean`                     | `false`        |
+| `color`    | `color`     | The color to use from your application's color palette. Default options are: `"primary"`, `"secondary"`, `"tertiary"`, `"success"`, `"warning"`, `"danger"`, `"light"`, `"medium"`, and `"dark"`. For more information on colors, see [theming](/docs/theming/basics). | `string \| undefined`         | `undefined`    |
+| `disabled` | `disabled`  | If `true`, the user cannot interact with the toggle.                                                                                                                                                                                                                   | `boolean`                     | `false`        |
+| `ioLabels` | `io-labels` | If `true`, enabling On / Off labels for IOS toggles only.                                                                                                                                                                                                              | `boolean`                     | `true`         |
+| `mode`     | `mode`      | The mode determines which platform styles to use.                                                                                                                                                                                                                      | `"ios" \| "md"`               | `undefined`    |
+| `name`     | `name`      | The name of the control, which is submitted with the form data.                                                                                                                                                                                                        | `string`                      | `this.inputId` |
+| `value`    | `value`     | The value of the toggle does not mean if it's checked or not, use the `checked` property for that.  The value of a toggle is analogous to the value of a `<input type="checkbox">`, it's only used when the toggle participates in a native `<form>`.                  | `null \| string \| undefined` | `'on'`         |
 
 
 ## Events
