@@ -443,7 +443,7 @@ ion-infinite-scroll-content,prop,loadingText,IonicSafeString | string | undefine
 
 ion-input,scoped
 ion-input,prop,accept,string | undefined,undefined,false,false
-ion-input,prop,autocapitalize,string,'off',false,false
+ion-input,prop,autocapitalize,"characters" | "none" | "off" | "on" | "sentences" | "words",'off',false,false
 ion-input,prop,autocomplete,"on" | "off" | "name" | "honorific-prefix" | "given-name" | "additional-name" | "family-name" | "honorific-suffix" | "nickname" | "email" | "username" | "new-password" | "current-password" | "one-time-code" | "organization-title" | "organization" | "street-address" | "address-line1" | "address-line2" | "address-line3" | "address-level4" | "address-level3" | "address-level2" | "address-level1" | "country" | "country-name" | "postal-code" | "cc-name" | "cc-given-name" | "cc-additional-name" | "cc-family-name" | "cc-number" | "cc-exp" | "cc-exp-month" | "cc-exp-year" | "cc-csc" | "cc-type" | "transaction-currency" | "transaction-amount" | "language" | "bday" | "bday-day" | "bday-month" | "bday-year" | "sex" | "tel" | "tel-country-code" | "tel-national" | "tel-area-code" | "tel-local" | "tel-extension" | "impp" | "url" | "photo",'off',false,false
 ion-input,prop,autocorrect,"off" | "on",'off',false,false
 ion-input,prop,autofocus,boolean,false,false,false
@@ -1189,7 +1189,7 @@ ion-text,prop,mode,"ios" | "md",undefined,false,false
 
 ion-textarea,scoped
 ion-textarea,prop,autoGrow,boolean,false,false,false
-ion-textarea,prop,autocapitalize,string,'none',false,false
+ion-textarea,prop,autocapitalize,"characters" | "none" | "off" | "on" | "sentences" | "words",'off',false,false
 ion-textarea,prop,autofocus,boolean,false,false,false
 ion-textarea,prop,clearOnEdit,boolean,false,false,false
 ion-textarea,prop,color,string | undefined,undefined,false,false

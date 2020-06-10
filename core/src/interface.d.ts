@@ -36,6 +36,8 @@ export * from './utils/overlays-interface';
 export * from './global/config';
 export { Gesture, GestureConfig, GestureDetail } from './utils/gesture';
 
+// From https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/autocapitalize
+export type AutocapitalizeTypes = 'off' | 'none' | 'on' | 'sentences' | 'words' | 'characters';
 // From: https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete
 export type AutocompleteTypes = (
 | 'on' | 'off' | 'name' | 'honorific-prefix' | 'given-name' | 'additional-name' | 'family-name' | 'honorific-suffix'

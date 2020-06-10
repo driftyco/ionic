@@ -1,7 +1,7 @@
 import { Build, Component, ComponentInterface, Element, Event, EventEmitter, Host, Method, Prop, State, Watch, h, readTask } from '@stencil/core';
 
 import { getIonMode } from '../../global/ionic-global';
-import { Color, StyleEventDetail, TextareaChangeEventDetail } from '../../interface';
+import { AutocapitalizeTypes, Color, StyleEventDetail, TextareaChangeEventDetail } from '../../interface';
 import { debounceEvent, findItemLabel, raf } from '../../utils/helpers';
 import { createColorClasses } from '../../utils/theme';
 
@@ -37,7 +37,7 @@ export class Textarea implements ComponentInterface {
   /**
    * Indicates whether and how the text value should be automatically capitalized as it is entered/edited by the user.
    */
-  @Prop() autocapitalize = 'none';
+  @Prop() autocapitalize: AutocapitalizeTypes = 'off';
 
   /**
    * This Boolean attribute lets you specify that a form control should have input focus when the page loads.

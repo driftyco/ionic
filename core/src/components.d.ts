@@ -5,7 +5,7 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
-import { ActionSheetButton, AlertButton, AlertInput, AnimationBuilder, AutocompleteTypes, CheckboxChangeEventDetail, Color, ComponentProps, ComponentRef, DatetimeChangeEventDetail, DatetimeOptions, DomRenderFn, FooterHeightFn, FrameworkDelegate, HeaderFn, HeaderHeightFn, InputChangeEventDetail, ItemHeightFn, ItemRenderFn, ItemReorderEventDetail, MenuChangeEventDetail, NavComponent, NavOptions, OverlayEventDetail, PickerButton, PickerColumn, RadioGroupChangeEventDetail, RangeChangeEventDetail, RangeValue, RefresherEventDetail, RouteID, RouterDirection, RouterEventDetail, RouterOutletOptions, RouteWrite, ScrollBaseDetail, ScrollDetail, SearchbarChangeEventDetail, SegmentButtonLayout, SegmentChangeEventDetail, SelectChangeEventDetail, SelectInterface, SelectPopoverOption, Side, SpinnerTypes, StyleEventDetail, SwipeGestureHandler, TabBarChangedEventDetail, TabButtonClickEventDetail, TabButtonLayout, TextareaChangeEventDetail, TextFieldTypes, ToastButton, ToggleChangeEventDetail, TransitionDoneFn, TransitionInstruction, ViewController, } from "./interface";
+import { ActionSheetButton, AlertButton, AlertInput, AnimationBuilder, AutocapitalizeTypes, AutocompleteTypes, CheckboxChangeEventDetail, Color, ComponentProps, ComponentRef, DatetimeChangeEventDetail, DatetimeOptions, DomRenderFn, FooterHeightFn, FrameworkDelegate, HeaderFn, HeaderHeightFn, InputChangeEventDetail, ItemHeightFn, ItemRenderFn, ItemReorderEventDetail, MenuChangeEventDetail, NavComponent, NavOptions, OverlayEventDetail, PickerButton, PickerColumn, RadioGroupChangeEventDetail, RangeChangeEventDetail, RangeValue, RefresherEventDetail, RouteID, RouterDirection, RouterEventDetail, RouterOutletOptions, RouteWrite, ScrollBaseDetail, ScrollDetail, SearchbarChangeEventDetail, SegmentButtonLayout, SegmentChangeEventDetail, SelectChangeEventDetail, SelectInterface, SelectPopoverOption, Side, SpinnerTypes, StyleEventDetail, SwipeGestureHandler, TabBarChangedEventDetail, TabButtonClickEventDetail, TabButtonLayout, TextareaChangeEventDetail, TextFieldTypes, ToastButton, ToggleChangeEventDetail, TransitionDoneFn, TransitionInstruction, ViewController, } from "./interface";
 import { IonicSafeString, } from "./utils/sanitization";
 import { SelectCompareFn, } from "./components/select/select-interface";
 export namespace Components {
@@ -831,7 +831,7 @@ export namespace Components {
         /**
           * Indicates whether and how the text value should be automatically capitalized as it is entered/edited by the user.
          */
-        "autocapitalize": string;
+        "autocapitalize": AutocapitalizeTypes;
         /**
           * Indicates whether the value of the control can be automatically completed by the browser.
          */
@@ -2390,7 +2390,7 @@ export namespace Components {
         /**
           * Indicates whether and how the text value should be automatically capitalized as it is entered/edited by the user.
          */
-        "autocapitalize": string;
+        "autocapitalize": AutocapitalizeTypes;
         /**
           * This Boolean attribute lets you specify that a form control should have input focus when the page loads.
          */
@@ -4131,7 +4131,7 @@ declare namespace LocalJSX {
         /**
           * Indicates whether and how the text value should be automatically capitalized as it is entered/edited by the user.
          */
-        "autocapitalize"?: string;
+        "autocapitalize"?: AutocapitalizeTypes;
         /**
           * Indicates whether the value of the control can be automatically completed by the browser.
          */
@@ -5603,7 +5603,7 @@ declare namespace LocalJSX {
         /**
           * Indicates whether and how the text value should be automatically capitalized as it is entered/edited by the user.
          */
-        "autocapitalize"?: string;
+        "autocapitalize"?: AutocapitalizeTypes;
         /**
           * This Boolean attribute lets you specify that a form control should have input focus when the page loads.
          */
