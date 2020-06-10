@@ -12,6 +12,7 @@
    *
    * @prop --placeholder-color: Color of the select placeholder text
    * @prop --placeholder-opacity: Opacity of the select placeholder text
+   * @prop --opacity: Opacity of the select when disabled
    */
   --placeholder-color: currentColor;
   --placeholder-opacity: 0.33;
@@ -36,7 +37,7 @@
 }
 
 :host(.select-disabled) {
-  opacity: .4;
+  opacity: var(--opacity, .4);
   pointer-events: none;
 }
 

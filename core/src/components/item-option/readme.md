@@ -36,10 +36,11 @@ action for the item.
 
 ## CSS Custom Properties
 
-| Name           | Description                   |
-| -------------- | ----------------------------- |
-| `--background` | Background of the item option |
-| `--color`      | Color of the item option      |
+| Name           | Description                              |
+| -------------- | ---------------------------------------- |
+| `--background` | Background of the item option            |
+| `--color`      | Color of the item option                 |
+| `--opacity`    | Opacity of the item option when disabled |
 
 
 ## Dependencies

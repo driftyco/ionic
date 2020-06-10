@@ -1260,6 +1260,7 @@ Type: `Promise<any>`
 
 | Name                    | Description                                                                                               |
 | ----------------------- | --------------------------------------------------------------------------------------------------------- |
+| `--opacity`             | Opacity of the select when disabled                                                                       |
 | `--padding-bottom`      | Bottom padding of the select                                                                              |
 | `--padding-end`         | Right padding if direction is left-to-right, and left padding if direction is right-to-left of the select |
 | `--padding-start`       | Left padding if direction is left-to-right, and right padding if direction is right-to-left of the select |

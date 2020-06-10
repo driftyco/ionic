@@ -16,6 +16,7 @@
    * @prop --placeholder-font-style: Font style of the searchbar placeholder
    * @prop --placeholder-font-weight: Font weight of the searchbar placeholder
    * @prop --placeholder-opacity: Opacity of the searchbar placeholder
+   * @prop --opacity: Opacity of the searchbar when disabled
    */
   --placeholder-color: initial;
   --placeholder-font-style: initial;
@@ -151,6 +152,6 @@
 
 :host(.searchbar-disabled) {
   cursor: default;
-  opacity: .4;
+  opacity: var(--opacity, .4);
   pointer-events: none;
 }

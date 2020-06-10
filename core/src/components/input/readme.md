@@ -361,6 +361,7 @@ Type: `Promise<void>`
 | --------------------------- | -------------------------------------------------------------------------------------------------------- |
 | `--background`              | Background of the input                                                                                  |
 | `--color`                   | Color of the input text                                                                                  |
+| `--opacity`                 | Opacity of the input when disabled                                                                       |
 | `--padding-bottom`          | Bottom padding of the input                                                                              |
 | `--padding-end`             | Right padding if direction is left-to-right, and left padding if direction is right-to-left of the input |
 | `--padding-start`           | Left padding if direction is left-to-right, and right padding if direction is right-to-left of the input |

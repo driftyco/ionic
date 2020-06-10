@@ -7,6 +7,7 @@
 :host-context(.item) {
   /**
    * @prop --color: Color of the label
+   * @prop --opacity: Opacity of the label
    */
   --color: initial;
 
@@ -36,7 +37,7 @@
 
 :host-context(.item-interactive-disabled:not(.item-multiple-inputs)) {
   cursor: default;
-  opacity: .3;
+  opacity: var(--opacity, .3);
   pointer-events: none;
 }
 

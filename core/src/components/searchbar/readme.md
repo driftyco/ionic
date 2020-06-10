@@ -371,6 +371,7 @@ Type: `Promise<void>`
 | `--clear-button-color`      | Color of the searchbar clear button      |
 | `--color`                   | Color of the searchbar text              |
 | `--icon-color`              | Color of the searchbar icon              |
+| `--opacity`                 | Opacity of the searchbar when disabled   |
 | `--placeholder-color`       | Color of the searchbar placeholder       |
 | `--placeholder-font-style`  | Font style of the searchbar placeholder  |
 | `--placeholder-font-weight` | Font weight of the searchbar placeholder |

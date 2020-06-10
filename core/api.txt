@@ -337,6 +337,7 @@ ion-datetime,event,ionBlur,void,true
 ion-datetime,event,ionCancel,void,true
 ion-datetime,event,ionChange,DatetimeChangeEventDetail,true
 ion-datetime,event,ionFocus,void,true
+ion-datetime,css-prop,--opacity
 ion-datetime,css-prop,--padding-bottom
 ion-datetime,css-prop,--padding-end
 ion-datetime,css-prop,--padding-start
@@ -478,6 +479,7 @@ ion-input,event,ionFocus,void,true
 ion-input,event,ionInput,KeyboardEvent,true
 ion-input,css-prop,--background
 ion-input,css-prop,--color
+ion-input,css-prop,--opacity
 ion-input,css-prop,--padding-bottom
 ion-input,css-prop,--padding-end
 ion-input,css-prop,--padding-start
@@ -568,6 +570,7 @@ ion-item-option,prop,target,string | undefined,undefined,false,false
 ion-item-option,prop,type,"button" | "reset" | "submit",'button',false,false
 ion-item-option,css-prop,--background
 ion-item-option,css-prop,--color
+ion-item-option,css-prop,--opacity
 
 ion-item-options,none
 ion-item-options,prop,side,"end" | "start",'end',false,false
@@ -587,6 +590,7 @@ ion-label,prop,color,string | undefined,undefined,false,false
 ion-label,prop,mode,"ios" | "md",undefined,false,false
 ion-label,prop,position,"fixed" | "floating" | "stacked" | undefined,undefined,false,false
 ion-label,css-prop,--color
+ion-label,css-prop,--opacity
 
 ion-list,none
 ion-list,prop,inset,boolean,false,false,false
@@ -990,6 +994,7 @@ ion-searchbar,css-prop,--cancel-button-color
 ion-searchbar,css-prop,--clear-button-color
 ion-searchbar,css-prop,--color
 ion-searchbar,css-prop,--icon-color
+ion-searchbar,css-prop,--opacity
 ion-searchbar,css-prop,--placeholder-color
 ion-searchbar,css-prop,--placeholder-font-style
 ion-searchbar,css-prop,--placeholder-font-weight
@@ -1057,6 +1062,7 @@ ion-select,event,ionBlur,void,true
 ion-select,event,ionCancel,void,true
 ion-select,event,ionChange,SelectChangeEventDetail,true
 ion-select,event,ionFocus,void,true
+ion-select,css-prop,--opacity
 ion-select,css-prop,--padding-bottom
 ion-select,css-prop,--padding-end
 ion-select,css-prop,--padding-start
@@ -1218,6 +1224,7 @@ ion-textarea,event,ionInput,KeyboardEvent,true
 ion-textarea,css-prop,--background
 ion-textarea,css-prop,--border-radius
 ion-textarea,css-prop,--color
+ion-textarea,css-prop,--opacity
 ion-textarea,css-prop,--padding-bottom
 ion-textarea,css-prop,--padding-end
 ion-textarea,css-prop,--padding-start

@@ -11,6 +11,8 @@
    * @prop --padding-start: Left padding if direction is left-to-right, and right padding if direction is right-to-left of the datetime
    *
    * @prop --placeholder-color: Color of the datetime placeholder
+   *
+   * @prop --opacity: Opacity of the datetime when disabled
    */
   @include padding(var(--padding-top), var(--padding-end), var(--padding-bottom), var(--padding-start));
 
@@ -39,7 +41,7 @@
 }
 
 :host(.datetime-disabled) {
-  opacity: .3;
+  opacity: var(--opacity, .3);
   pointer-events: none;
 }
 

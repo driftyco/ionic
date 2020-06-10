@@ -7,6 +7,7 @@
   /**
    * @prop --background: Background of the item option
    * @prop --color: Color of the item option
+   * @prop --opacity: Opacity of the item option when disabled
    */
   --background: #{ion-color(primary, base)};
   --color: #{ion-color(primary, contrast)};
@@ -123,6 +124,6 @@
 
 :host(.item-option-disabled) .button-native {
   cursor: default;
-  opacity: .5;
+  opacity: var(--opacity, .5);
   pointer-events: none;
 }
