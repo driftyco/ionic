@@ -3,6 +3,9 @@ import { IonTabs, IonTabButton, IonLabel, IonIcon, IonTabBar} from '../index';
 import { render, cleanup } from '@testing-library/react';
 import { IonRouterOutlet } from '../IonRouterOutlet';
 
+// @ts-ignore
+import HTMLIonTabsElement from '@ionic/core/src/components';
+
 afterEach(cleanup)
 
 describe('IonTabs', () => {
@@ -32,8 +35,8 @@ describe('IonTabs', () => {
     );
 
     expect(container.children[0].children.length).toEqual(2);
-    expect(container.children[0].children[0].tagName).toEqual('DIV');
-    expect(container.children[0].children[0].className).toEqual('tabs-inner');
+    expect(container.children[0].children[0].tagName).toEqual('ION-ROUTER-OUTLET');
+    expect(container.children[0].children[0].className).toEqual('');
 
     expect(container.children[0].children[1].tagName).toEqual('ION-TAB-BAR');
     expect(container.children[0].children[1].children.length).toEqual(4);
@@ -68,11 +71,18 @@ describe('IonTabs', () => {
     );
 
     expect(container.children[0].children.length).toEqual(2);
-    expect(container.children[0].children[0].tagName).toEqual('DIV');
-    expect(container.children[0].children[0].className).toEqual('tabs-inner');
+    expect(container.children[0].children[0].tagName).toEqual('ION-ROUTER-OUTLET');
+    expect(container.children[0].children[0].className).toEqual('');
 
     expect(container.children[0].children[1].tagName).toEqual('ION-TAB-BAR');
     expect(container.children[0].children[1].children.length).toEqual(3);
     expect(Array.from(container.children[0].children[1].children).map(c => c.tagName)).toEqual(['ION-TAB-BUTTON', 'ION-TAB-BUTTON', 'ION-TAB-BUTTON']);
   });
+
+  test('should compile with HTMLIonTabsElement refs', () => {
+    const tabsRef = React.createRef<HTMLIonTabsElement>();
+    render(
+      <IonTabs ref={tabsRef}/>
+    )
+  })
 });
