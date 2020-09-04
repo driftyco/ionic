@@ -12,7 +12,7 @@ describe('Replace Action', () => {
     cy.ionPageVisible('page1')
     cy.ionNav('ion-button', 'Goto Page2')
     cy.ionPageVisible('page2')
-    cy.ionNav('ion-button', 'Goto Page3')
+    cy.ionNav('ion-button', 'Replace Page3')
     cy.ionPageVisible('page3')
     cy.go('back')
     cy.ionPageVisible('page1')

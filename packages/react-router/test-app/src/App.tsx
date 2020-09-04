@@ -31,7 +31,7 @@ import MultipleTabs from './pages/muiltiple-tabs/MultipleTabs';
 import DynamicTabs from './pages/dynamic-tabs/DynamicTabs';
 import NestedOutlet from './pages/nested-outlet/NestedOutlet';
 import NestedOutlet2 from './pages/nested-outlet/NestedOutlet2';
-import ReplaceAction from './pages/replace-action/Replace';
+import ReplaceAction from './pages/replace-action/ReplaceAction';
 import TabsContext from './pages/tab-context/TabContext';
 import { OutletRef } from './pages/outlet-ref/OutletRef';
 import { SwipeToGoBack } from './pages/swipe-to-go-back/SwipToGoBack';

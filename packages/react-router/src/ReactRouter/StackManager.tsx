@@ -66,7 +66,10 @@ export class StackManager extends React.PureComponent<StackManagerProps, StackMa
       const leavingViewItem = this.context.findLeavingViewItemByRouteInfo(routeInfo, this.id);
 
       if (!(routeInfo.routeAction === 'push' && routeInfo.routeDirection === 'forward')) {
-        const shouldLeavingViewBeRemoved = routeInfo.routeDirection !== 'none' && leavingViewItem && (enteringViewItem !== leavingViewItem);
+        let shouldLeavingViewBeRemoved = false;
+        if ((routeInfo.routeDirection !== 'none' || routeInfo.routeAction === 'replace') && leavingViewItem && (enteringViewItem !== leavingViewItem)) {
+          shouldLeavingViewBeRemoved = true;
+        }
         if (shouldLeavingViewBeRemoved) {
           leavingViewItem!.mount = false;
         }

@@ -147,7 +147,6 @@ class IonRouterInner extends React.PureComponent<IonRouteProps, IonRouteState> {
           ...this.incomingRouteParams as RouteInfo,
           lastPathname: leavingLocationInfo.pathname
         };
-        this.locationHistory.add(routeInfo);
       } else {
         const isPushed = (this.incomingRouteParams.routeAction === 'push' && this.incomingRouteParams.routeDirection === 'forward');
         routeInfo = {
@@ -173,12 +172,14 @@ class IonRouterInner extends React.PureComponent<IonRouteProps, IonRouteState> {
           const currentRouteInfo = this.locationHistory.current();
           routeInfo.lastPathname = currentRouteInfo?.pathname || routeInfo.lastPathname;
           routeInfo.pushedByRoute = currentRouteInfo?.pushedByRoute || routeInfo.pushedByRoute;
-          routeInfo.routeDirection = currentRouteInfo?.routeDirection || routeInfo.routeDirection;
-          routeInfo.routeAnimation = currentRouteInfo?.routeAnimation || routeInfo.routeAnimation;
         }
-
-        this.locationHistory.add(routeInfo);
       }
+
+      if (location.state?.direction) {
+        routeInfo.routeDirection = location.state.direction;
+      }
+
+      this.locationHistory.add(routeInfo);
 
       this.setState({
         routeInfo

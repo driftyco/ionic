@@ -54,7 +54,7 @@ const Page2: React.FC = () => {
       </IonHeader>
       <IonContent>
         <IonButton onClick={() => clickButton()}>
-          Goto Page3
+          Replace Page3
         </IonButton>
       </IonContent>
     </IonPage>
@@ -67,7 +67,7 @@ const Edit: React.FC = () => {
       <IonHeader>
         <IonToolbar>
           <IonButtons slot="start">
-            <IonBackButton defaultHref="/replace-action/page1"/>
+            <IonBackButton text="Back to page 1" defaultHref="/replace-action/page1" />
           </IonButtons>
           <IonTitle>Page three</IonTitle>
         </IonToolbar>
