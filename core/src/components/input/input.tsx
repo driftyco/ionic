@@ -199,6 +199,11 @@ export class Input implements ComponentInterface {
   }
 
   /**
+   * The HTML standard validity attribute related to forms participation forwarded from the native html input.
+   */
+  @Prop() validity: ValidityState | null = null;
+
+  /**
    * Emitted when a keyboard input occurred.
    */
   @Event() ionInput!: EventEmitter<KeyboardEvent>;
@@ -282,6 +287,16 @@ export class Input implements ComponentInterface {
   @Method()
   getInputElement(): Promise<HTMLInputElement> {
     return Promise.resolve(this.nativeInput!);
+  }
+
+  /**
+   * Sets the custom validity error message on the native `<input>` element.
+   */
+  @Method()
+  async setCustomValidity(error: string) {
+    if (this.nativeInput) {
+      this.nativeInput.setCustomValidity(error);
+    }
   }
 
   private shouldClearOnEdit() {
@@ -381,6 +396,11 @@ export class Input implements ComponentInterface {
     }
   }
 
+  private setNativeInput = (input: HTMLInputElement | undefined) => {
+    this.nativeInput = input;
+    this.validity = this.nativeInput ? this.nativeInput?.validity : null;
+  }
+
   private hasValue(): boolean {
     return this.getValue().length > 0;
   }
@@ -405,7 +425,7 @@ export class Input implements ComponentInterface {
       >
         <input
           class="native-input"
-          ref={input => this.nativeInput = input}
+          ref={this.setNativeInput}
           aria-labelledby={labelId}
           disabled={this.disabled}
           accept={this.accept}

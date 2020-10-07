@@ -476,8 +476,10 @@ ion-input,prop,size,number | undefined,undefined,false,false
 ion-input,prop,spellcheck,boolean,false,false,false
 ion-input,prop,step,string | undefined,undefined,false,false
 ion-input,prop,type,"date" | "datetime-local" | "email" | "month" | "number" | "password" | "search" | "tel" | "text" | "time" | "url" | "week",'text',false,false
+ion-input,prop,validity,ValidityState | null,null,false,false
 ion-input,prop,value,null | number | string | undefined,'',false,false
 ion-input,method,getInputElement,getInputElement() => Promise<HTMLInputElement>
+ion-input,method,setCustomValidity,setCustomValidity(error: string) => Promise<void>
 ion-input,method,setFocus,setFocus() => Promise<void>
 ion-input,event,ionBlur,FocusEvent,true
 ion-input,event,ionChange,InputChangeEventDetail,true
