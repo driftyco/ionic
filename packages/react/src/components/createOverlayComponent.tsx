@@ -106,6 +106,10 @@ export const createOverlayComponent = <OverlayComponent extends object, OverlayT
     }
 
     render() {
+      if (this.el === undefined) {
+        return null;
+      }
+
       return ReactDOM.createPortal(
         this.props.isOpen ? this.props.children : null,
         this.el
