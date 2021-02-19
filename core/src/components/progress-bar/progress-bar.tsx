@@ -88,7 +88,7 @@ const renderProgress = (value: number, buffer: number) => {
   const finalBuffer = clamp(0, buffer, 1);
 
   return [
-    <div class="progress" style={{ transform: `scaleX(${finalValue})` }}></div>,
+    <div class="progress" style={{ width: `calc(${finalValue}) * 100%` }}></div>,
     finalBuffer !== 1 && <div class="buffer-circles"></div>,
     <div class="progress-buffer-bar" style={{ transform: `scaleX(${finalBuffer})` }}></div>,
   ];

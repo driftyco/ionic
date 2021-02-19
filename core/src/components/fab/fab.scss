@@ -35,7 +35,7 @@
 // --------------------------------------------------
 
 :host(.fab-vertical-top) {
-  top: $fab-content-margin;
+  top: max(#{$fab-content-margin}, var(--ion-safe-area-top, 0px));
 }
 
 :host(.fab-vertical-top.fab-edge) {
@@ -44,7 +44,7 @@
 
 
 :host(.fab-vertical-bottom) {
-  bottom: $fab-content-margin;
+  bottom: max(#{$fab-content-margin}, var(--ion-safe-area-bottom, 0px));
 }
 
 :host(.fab-vertical-bottom.fab-edge) {
