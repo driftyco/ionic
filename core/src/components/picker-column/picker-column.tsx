@@ -32,6 +32,8 @@ export class PickerColumnCmp implements ComponentInterface {
   private tmrId: any;
   private noAnimate = true;
 
+  private lastMoveTime = 0;
+
   @Element() el!: HTMLElement;
 
   /**
@@ -279,6 +281,8 @@ export class PickerColumnCmp implements ComponentInterface {
     }
     detail.event.stopPropagation();
 
+    this.lastMoveTime = Date.now();
+
     // update the scroll position relative to pointer start position
     let y = this.y + detail.deltaY;
 
@@ -319,6 +323,8 @@ export class PickerColumnCmp implements ComponentInterface {
         this.setSelected(parseInt(opt.getAttribute('opt-index')!, 10), TRANSITION_DURATION);
       }
 
+    } else if (Date.now() - this.lastMoveTime >= PRESSED_TIME) {
+      this.setSelected(this.col.prevSelected!, TRANSITION_DURATION);
     } else {
       this.y += detail.deltaY;
 
@@ -391,7 +397,7 @@ export class PickerColumnCmp implements ComponentInterface {
           style={{ maxWidth: col.optionsWidth! }}
           ref={el => this.optsEl = el}
         >
-          { col.options.map((o, index) =>
+          {col.options.map((o, index) =>
             <Button
               type="button"
               class={{ 'picker-opt': true, 'picker-opt-disabled': !!o.disabled }}
@@ -415,3 +421,4 @@ const PICKER_OPT_SELECTED = 'picker-opt-selected';
 const DECELERATION_FRICTION = 0.97;
 const MAX_PICKER_SPEED = 90;
 const TRANSITION_DURATION = 150;
+const PRESSED_TIME = 100;
