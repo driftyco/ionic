@@ -10,6 +10,11 @@
   <script src="../../../../../scripts/testing/scripts.js"></script>
   <script nomodule src="../../../../../dist/ionic/ionic.js"></script>
   <script type="module" src="../../../../../dist/ionic/ionic.esm.js"></script></head>
+  <style>
+    :root {
+      --ion-safe-area-bottom: 40px;
+    }
+  </style>
 
 <body>
 
@@ -25,6 +30,11 @@
         <ion-content class="ion-padding">
           Tab One
         </ion-content>
+        <ion-footer>
+          <ion-toolbar>
+            <ion-title>Footer</ion-title>
+          </ion-toolbar>
+        </ion-footer>
 
       </ion-tab>
 
