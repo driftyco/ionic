@@ -25,6 +25,7 @@
 
     <ion-content class="ion-padding">
       <ion-button expand="block" id="basic" onclick="presentBasic()">Basic</ion-button>
+      <ion-button expand="block" id="withSubtitle" onclick="presentWithSubtitle()">With Subtitle</ion-button>
       <ion-button expand="block" id="alertFromActionSheet" onclick="presentAlert()">Alert from Action Sheet</ion-button>
       <ion-button expand="block" id="cancelOnly" onclick="presentCancelOnly()">Cancel Only</ion-button>
       <ion-button expand="block" id="custom" onclick="presentWithCssClass()">Custom CSS Class</ion-button>
@@ -105,6 +106,54 @@
           }
         }]
       });
+    }
+
+    async function presentWithSubtitle() {
+        const mode = Ionic.mode;
+
+        const actionSheetController = document.querySelector('ion-action-sheet-controller');
+        await actionSheetController.componentOnReady();
+        const actionSheetElement = await actionSheetController.create({
+            header: 'Albums',
+            subHeader: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ac tempor mauris,
+                vitae ullamcorper magna. Curabitur quis laoreet arcu. Vivamus lobortis, ligula quis
+                viverra placerat, turpis neque posuere lacus, a dapibus est sapien non eros.`,
+            buttons: [{
+                text: 'Delete',
+                role: 'destructive',
+                icon: 'trash',
+                handler: () => {
+                    console.log('Delete clicked');
+                }
+            }, {
+                text: 'Share',
+                icon: 'share',
+                cssClass: 'activated',
+                handler: () => {
+                    console.log('Share clicked');
+                }
+            }, {
+                text: 'Play (open modal)',
+                icon: 'arrow-dropright-circle',
+                handler: () => {
+                    console.log('Play clicked');
+                }
+            }, {
+                text: 'Favorite',
+                icon: mode === 'md' ? 'heart' : null,
+                handler: () => {
+                    console.log('Favorite clicked');
+                }
+            }, {
+                text: 'Cancel',
+                icon: mode === 'md' ? 'close' : null,
+                role: 'cancel',
+                handler: () => {
+                    console.log('Cancel clicked');
+                }
+            }]
+        });
+        await actionSheetElement.present();
     }
 
     async function presentAlert() {

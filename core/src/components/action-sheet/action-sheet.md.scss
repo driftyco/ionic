@@ -23,8 +23,6 @@
 .action-sheet-title {
   @include padding($action-sheet-md-title-padding-top, $action-sheet-md-title-padding-end, $action-sheet-md-title-padding-bottom, $action-sheet-md-title-padding-start);
 
-  height: $action-sheet-md-title-height;
-
   color: var(--color, $action-sheet-md-title-color);
 
   font-size: $action-sheet-md-title-font-size;

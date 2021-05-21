@@ -40,6 +40,10 @@ test('action-sheet: basic', async () => {
   await testActionSheet(DIRECTORY, '#basic');
 });
 
+test('action-sheet: basic, with subtitle', async () => {
+  await testActionSheet(DIRECTORY, '#withSubtitle');
+});
+
 test('action-sheet: basic, alert from action sheet', async () => {
   await testActionSheet(DIRECTORY, '#alertFromActionSheet', false, testActionSheetAlert);
 });
