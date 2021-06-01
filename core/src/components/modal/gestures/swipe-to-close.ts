@@ -15,6 +15,22 @@ export const createSwipeToCloseGesture = (
 ) => {
   const height = el.offsetHeight;
   let isOpen = false;
+  let preventStart = false;
+
+  const ionContent: any = el.getElementsByTagName('ion-content')[0];
+  let scrollElement: any;
+
+  if (ionContent !== undefined) {
+    ionContent.getScrollElement().then((scrollElem: any) => {
+      scrollElement = scrollElem;
+      scrollElement.addEventListener('scroll', (scrollEvent: any) => {
+        preventStart = true;
+        if (scrollEvent.target.scrollTop <= 0) {
+          preventStart = false;
+        }
+      });
+    });
+  }
 
   const canStart = (detail: GestureDetail) => {
     const target = detail.event.target as HTMLElement | null;
@@ -27,24 +43,42 @@ export const createSwipeToCloseGesture = (
     const content = target.closest('ion-content');
     if (content === null) {
       return true;
+    } else {
+      return !preventStart;
     }
-    // Target is in the content so we don't start the gesture.
-    // We could be more nuanced here and allow it for content that
-    // does not need to scroll.
-    return false;
+    // Check if target is in the content and if it's scrolled to the very top.
+    // If target is not in the content, start the gesture, since this could be the header or some other static components,
+    // from which you should always be able to swipe down the modal, no matter how much is scrolled.
   };
 
+  let overflowValue: any;
+
   const onStart = () => {
+    if (scrollElement !== undefined) {
+      overflowValue = 'auto';
+      scrollElement.style.overflow = overflowValue;
+    }
+
     animation.progressStart(true, (isOpen) ? 1 : 0);
   };
 
   const onMove = (detail: GestureDetail) => {
+    if (scrollElement !== undefined && overflowValue !== 'hidden' && detail.deltaY >= 0) {
+      overflowValue = 'hidden';
+      scrollElement.style.overflow = overflowValue;
+    }
+
     const step = clamp(0.0001, detail.deltaY / height, 0.9999);
 
     animation.progressStep(step);
   };
 
   const onEnd = (detail: GestureDetail) => {
+    if (scrollElement !== undefined) {
+      overflowValue = 'auto';
+      scrollElement.style.overflow = overflowValue;
+    }
+
     const velocity = detail.velocityY;
 
     const step = clamp(0.0001, detail.deltaY / height, 0.9999);
