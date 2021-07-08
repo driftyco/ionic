@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <title>Popover - Reference</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <link href="../../../../../css/ionic.bundle.css" rel="stylesheet">
+    <link href="../../../../../scripts/testing/styles.css" rel="stylesheet">
+    <script src="../../../../../scripts/testing/scripts.js"></script>
+    <script type="module" src="../../../../../dist/ionic/ionic.esm.js"></script>
+    <style>
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-row-gap: 20px;
+        grid-column-gap: 20px;
+
+        padding: 200px;
+      }
+      .grid-item {
+        margin: 0 auto;
+      }
+      h2 {
+        font-size: 12px;
+        font-weight: normal;
+
+        color: #6f7378;
+
+        margin-top: 10px;
+        margin-left: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <ion-app>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Popover - Reference</ion-title>
+        </ion-toolbar>
+      </ion-header>
+
+      <ion-content class="ion-padding">
+        <div class="grid">
+          <div class="grid-item">
+            <h2>Event</h2>
+            <ion-button id="event-trigger">Trigger</ion-button>
+            <ion-popover
+              reference="event"
+              class="event-popover"
+              trigger="event-trigger"
+              alignment="start"
+            >
+              <ion-content class="ion-padding">
+                Popover Content
+              </ion-content>
+            </ion-popover>
+          </div>
+          <div class="grid-item">
+            <h2>Trigger</h2>
+            <ion-button id="trigger-trigger">Trigger</ion-button>
+            <ion-popover
+              reference="trigger"
+              class="trigger-popover"
+              trigger="trigger-trigger"
+              alignment="start"
+            >
+              <ion-content class="ion-padding">
+                Popover Content
+              </ion-content>
+            </ion-popover>
+          </div>
+        </div>
+      </ion-content>
+    </ion-app>
+  </body>
+</html>

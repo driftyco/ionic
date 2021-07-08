@@ -1,109 +1,47 @@
 import { Animation } from '../../../interface';
 import { createAnimation } from '../../../utils/animation/animation';
+import { getElementRoot } from '../../../utils/helpers';
+import { calculateWindowAdjustment, getArrowDimensions, getPopoverDimensions, getPopoverPosition, shouldShowArrow } from '../utils';
+
+const POPOVER_IOS_BODY_PADDING = 5;
 
 /**
  * iOS Popover Enter Animation
  */
-export const iosEnterAnimation = (baseEl: HTMLElement, ev?: Event): Animation => {
-  let originY = 'top';
-  let originX = 'left';
+export const iosEnterAnimation = (baseEl: HTMLElement, opts?: any): Animation => {
+  const { event: ev, size, trigger, reference, side, align } = opts;
+  const doc = (baseEl.ownerDocument as any);
+  const isRTL = doc.dir === 'rtl';
+  const bodyWidth = doc.defaultView.innerWidth;
+  const bodyHeight = doc.defaultView.innerHeight;
 
-  const contentEl = baseEl.querySelector('.popover-content') as HTMLElement;
-  const contentDimentions = contentEl.getBoundingClientRect();
-  const contentWidth = contentDimentions.width;
-  const contentHeight = contentDimentions.height;
+  const root = getElementRoot(baseEl);
+  const contentEl = root.querySelector('.popover-content') as HTMLElement;
+  const arrowEl = root.querySelector('.popover-arrow') as HTMLElement | null;
 
-  const bodyWidth = (baseEl.ownerDocument as any).defaultView.innerWidth;
-  const bodyHeight = (baseEl.ownerDocument as any).defaultView.innerHeight;
+  const referenceSizeEl = trigger || ev?.detail?.ionShadowTarget || ev?.target;
+  const { contentWidth, contentHeight } = getPopoverDimensions(size, contentEl, referenceSizeEl);
+  const { arrowWidth, arrowHeight } = getArrowDimensions(arrowEl);
 
-  // If ev was passed, use that for target element
-  const targetDim = ev && ev.target && (ev.target as HTMLElement).getBoundingClientRect();
-
-  const targetTop = targetDim != null && 'top' in targetDim ? targetDim.top : bodyHeight / 2 - contentHeight / 2;
-  const targetLeft = targetDim != null && 'left' in targetDim ? targetDim.left : bodyWidth / 2;
-  const targetWidth = (targetDim && targetDim.width) || 0;
-  const targetHeight = (targetDim && targetDim.height) || 0;
-
-  const arrowEl = baseEl.querySelector('.popover-arrow') as HTMLElement;
-
-  const arrowDim = arrowEl.getBoundingClientRect();
-  const arrowWidth = arrowDim.width;
-  const arrowHeight = arrowDim.height;
-
-  if (targetDim == null) {
-    arrowEl.style.display = 'none';
+  const defaultPosition = {
+    top: bodyHeight / 2 - contentHeight / 2,
+    left: bodyWidth / 2 - contentWidth / 2,
+    originX: isRTL ? 'right' : 'left',
+    originY: 'top'
   }
 
-  const arrowCSS = {
-    top: targetTop + targetHeight,
-    left: targetLeft + targetWidth / 2 - arrowWidth / 2
-  };
+  const results = getPopoverPosition(isRTL, contentWidth, contentHeight, arrowWidth, arrowHeight, reference, side, align, defaultPosition, trigger, ev);
 
-  const popoverCSS: { top: any; left: any } = {
-    top: targetTop + targetHeight + (arrowHeight - 1),
-    left: targetLeft + targetWidth / 2 - contentWidth / 2
-  };
+  const padding = size === 'cover' ? 0 : POPOVER_IOS_BODY_PADDING;
 
-  // If the popover left is less than the padding it is off screen
-  // to the left so adjust it, else if the width of the popover
-  // exceeds the body width it is off screen to the right so adjust
-  //
-  let checkSafeAreaLeft = false;
-  let checkSafeAreaRight = false;
-
-  // If the popover left is less than the padding it is off screen
-  // to the left so adjust it, else if the width of the popover
-  // exceeds the body width it is off screen to the right so adjust
-  // 25 is a random/arbitrary number. It seems to work fine for ios11
-  // and iPhoneX. Is it perfect? No. Does it work? Yes.
-  if (popoverCSS.left < POPOVER_IOS_BODY_PADDING + 25) {
-    checkSafeAreaLeft = true;
-    popoverCSS.left = POPOVER_IOS_BODY_PADDING;
-  } else if (
-    contentWidth + POPOVER_IOS_BODY_PADDING + popoverCSS.left + 25 > bodyWidth
-  ) {
-    // Ok, so we're on the right side of the screen,
-    // but now we need to make sure we're still a bit further right
-    // cus....notchurally... Again, 25 is random. It works tho
-    checkSafeAreaRight = true;
-    popoverCSS.left = bodyWidth - contentWidth - POPOVER_IOS_BODY_PADDING;
-    originX = 'right';
-  }
-
-  // make it pop up if there's room above
-  if (targetTop + targetHeight + contentHeight > bodyHeight && targetTop - contentHeight > 0) {
-    arrowCSS.top = targetTop - (arrowHeight + 1);
-    popoverCSS.top = targetTop - contentHeight - (arrowHeight - 1);
-
-    baseEl.className = baseEl.className + ' popover-bottom';
-    originY = 'bottom';
-    // If there isn't room for it to pop up above the target cut it off
-  } else if (targetTop + targetHeight + contentHeight > bodyHeight) {
-    contentEl.style.bottom = POPOVER_IOS_BODY_PADDING + '%';
-  }
-
-  arrowEl.style.top = arrowCSS.top + 'px';
-  arrowEl.style.left = arrowCSS.left + 'px';
-
-  contentEl.style.top = popoverCSS.top + 'px';
-  contentEl.style.left = popoverCSS.left + 'px';
-
-  if (checkSafeAreaLeft) {
-    contentEl.style.left = `calc(${popoverCSS.left}px + var(--ion-safe-area-left, 0px))`;
-  }
-
-  if (checkSafeAreaRight) {
-    contentEl.style.left = `calc(${popoverCSS.left}px - var(--ion-safe-area-right, 0px))`;
-  }
-
-  contentEl.style.transformOrigin = originY + ' ' + originX;
+  const { originX, originY, top, left, bottom, checkSafeAreaLeft, checkSafeAreaRight, arrowTop, arrowLeft, addPopoverBottomClass } = calculateWindowAdjustment(side, results.top, results.left, padding, bodyWidth, bodyHeight, contentWidth, contentHeight, 25, results.originX, results.originY, results.referenceCoordinates, results.arrowTop, results.arrowLeft, arrowHeight);
 
   const baseAnimation = createAnimation();
   const backdropAnimation = createAnimation();
   const wrapperAnimation = createAnimation();
 
   backdropAnimation
-    .addElement(baseEl.querySelector('ion-backdrop')!)
+    .addElement(root.querySelector('ion-backdrop')!)
     .fromTo('opacity', 0.01, 'var(--backdrop-opacity)')
     .beforeStyles({
       'pointer-events': 'none'
@@ -111,14 +49,52 @@ export const iosEnterAnimation = (baseEl: HTMLElement, ev?: Event): Animation =>
     .afterClearStyles(['pointer-events']);
 
   wrapperAnimation
-    .addElement(baseEl.querySelector('.popover-wrapper')!)
+    .addElement(root.querySelector('.popover-wrapper')!)
     .fromTo('opacity', 0.01, 1);
 
   return baseAnimation
-    .addElement(baseEl)
     .easing('ease')
     .duration(100)
+    .beforeAddWrite(() => {
+      if (size === 'cover') {
+        baseEl.style.setProperty('--width', `${contentWidth}px`);
+      }
+
+      if (addPopoverBottomClass) {
+        baseEl.classList.add('popover-bottom');
+      }
+
+      if (bottom !== undefined) {
+        contentEl.style.setProperty('bottom', `${bottom}px`);
+      }
+
+      const safeAreaLeft = ' + var(--ion-safe-area-left, 0)';
+      const safeAreaRight = ' - var(--ion-safe-area-right, 0)';
+
+      let leftValue = `${left}px`;
+
+      if (checkSafeAreaLeft) {
+        leftValue = `${left}px${safeAreaLeft}`;
+      }
+      if (checkSafeAreaRight) {
+        leftValue = `${left}px${safeAreaRight}`;
+      }
+
+      contentEl.style.setProperty('top', `calc(${top}px + var(--offset-y, 0))`);
+      contentEl.style.setProperty('left', `calc(${leftValue} + var(--offset-x, 0))`);
+      contentEl.style.setProperty('transform-origin', `${originY} ${originX}`);
+
+      if (arrowEl !== null) {
+        const didAdjustBounds = results.top !== top || results.left !== left;
+        const showArrow = shouldShowArrow(side, didAdjustBounds, ev, trigger);
+
+        if (showArrow) {
+          arrowEl.style.setProperty('top', `calc(${arrowTop}px + var(--offset-y, 0))`);
+          arrowEl.style.setProperty('left', `calc(${arrowLeft}px + var(--offset-x, 0))`);
+        } else {
+          arrowEl.style.setProperty('display', 'none');
+        }
+      }
+    })
     .addAnimation([backdropAnimation, wrapperAnimation]);
 };
-
-const POPOVER_IOS_BODY_PADDING = 5;

@@ -590,6 +590,19 @@ export default defineComponent({
 | `--background` | Background of the segment button |
 
 
+## Dependencies
+
+### Used by
+
+ - [ion-datetime](../datetime)
+
+### Graph
+```mermaid
+graph TD;
+  ion-datetime --> ion-segment
+  style ion-segment fill:#f9f,stroke:#333,stroke-width:4px
+```
+
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*

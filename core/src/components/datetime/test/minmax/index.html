@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <title>Datetime - Min/Max</title>
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <link href="../../../../../css/ionic.bundle.css" rel="stylesheet">
+    <link href="../../../../../scripts/testing/styles.css" rel="stylesheet">
+    <script src="../../../../../scripts/testing/scripts.js"></script>
+    <script type="module" src="../../../../../dist/ionic/ionic.esm.js"></script>
+    <style>
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(250px, 1fr));
+        grid-gap: 20px;
+      }
+      h2 {
+        font-size: 12px;
+        font-weight: normal;
+
+        color: #6f7378;
+
+        margin-top: 10px;
+        margin-left: 5px;
+      }
+
+      ion-datetime {
+        box-shadow: 0px 16px 32px rgba(0, 0, 0, 0.25), 0px 8px 16px rgba(0, 0, 0, 0.25);
+        border-radius: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <ion-app>
+      <ion-header translucent="true">
+        <ion-toolbar>
+          <ion-title>Datetime - Min/Max</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <div class="grid">
+          <div class="grid-item">
+            <h2>Value inside Bounds</h2>
+            <ion-datetime
+              id="outside"
+              min="2021-06-05"
+              max="2021-06-29"
+              value="2021-06-20"
+            ></ion-datetime>
+          </div>
+          <div class="grid-item">
+            <h2>Value Outside Bounds</h2>
+            <ion-datetime
+              id="inside"
+              min="2021-06-05"
+              max="2021-06-19"
+              value="2021-06-20"
+            ></ion-datetime>
+          </div>
+        </div>
+      </ion-content>
+    </ion-app>
+  </body>
+</html>

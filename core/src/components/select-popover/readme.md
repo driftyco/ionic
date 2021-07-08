@@ -1,6 +1,6 @@
 # ion-select-popover
 
-SelectPopover is an internal component that is used for create the popover interface, from a Select component.
+The select popover is an internal component that is used to create the popover interface from a select component.
 
 
 <!-- Auto Generated Below -->

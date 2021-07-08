@@ -1,0 +1,19 @@
+@import "../../themes/ionic.globals";
+
+// Accordion
+// --------------------------------------------------
+
+/// @prop - Background color of the accordion
+$accordion-background-color:      var(--ion-background-color, #ffffff) !default;
+
+/// @prop - Duration of the accordion transition
+$accordion-transition-duration:   300ms !default;
+
+/// @prop - Timing function of the accordion transition
+$accordion-transition-easing:     cubic-bezier(0.25, 0.8, 0.5, 1) !default;
+
+/// @prop - Opacity of the disabled accordion
+$accordion-disabled-opacity:      0.4 !default;
+
+/// @prop - Margin of the inset accordion
+$accordion-inset-margin:          16px !default;

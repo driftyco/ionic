@@ -102,7 +102,8 @@ export class Label implements ComponentInterface {
         class={createColorClasses(this.color, {
           [mode]: true,
           [`label-${position}`]: position !== undefined,
-          [`label-no-animate`]: (this.noAnimate)
+          [`label-no-animate`]: (this.noAnimate),
+          'label-rtl': document.dir === 'rtl'
         })}
       >
       </Host>

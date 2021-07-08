@@ -43,6 +43,10 @@ export const startTapClick = (config: Config) => {
     }
   };
 
+  const onContextMenu = (ev: MouseEvent) => {
+    pointerUp(ev);
+  };
+
   const cancelActive = () => {
     clearTimeout(activeDefer);
     activeDefer = undefined;
@@ -155,6 +159,8 @@ export const startTapClick = (config: Config) => {
 
   doc.addEventListener('mousedown', onMouseDown, true);
   doc.addEventListener('mouseup', onMouseUp, true);
+
+  doc.addEventListener('contextmenu', onContextMenu, true);
 };
 
 const getActivatableTarget = (ev: any): any => {

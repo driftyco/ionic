@@ -22,6 +22,11 @@ export interface OverlayInterface {
   willDismiss: EventEmitter<OverlayEventDetail>;
   didDismiss: EventEmitter<OverlayEventDetail>;
 
+  didPresentShorthand?: EventEmitter<void>;
+  willPresentShorthand?: EventEmitter<void>;
+  willDismissShorthand?: EventEmitter<OverlayEventDetail>;
+  didDismissShorthand?: EventEmitter<OverlayEventDetail>;
+
   present(): Promise<void>;
   dismiss(data?: any, role?: string): Promise<boolean>;
 }

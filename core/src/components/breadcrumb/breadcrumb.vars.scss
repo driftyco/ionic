@@ -1,0 +1,13 @@
+@import "../../themes/ionic.globals";
+
+// Breadcrumb
+// --------------------------------------------------
+
+/// @prop - Font weight of the breadcrumb
+$breadcrumb-font-weight:         400 !default;
+
+/// @prop - Font size of the breadcrumb
+$breadcrumb-font-size:           16px !default;
+
+/// @prop - Color of the breadcrumb separator
+$breadcrumb-separator-color:     var(--ion-color-step-550, #73849a) !default;

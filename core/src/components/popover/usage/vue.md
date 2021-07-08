@@ -27,7 +27,7 @@ export default defineComponent({
 
 <script>
 import { IonButton, IonContent, IonPage, popoverController } from '@ionic/vue';
-import Popver from './popover.vue'
+import Popover from './popover.vue';
 
 export default {
   components: { IonButton, IonContent, IonPage },
@@ -41,7 +41,7 @@ export default {
           translucent: true
         })
       await popover.present();
-  
+
       const { role } = await popover.onDidDismiss();
       console.log('onDidDismiss resolved with role', role);
     },
@@ -69,7 +69,7 @@ Developers can also use this component directly in their template:
 <script>
 import { IonButton, IonPopover } from '@ionic/vue';
 import { defineComponent, ref } from 'vue';
-import Popver from './popover.vue'
+import Popover from './popover.vue';
 
 export default defineComponent({
   components: { IonButton, IonPopover, Popover },

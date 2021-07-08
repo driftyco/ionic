@@ -1,7 +1,16 @@
 @import "../../themes/ionic.globals.ios";
 
 /// @prop - Color of the refresher icon
-$refresher-ios-icon-color:         $text-color !default;
+$refresher-ios-icon-color:            $text-color !default;
 
 /// @prop - Text color of the refresher content
-$refresher-ios-text-color:         $text-color !default;
+$refresher-ios-text-color:            $text-color !default;
+
+/// @prop - Color of the native refresher spinner
+$refresher-ios-native-spinner-color:  var(--ion-color-step-450, #747577) !default;
+
+/// @prop - Width of the native refresher spinner
+$refresher-ios-native-spinner-width:  32px !default;
+
+/// @prop - Height of the native refresher spinner
+$refresher-ios-native-spinner-height: 32px !default;

@@ -52,6 +52,8 @@ export const config: Config = {
     { components: ['ion-toast'] },
     { components: ['ion-toggle'] },
     { components: ['ion-virtual-scroll'] },
+    { components: ['ion-accordion-group', 'ion-accordion'] },
+    { components: ['ion-breadcrumb', 'ion-breadcrumbs'] },
   ],
   plugins: [
     sass({
@@ -61,6 +63,9 @@ export const config: Config = {
   outputTargets: [
     vueOutputTarget({
       componentCorePackage: '@ionic/core',
+      includeImportCustomElements: true,
+      includePolyfills: false,
+      includeDefineCustomElements: false,
       proxiesFile: '../packages/vue/src/proxies.ts',
       excludeComponents: [
         // Routing
@@ -91,15 +96,13 @@ export const config: Config = {
         {
           elements: ['ion-checkbox', 'ion-toggle'],
           targetAttr: 'checked',
-          // TODO Ionic v6 remove in favor of v-ion-change
-          event: ['v-ionChange', 'v-ion-change'],
+          event: 'v-ion-change',
           externalEvent: 'ionChange'
         },
         {
           elements: ['ion-datetime', 'ion-input', 'ion-radio-group', 'ion-radio', 'ion-range', 'ion-searchbar', 'ion-segment', 'ion-segment-button', 'ion-select', 'ion-textarea'],
           targetAttr: 'value',
-          // TODO Ionic v6 remove in favor of v-ion-change
-          event: ['v-ionChange', 'v-ion-change'],
+          event: 'v-ion-change',
           externalEvent: 'ionChange'
         }
       ],

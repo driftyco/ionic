@@ -1,82 +1,39 @@
 import { Animation } from '../../../interface';
 import { createAnimation } from '../../../utils/animation/animation';
+import { getElementRoot } from '../../../utils/helpers';
+import { calculateWindowAdjustment, getPopoverDimensions, getPopoverPosition } from '../utils';
+
+const POPOVER_MD_BODY_PADDING = 12;
 
 /**
  * Md Popover Enter Animation
  */
-export const mdEnterAnimation = (baseEl: HTMLElement, ev?: Event): Animation => {
-  const POPOVER_MD_BODY_PADDING = 12;
+export const mdEnterAnimation = (baseEl: HTMLElement, opts?: any): Animation => {
+  const { event: ev, size, trigger, reference, side, align } = opts;
   const doc = (baseEl.ownerDocument as any);
   const isRTL = doc.dir === 'rtl';
-
-  let originY = 'top';
-  let originX = isRTL ? 'right' : 'left';
-
-  const contentEl = baseEl.querySelector('.popover-content') as HTMLElement;
-  const contentDimentions = contentEl.getBoundingClientRect();
-  const contentWidth = contentDimentions.width;
-  const contentHeight = contentDimentions.height;
 
   const bodyWidth = doc.defaultView.innerWidth;
   const bodyHeight = doc.defaultView.innerHeight;
 
-  // If ev was passed, use that for target element
-  const targetDim =
-    ev && ev.target && (ev.target as HTMLElement).getBoundingClientRect();
+  const root = getElementRoot(baseEl);
+  const contentEl = root.querySelector('.popover-content') as HTMLElement;
 
-  // As per MD spec, by default position the popover below the target (trigger) element
-  const targetTop =
-    targetDim != null && 'bottom' in targetDim
-      ? targetDim.bottom
-      : bodyHeight / 2 - contentHeight / 2;
+  const referenceSizeEl = trigger || ev?.detail?.ionShadowTarget || ev?.target;
+  const { contentWidth, contentHeight } = getPopoverDimensions(size, contentEl, referenceSizeEl);
 
-  const targetLeft =
-    targetDim != null && 'left' in targetDim
-      ? isRTL
-        ? targetDim.left - contentWidth + targetDim.width
-        : targetDim.left
-      : bodyWidth / 2 - contentWidth / 2;
-
-  const targetHeight = (targetDim && targetDim.height) || 0;
-
-  const popoverCSS: { top: any; left: any } = {
-    top: targetTop,
-    left: targetLeft
-  };
-
-  // If the popover left is less than the padding it is off screen
-  // to the left so adjust it, else if the width of the popover
-  // exceeds the body width it is off screen to the right so adjust
-  if (popoverCSS.left < POPOVER_MD_BODY_PADDING) {
-    popoverCSS.left = POPOVER_MD_BODY_PADDING;
-
-    // Same origin in this case for both LTR & RTL
-    // Note: in LTR, originX is already 'left'
-    originX = 'left';
-  } else if (
-    contentWidth + POPOVER_MD_BODY_PADDING + popoverCSS.left >
-    bodyWidth
-  ) {
-    popoverCSS.left = bodyWidth - contentWidth - POPOVER_MD_BODY_PADDING;
-
-    // Same origin in this case for both LTR & RTL
-    // Note: in RTL, originX is already 'right'
-    originX = 'right';
+  const defaultPosition = {
+    top: bodyHeight / 2 - contentHeight / 2,
+    left: bodyWidth / 2 - contentWidth / 2,
+    originX: isRTL ? 'right' : 'left',
+    originY: 'top'
   }
 
-  // If the popover when popped down stretches past bottom of screen,
-  // make it pop up if there's room above
-  if (
-    targetTop + targetHeight + contentHeight > bodyHeight &&
-    targetTop - contentHeight > 0
-  ) {
-    popoverCSS.top = targetTop - contentHeight - targetHeight;
-    baseEl.className = baseEl.className + ' popover-bottom';
-    originY = 'bottom';
-    // If there isn't room for it to pop up above the target cut it off
-  } else if (targetTop + targetHeight + contentHeight > bodyHeight) {
-    contentEl.style.bottom = POPOVER_MD_BODY_PADDING + 'px';
-  }
+  const results = getPopoverPosition(isRTL, contentWidth, contentHeight, 0, 0, reference, side, align, defaultPosition, trigger, ev);
+
+  const padding = size === 'cover' ? 0 : POPOVER_MD_BODY_PADDING;
+
+  const { originX, originY, top, left, bottom } = calculateWindowAdjustment(side, results.top, results.left, padding, bodyWidth, bodyHeight, contentWidth, contentHeight, 0, results.originX, results.originY, results.referenceCoordinates);
 
   const baseAnimation = createAnimation();
   const backdropAnimation = createAnimation();
@@ -85,7 +42,7 @@ export const mdEnterAnimation = (baseEl: HTMLElement, ev?: Event): Animation => 
   const viewportAnimation = createAnimation();
 
   backdropAnimation
-    .addElement(baseEl.querySelector('ion-backdrop')!)
+    .addElement(root.querySelector('ion-backdrop')!)
     .fromTo('opacity', 0.01, 'var(--backdrop-opacity)')
     .beforeStyles({
       'pointer-events': 'none'
@@ -93,25 +50,38 @@ export const mdEnterAnimation = (baseEl: HTMLElement, ev?: Event): Animation => 
     .afterClearStyles(['pointer-events']);
 
   wrapperAnimation
-    .addElement(baseEl.querySelector('.popover-wrapper')!)
+    .addElement(root.querySelector('.popover-wrapper')!)
+    .duration(150)
     .fromTo('opacity', 0.01, 1);
 
   contentAnimation
     .addElement(contentEl)
     .beforeStyles({
-      'top': `${popoverCSS.top}px`,
-      'left': `${popoverCSS.left}px`,
+      'top': `calc(${top}px + var(--offset-y, 0px))`,
+      'left': `calc(${left}px + var(--offset-x, 0px))`,
       'transform-origin': `${originY} ${originX}`
     })
-    .fromTo('transform', 'scale(0.001)', 'scale(1)');
+    .beforeAddWrite(() => {
+      if (bottom !== undefined) {
+        contentEl.style.setProperty('bottom', `${bottom}px`);
+      }
+    })
+    .fromTo('transform', 'scale(0.8)', 'scale(1)');
 
   viewportAnimation
-    .addElement(baseEl.querySelector('.popover-viewport')!)
+    .addElement(root.querySelector('.popover-viewport')!)
     .fromTo('opacity', 0.01, 1);
 
   return baseAnimation
-    .addElement(baseEl)
     .easing('cubic-bezier(0.36,0.66,0.04,1)')
     .duration(300)
+    .beforeAddWrite(() => {
+      if (size === 'cover') {
+        baseEl.style.setProperty('--width', `${contentWidth}px`);
+      }
+      if (originY === 'bottom') {
+        baseEl.classList.add('popover-bottom');
+      }
+    })
     .addAnimation([backdropAnimation, wrapperAnimation, contentAnimation, viewportAnimation]);
 };

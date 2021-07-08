@@ -58,6 +58,10 @@
       --ion-backdrop-opacity: 1;
     }
 
+    #delete-button {
+      color: #eb445a;
+    }
+
   </style>
   <script>
     window.addEventListener('ionActionSheetDidDismiss', function (e) { console.log('didDismiss', e) })
@@ -75,6 +79,7 @@
           text: 'Delete',
           role: 'destructive',
           icon: 'trash',
+          id: 'delete-button',
           handler: () => {
             console.log('Delete clicked');
           }

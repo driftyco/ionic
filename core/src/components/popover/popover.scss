@@ -17,12 +17,17 @@
    * @prop --max-height: Maximum height of the popover
    *
    * @prop --backdrop-opacity: Opacity of the backdrop
+   *
+   * @prop --offset-x: The amount to move the popover by on the x-axis
+   * @prop --offset-y: The amount to move the popover by on the y-axis
    */
   --background: #{$popover-background-color};
   --min-width: 0;
   --min-height: 0;
   --max-width: auto;
   --height: auto;
+  --offset-x: 0px;
+  --offset-y: 0px;
 
   @include position(0, 0, 0, 0);
 
@@ -37,6 +42,13 @@
   color: $popover-text-color;
 
   z-index: $z-index-overlay;
+
+  pointer-events: none;
+}
+
+:host(.popover-interactive) .popover-content,
+:host(.popover-interactive) ion-backdrop {
+  pointer-events: auto;
 }
 
 :host(.overlay-hidden) {
@@ -75,5 +87,31 @@
   --ion-safe-area-right: 0px;
   --ion-safe-area-bottom: 0px;
   --ion-safe-area-left: 0px;
+}
+
+// Nested Popovers
+// --------------------------------------------------
+:host(.popover-nested.popover-side-left) {
+  --offset-x: 5px;
+}
+
+:host(.popover-nested.popover-side-right) {
+  --offset-x: -5px;
+}
+
+:host(.popover-nested.popover-side-start) {
+  --offset-x: 5px;
+
+  @include rtl() {
+    --offset-x: -5px;
+  }
+}
+
+:host(.popover-nested.popover-side-end) {
+  --offset-x: -5px;
+
+  @include rtl() {
+    --offset-x: 5px;
+  }
 }
 

@@ -1,14 +1,375 @@
-@import "./datetime";
-@import "./datetime.ios.vars";
-
-// iOS Datetime
-// --------------------------------------------------
+@import "./datetime.scss";
+@import "./datetime.ios.vars.scss";
+@import "../../themes/ionic.globals.ios";
 
 :host {
-  --placeholder-color: #{$datetime-ios-placeholder-color};
-  --padding-top: #{$datetime-ios-padding-top};
-  --padding-end: #{$datetime-ios-padding-end};
-  --padding-bottom: #{$datetime-ios-padding-bottom};
-  --padding-start: #{$datetime-ios-padding-start};
+  --background: var(--ion-color-light, #ffffff);
+  --background-rgb: var(--ion-color-light-rgb);
+  --title-color: #{$text-color-step-400};
+
+  min-height: 300px;
 }
 
+// Header
+// -----------------------------------
+:host .datetime-header {
+  @include padding($datetime-ios-padding, $datetime-ios-padding, $datetime-ios-padding, $datetime-ios-padding);
+
+  border-bottom: $datetime-ios-border-color;
+}
+
+:host .datetime-header .datetime-title {
+  color: var(--title-color);
+
+  font-size: 14px;
+}
+
+// Calendar / Header / Action Buttons
+// -----------------------------------
+:host .calendar-action-buttons ion-item {
+  --padding-start: #{$datetime-ios-padding};
+  --background-hover: transparent;
+  --background-activated: transparent;
+
+  font-size: 16px;
+  font-weight: 600;
+}
+
+:host .calendar-action-buttons ion-item ion-icon,
+:host .calendar-action-buttons ion-buttons ion-button {
+  color: current-color(base);
+}
+
+:host .calendar-action-buttons ion-buttons {
+  @include padding($datetime-ios-padding / 2, 0, 0, 0);
+}
+
+:host .calendar-action-buttons ion-buttons ion-button {
+  @include margin(0, 0, 0, 0);
+}
+
+// Calendar / Header / Days of Week
+// -----------------------------------
+:host .calendar-days-of-week {
+  @include padding(0, $datetime-ios-padding / 2, 0, $datetime-ios-padding / 2);
+
+  color: $text-color-step-700;
+
+  font-size: 12px;
+
+  font-weight: 600;
+
+  line-height: 24px;
+
+  text-transform: uppercase;
+}
+
+// Calendar / Body
+// -----------------------------------
+:host .calendar-body .calendar-month .calendar-month-grid {
+
+  /**
+   * We need to apply the padding to
+   * each month grid item otherwise
+   * older versions of WebKit will consider
+   * this padding a snapping point if applied
+   * on .calendar-month
+   */
+  @include padding($datetime-ios-padding / 2, $datetime-ios-padding / 2, $datetime-ios-padding / 2, $datetime-ios-padding / 2);
+
+  height: calc(100% - #{$datetime-ios-padding});
+}
+
+:host .calendar-day {
+  font-size: 20px;
+}
+
+:host .calendar-day:after {
+  opacity: 0.2;
+}
+
+:host .calendar-day:focus:after {
+  background: current-color(base);
+}
+
+/**
+ * Day that today but not selected
+ * should have ion-color for text color.
+ */
+:host .calendar-day.calendar-day-today {
+  color: current-color(base);
+}
+
+/**
+ * Day that is not today but
+ * is selected should have ion-color for
+ * text color and be bolder.
+ */
+:host .calendar-day.calendar-day-active {
+  color: current-color(base);
+
+  font-weight: 600;
+}
+
+:host .calendar-day.calendar-day-active:after {
+  background: current-color(base);
+}
+
+/**
+ * Day that is not today but
+ * is selected should have ion-color for
+ * text color and be bolder.
+ */
+:host .calendar-day.calendar-day-active .calendar-day-content {
+  background: current-color(contrast);
+}
+
+/**
+ * Day that is selected and is today
+ * should have white color.
+ */
+:host .calendar-day.calendar-day-today.calendar-day-active {
+  color: var(--ion-text-color, #ffffff);
+}
+
+:host .calendar-day.calendar-day-today.calendar-day-active:after {
+  background: current-color(base);
+
+  opacity: 1;
+}
+
+:host .calendar-day {
+  font-size: 20px;
+}
+
+:host .calendar-day:after {
+  opacity: 0.2;
+}
+
+:host .calendar-day:focus:after {
+  background: current-color(base);
+}
+
+/**
+ * Day that today but not selected
+ * should have ion-color for text color.
+ */
+:host .calendar-day.calendar-day-today {
+  color: current-color(base);
+}
+
+/**
+ * Day that is not today but
+ * is selected should have ion-color for
+ * text color and be bolder.
+ */
+:host .calendar-day.calendar-day-active {
+  color: current-color(base);
+
+  font-weight: 600;
+}
+
+:host .calendar-day.calendar-day-active:after {
+  background: current-color(base);
+}
+
+/**
+ * Day that is not today but
+ * is selected should have ion-color for
+ * text color and be bolder.
+ */
+:host .calendar-day.calendar-day-active .calendar-day-content {
+  background: current-color(contrast);
+}
+
+/**
+ * Day that is selected and is today
+ * should have white color.
+ */
+:host .calendar-day.calendar-day-today.calendar-day-active {
+  color: var(--ion-text-color, #ffffff);
+}
+
+:host .calendar-day.calendar-day-today.calendar-day-active:after {
+  background: current-color(base);
+
+  opacity: 1;
+}
+
+// Time / Header
+// -----------------------------------
+:host .datetime-time {
+  @include padding($datetime-ios-padding / 2, $datetime-ios-padding, $datetime-ios-padding, $datetime-ios-padding);
+
+  font-size: 16px;
+  font-weight: 600;
+}
+
+:host .time-base {
+  @include border-radius($datetime-ios-time-border-radius, $datetime-ios-time-border-radius, $datetime-ios-time-border-radius, $datetime-ios-time-border-radius);
+  @include margin(0, $datetime-ios-padding / 2, 0, 0);
+
+  width: $datetime-ios-time-width;
+  height: $datetime-ios-time-height;
+}
+
+:host .time-column {
+  @include border-radius($datetime-ios-time-border-radius, $datetime-ios-time-border-radius, $datetime-ios-time-border-radius, $datetime-ios-time-border-radius);
+}
+
+:host .time-item {
+  line-height: $datetime-ios-time-height;
+}
+
+// Year Picker
+// -----------------------------------
+:host(.show-month-and-year) .calendar-action-buttons ion-item {
+  --color: #{current-color(base)};
+}
+
+:host .datetime-year-body .datetime-picker-col {
+  @include margin(0, 10px, 0, 10px);
+  @include padding(0, $datetime-ios-padding, 0, $datetime-ios-padding);
+}
+
+:host .datetime-picker-before {
+  @include position(0, null, null, 0);
+
+  position: absolute;
+
+  width: 100%;
+
+  height: 82px;
+
+  background: linear-gradient(to bottom, var(--background, var(--ion-background-color, #fff)) 20%, rgba(var(--background-rgb, var(--ion-background-color-rgb, 255, 255, 255)), 0.8) 100%);
+
+  z-index: 10;
+
+  pointer-events: none;
+}
+
+:host .datetime-picker-after {
+  @include position(116px, null, null, 0);
+
+  position: absolute;
+
+  width: 100%;
+
+  height: 115px;
+
+  background: linear-gradient(to top, var(--background, var(--ion-background-color, #fff)) 30%, rgba(var(--background-rgb, var(--ion-background-color-rgb, 255, 255, 255)), 0.8) 100%);
+
+  z-index: 10;
+
+  pointer-events: none;
+}
+
+:host .datetime-picker-highlight {
+  @include position(50%, 0, 0, 0);
+  @include border-radius($datetime-ios-time-border-radius, $datetime-ios-time-border-radius, $datetime-ios-time-border-radius, $datetime-ios-time-border-radius);
+  @include margin(0, auto, 0, auto);
+
+  position: absolute;
+
+  width: calc(100% - #{$datetime-ios-padding * 2});
+
+  height: 34px;
+
+  transform: translateY(-50%);
+
+  background: var(--ion-color-step-150, #eeeeef);
+
+  z-index: -1;
+}
+
+:host .datetime-year-body {
+  display: flex;
+
+  position: relative;
+
+  align-items: center;
+
+  justify-content: center;
+
+  font-size: 22px;
+
+  /**
+   * This is required otherwise the
+   * highlight will appear behind
+   * the datetime.
+   */
+  z-index: 0;
+}
+
+:host .datetime-picker-col {
+  scroll-snap-type: y mandatory;
+
+  /**
+   * Need to explicitly set overflow-x: hidden
+   * for older implementations of scroll snapping.
+   */
+  overflow-x: hidden;
+  overflow-y: scroll;
+
+  // Hide scrollbars on Firefox
+  scrollbar-width: none;
+
+  height: 200px;
+
+  outline: none;
+}
+
+@media (any-hover: hover) {
+  :host .datetime-picker-col:focus {
+    background: current-color(base, 0.2);
+  }
+}
+
+/**
+ * Hide scrollbars on Chrome and Safari
+ */
+:host .datetime-picker-col::-webkit-scrollbar {
+  display: none;
+}
+
+
+:host .picker-col-item {
+  height: 34px;
+
+  line-height: 34px;
+
+  scroll-snap-align: center;
+}
+
+:host .picker-col-item-empty {
+  scroll-snap-align: none;
+}
+
+
+:host .datetime-year-body .datetime-picker-col:first-of-type {
+  text-align: left;
+}
+
+:host .datetime-year-body .datetime-picker-col:last-of-type {
+  text-align: right;
+}
+
+// Footer
+// -----------------------------------
+:host .datetime-buttons {
+  @include padding($datetime-ios-padding / 2, $datetime-ios-padding / 2, $datetime-ios-padding / 2, $datetime-ios-padding / 2);
+
+  border-top: $datetime-ios-border-color;
+}
+
+:host .datetime-buttons ::slotted(ion-buttons),
+:host .datetime-buttons ion-buttons {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+}
+
+:host .datetime-action-buttons {
+  width: 100%;
+}

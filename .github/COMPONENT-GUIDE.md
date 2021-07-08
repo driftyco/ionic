@@ -12,6 +12,7 @@
 - [Accessibility](#accessibility)
   * [Checkbox](#checkbox)
   * [Switch](#switch)
+  * [Accordion](#accordion)
 - [Rendering Anchor or Button](#rendering-anchor-or-button)
   * [Example Components](#example-components-1)
   * [Component Structure](#component-structure-1)
@@ -623,6 +624,19 @@ You are currently on a switch. To select or deselect this checkbox, press Contro
 ```
 
 There is a WebKit bug open for this: https://bugs.webkit.org/show_bug.cgi?id=196354
+
+### Accordion
+
+#### Example Components
+
+- [ion-accordion](https://github.com/ionic-team/ionic/tree/master/core/src/components/accordion)
+- [ion-accordion-group](https://github.com/ionic-team/ionic/tree/master/core/src/components/accordion-group)
+
+#### NVDA
+
+In order to use the arrow keys to navigate the accordions, users must be in "Focus Mode". Typically, NVDA automatically switches between Browse and Focus modes when inside of a form, but not every accordion needs a form.
+
+You can either wrap your `ion-accordion-group` in a form, or manually toggle Focus Mode using NVDA's keyboard shortcut.
 
 
 ## Rendering Anchor or Button

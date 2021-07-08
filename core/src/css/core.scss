@@ -32,18 +32,56 @@ body.backdrop-no-scroll {
 
 // Modal - Card Style
 // --------------------------------------------------
-// The card style does not reach all the way to
-// the top of the screen, so there does not need
-// to be any safe area padding added
-html.ios ion-modal.modal-card .ion-page > ion-header > ion-toolbar:first-of-type {
-  padding-top: 0px;
+/**
+ * Card style modal needs additional padding on the
+ * top of the header. We accomplish this by targeting
+ * the first toolbar in the header.
+ * Footer also needs this. We do not adjust the bottom
+ * padding though because of the safe area.
+ */
+html.ios ion-modal.modal-card ion-header ion-toolbar:first-of-type,
+html.ios ion-modal ion-footer ion-toolbar:first-of-type {
+  padding-top: 6px;
 }
 
-// .ion-page needs to explicitly inherit
-// the border radius in safari otherwise
-// modals will not show border radius properly
+/**
+* Card style modal needs additional padding on the
+* bottom of the header. We accomplish this by targeting
+* the last toolbar in the header.
+*/
+html.ios ion-modal.modal-card ion-header ion-toolbar:last-of-type {
+  padding-bottom: 6px;
+}
+
+/**
+* Add padding on the left and right
+* of toolbars while accounting for
+* safe area values when in landscape.
+*/
+html.ios ion-modal ion-toolbar {
+  padding-right: calc(var(--ion-safe-area-right) + 8px);
+  padding-left: calc(var(--ion-safe-area-left) + 8px);
+}
+
+/**
+ * .ion-page needs to explicitly set
+ * the border radius in WebKit otherwise
+ * modals will not show border radius properly.
+ * Do not use inherit as that will not
+ * work with shadow dom in this case.
+ */
 html.ios ion-modal .ion-page {
-  border-radius: inherit;
+  border-radius: 10px 10px 0 0;
+}
+
+/**
+ * Card style modal on iPadOS
+ * should only have backdrop on first instance.
+ */
+@media screen and (min-width: 768px) {
+  html.ios ion-modal.modal-card:first-of-type {
+    --backdrop-opacity: 0.18;
+  }
 }
 
 // Ionic Colors
@@ -200,4 +238,42 @@ ion-card-header.ion-color .ion-inherit-color {
 
 .md .menu-content-push {
   box-shadow: $menu-md-box-shadow;
+}
+
+// Accordion Styles
+ion-accordion-group.accordion-group-expand-inset ion-accordion:first-of-type {
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+ion-accordion-group.accordion-group-expand-inset ion-accordion:last-of-type {
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+ion-accordion-group ion-accordion:last-of-type ion-item {
+  --border-width: 0px;
+}
+
+ion-accordion.accordion-animated .ion-accordion-toggle-icon {
+  transition: 300ms transform cubic-bezier(0.25, 0.8, 0.5, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ion-accordion .ion-accordion-toggle-icon {
+    /* stylelint-disable declaration-no-important */
+    transition: none !important;
+  }
+}
+
+ion-accordion.accordion-expanding .ion-accordion-toggle-icon,
+ion-accordion.accordion-expanded .ion-accordion-toggle-icon {
+  transform: rotate(180deg);
+}
+ion-accordion-group.accordion-group-expand-inset.md ion-accordion.accordion-previous ion-item[slot="header"] {
+  --border-width: 0px;
+  --inner-border-width: 0px;
+}
+
+ion-accordion-group.accordion-group-expand-inset.md ion-accordion.accordion-expanding:first-of-type,
+ion-accordion-group.accordion-group-expand-inset.md ion-accordion.accordion-expanded:first-of-type {
+  margin-top: 0;
 }

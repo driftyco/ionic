@@ -166,6 +166,19 @@ export default defineComponent({
 | `--color` | Color of the note |
 
 
+## Dependencies
+
+### Used by
+
+ - [ion-item](../item)
+
+### Graph
+```mermaid
+graph TD;
+  ion-item --> ion-note
+  style ion-note fill:#f9f,stroke:#333,stroke-width:4px
+```
+
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*

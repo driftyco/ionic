@@ -4,7 +4,7 @@
 // iOS Modals
 // --------------------------------------------------
 
-:host:first-of-type {
+:host(:first-of-type) {
   --backdrop-opacity: var(--ion-backdrop-opacity, 0.4);
 }
 
@@ -58,19 +58,13 @@
     --height: calc(100% - (120px + var(--ion-safe-area-top) + var(--ion-safe-area-bottom)));
     --max-width: 720px;
     --max-height: 1000px;
-  }
-
-  :host(.modal-card) {
     --backdrop-opacity: 0;
+    --box-shadow: 0px 0px 30px 10px rgba(0, 0, 0, 0.1);
 
     transition: all 0.5s ease-in-out;
-
-    &:first-of-type {
-      --backdrop-opacity: 0.18;
-    }
   }
 
   :host(.modal-card) .modal-shadow {
-    box-shadow: 0px 0px 30px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--box-shadow);
   }
 }

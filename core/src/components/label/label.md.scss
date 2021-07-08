@@ -17,8 +17,23 @@
  * When translating the label, we need to use translateY
  * instead of translate3d due to a WebKit bug: https://bugs.webkit.org/show_bug.cgi?id=215731
  */
+ :host(.label-stacked),
+ :host(.label-floating) {
+   @include margin(0, 0, 0, 0);
+   /* stylelint-disable property-blacklist */
+   transform-origin: top left;
+   /* stylelint-enable property-blacklist */
+   z-index: 3;
+ }
+
+ :host(.label-stacked.label-rtl),
+ :host(.label-floating.label-rtl) {
+   /* stylelint-disable property-blacklist */
+   transform-origin: top right;
+   /* stylelint-enable property-blacklist */
+ }
+
 :host(.label-stacked) {
-  @include transform-origin(start, top);
   @include transform(translateY(50%), scale(.75));
 
   transition: color 150ms $label-md-transition-timing-function;
@@ -26,36 +41,105 @@
 
 :host(.label-floating) {
   @include transform(translateY(96%));
-  @include transform-origin(start, top);
 
   transition:
     color 150ms $label-md-transition-timing-function,
     transform 150ms $label-md-transition-timing-function;
 }
 
-:host-context(.item-textarea).label-floating {
-  @include transform(translateY(185%));
-}
-
-:host(.label-stacked),
-:host(.label-floating) {
-  @include margin(0, 0, 0, 0);
-}
-
+:host-context(.ion-focused).label-floating,
 :host-context(.item-has-focus).label-floating,
 :host-context(.item-has-placeholder:not(.item-input)).label-floating,
 :host-context(.item-has-value).label-floating {
   @include transform(translateY(50%), scale(.75));
 }
 
+/**
+ * When translating the label inside of an ion-item with `fill="outline"`,
+ * add pseudo-elements to imitate fieldset-like padding without shifting the label
+ */
+:host-context(.item-fill-outline.ion-focused).label-floating,
+:host-context(.item-fill-outline.item-has-focus).label-floating,
+:host-context(.item-fill-outline.item-has-placeholder:not(.item-input)).label-floating,
+:host-context(.item-fill-outline.item-has-value).label-floating {
+  @include transform(translateY(-6px), scale(.75));
+  position: relative;
+
+  max-width: min-content;
+
+  background-color: $item-md-background;
+
+  overflow: visible;
+  z-index: 3;
+
+  &::before,
+  &::after {
+    position: absolute;
+
+    width: $item-md-fill-outline-label-padding;
+
+    height: 100%;
+
+    background-color: $item-md-background;
+
+    content: "";
+  }
+
+  &::before {
+    /* stylelint-disable property-blacklist */
+    left: calc(-1 * #{$item-md-fill-outline-label-padding});
+    /* stylelint-enable property-blacklist */
+  }
+
+  &::after {
+    /* stylelint-disable property-blacklist */
+    right: calc(-1 * #{$item-md-fill-outline-label-padding});
+    /* stylelint-enable property-blacklist */
+  }
+}
+
+:host-context(.item-fill-outline.ion-focused.item-has-start-slot).label-floating,
+:host-context(.item-fill-outline.item-has-focus.item-has-start-slot).label-floating,
+:host-context(.item-fill-outline.item-has-placeholder:not(.item-input).item-has-start-slot).label-floating,
+:host-context(.item-fill-outline.item-has-value.item-has-start-slot).label-floating {
+  @include transform(translateX(#{$item-md-fill-outline-label-translate-x}), translateY(-6px), scale(.75));
+}
+
+:host-context(.item-fill-outline.ion-focused.item-has-start-slot).label-floating.label-rtl,
+:host-context(.item-fill-outline.item-has-focus.item-has-start-slot).label-floating.label-rtl,
+:host-context(.item-fill-outline.item-has-placeholder:not(.item-input).item-has-start-slot).label-floating.label-rtl,
+:host-context(.item-fill-outline.item-has-value.item-has-start-slot).label-floating.label-rtl {
+  @include transform(translateX(calc(-1 * #{$item-md-fill-outline-label-translate-x})), translateY(-6px), scale(.75));
+}
+
+:host-context(.ion-focused).label-stacked:not(.ion-color),
+:host-context(.ion-focused).label-floating:not(.ion-color),
 :host-context(.item-has-focus).label-stacked:not(.ion-color),
 :host-context(.item-has-focus).label-floating:not(.ion-color) {
   color: $label-md-text-color-focused;
 }
 
+:host-context(.ion-focused.ion-color).label-stacked:not(.ion-color),
+:host-context(.ion-focused.ion-color).label-floating:not(.ion-color),
 :host-context(.item-has-focus.ion-color).label-stacked:not(.ion-color),
 :host-context(.item-has-focus.ion-color).label-floating:not(.ion-color) {
   color: #{current-color(contrast)};
+}
+
+:host-context(.item-fill-solid.ion-focused.ion-color).label-stacked:not(.ion-color),
+:host-context(.item-fill-solid.ion-focused.ion-color).label-floating:not(.ion-color),
+:host-context(.item-fill-outline.ion-focused.ion-color).label-stacked:not(.ion-color),
+:host-context(.item-fill-outline.ion-focused.ion-color).label-floating:not(.ion-color),
+:host-context(.item-fill-solid.item-has-focus.ion-color).label-stacked:not(.ion-color),
+:host-context(.item-fill-solid.item-has-focus.ion-color).label-floating:not(.ion-color),
+:host-context(.item-fill-outline.item-has-focus.ion-color).label-stacked:not(.ion-color),
+:host-context(.item-fill-outline.item-has-focus.ion-color).label-floating:not(.ion-color) {
+  color: #{current-color(base)};
+}
+
+:host-context(.ion-invalid).label-stacked:not(.ion-color),
+:host-context(.ion-invalid).label-floating:not(.ion-color) {
+  color: var(--highlight-color-invalid);
 }
 
 

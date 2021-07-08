@@ -1,0 +1,25 @@
+@import "./select-popover";
+@import "./select-popover.md.vars";
+
+ion-list ion-radio {
+  opacity: 0;
+}
+
+ion-item {
+  --inner-border-width: 0;
+}
+
+.item-radio-checked {
+  --background: #{ion-color(primary, base, 0.08)};
+  --background-focused: #{ion-color(primary, base)};
+  --background-focused-opacity: 0.2;
+  --background-hover: #{ion-color(primary, base)};
+  --background-hover-opacity: 0.12;
+}
+
+.item-checkbox-checked {
+  --background-activated: #{$item-md-color};
+  --background-focused: #{$item-md-color};
+  --background-hover: #{$item-md-color};
+  --color: #{ion-color(primary, base)};
+}

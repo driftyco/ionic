@@ -1,0 +1,160 @@
+@import "./breadcrumb.vars";
+
+// Breadcrumb
+// --------------------------------------------------
+
+:host {
+ /**
+   * @prop --color: Text color of the breadcrumb
+   * @prop --color-active: Text color of the active breadcrumb
+   * @prop --color-hover: Text color of the breadcrumb on hover
+   * @prop --color-focused: Text color of the breadcrumb when focused
+   * @prop --background-focused: Background color of the breadcrumb when focused
+   */
+  display: flex;
+
+  flex: 0 0 auto;
+
+  align-items: center;
+
+  color: var(--color);
+
+  font-size: $breadcrumb-font-size;
+  font-weight: $breadcrumb-font-weight;
+
+  line-height: 1.5;
+}
+
+.breadcrumb-native {
+  @include text-inherit();
+  @include padding(0);
+  @include margin(0);
+
+  display: flex;
+
+  align-items: center;
+
+  width: 100%;
+
+  outline: none;
+
+  background: inherit;
+}
+
+:host(.breadcrumb-disabled) {
+  cursor: default;
+  opacity: .5;
+  pointer-events: none;
+}
+
+
+// Breadcrumb: Active
+// ------------------------------------------
+
+:host(.breadcrumb-active) {
+  color: var(--color-active);
+}
+
+
+// Breadcrumb: Focused
+// ------------------------------------------
+
+:host(.ion-focused) {
+  color: var(--color-focused);
+}
+
+:host(.ion-focused) .breadcrumb-native {
+  background: var(--background-focused);
+}
+
+
+// Breadcrumb: Hover
+// ------------------------------------------
+
+@media (any-hover: hover) {
+  :host(.ion-activatable:hover) {
+    color: var(--color-hover);
+  }
+
+  :host(.ion-activatable.in-breadcrumbs-color:hover),
+  :host(.ion-activatable.ion-color:hover) {
+    color: #{current-color(shade)};
+  }
+}
+
+
+// Breadcrumb Separator
+// ------------------------------------------
+
+.breadcrumb-separator {
+  display: inline-flex;
+}
+
+
+// Breadcrumb: Collapsed
+// ------------------------------------------
+
+:host(.breadcrumb-collapsed) .breadcrumb-native {
+  display: none;
+}
+
+
+// Breadcrumbs: Color
+// ------------------------------------------
+
+:host(.in-breadcrumbs-color),
+:host(.in-breadcrumbs-color.breadcrumb-active) {
+  color: current-color(base);
+}
+
+:host(.in-breadcrumbs-color) .breadcrumb-separator {
+  color: current-color(base);
+}
+
+// Breadcrumb: Color
+// ------------------------------------------
+
+:host(.ion-color) {
+  color: current-color(base);
+}
+
+:host(.in-toolbar-color),
+:host(.in-toolbar-color) .breadcrumb-separator {
+  color: current-color(contrast, .8);
+}
+
+:host(.in-toolbar-color.breadcrumb-active) {
+  color: current-color(contrast);
+}
+
+
+// Breadcrumbs: Collapsed Indicator
+// --------------------------------------------------
+
+.breadcrumbs-collapsed-indicator {
+  @include padding(0);
+  @include margin(0, 14px);
+
+  display: flex;
+
+  flex: 1 1 100%;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 32px;
+  height: 18px;
+
+  border: 0;
+
+  outline: none;
+
+  cursor: pointer;
+  appearance: none;
+}
+
+.breadcrumbs-collapsed-indicator ion-icon {
+  margin-top: 1px;
+
+  font-size: 22px;
+}

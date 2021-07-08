@@ -1,26 +1,29 @@
 import { h, inject, defineComponent } from 'vue';
+import { defineCustomElement } from '../utils';
+import { IonBackButton as IonBackButtonCmp } from '@ionic/core/components/ion-back-button.js';
+import { IonIcon as IonIconCmp } from 'ionicons/components/ion-icon.js';
 
-export const IonBackButton = defineComponent({
-  name: 'IonBackButton',
-  setup(_, { attrs, slots }) {
-    const ionRouter: any = inject('navManager');
+export const IonBackButton = /*@__PURE__*/ defineComponent((_, { attrs, slots }) => {
+  defineCustomElement('ion-back-button', IonBackButtonCmp);
+  defineCustomElement('ion-icon', IonIconCmp);
 
-    const onClick = () => {
-      const defaultHref = attrs['default-href'] || attrs['defaultHref'];
-      const routerAnimation = attrs['router-animation'] || attrs['routerAnimation'];
+  const ionRouter: any = inject('navManager');
 
-      ionRouter.handleNavigateBack(defaultHref, routerAnimation);
-    }
+  const onClick = () => {
+    const defaultHref = attrs['default-href'] || attrs['defaultHref'];
+    const routerAnimation = attrs['router-animation'] || attrs['routerAnimation'];
 
-    return () => {
-      return h(
-        'ion-back-button',
-        {
-          onClick,
-          ...attrs
-        },
-        slots.default && slots.default()
-      )
-    }
+    ionRouter.handleNavigateBack(defaultHref, routerAnimation);
+  }
+
+  return () => {
+    return h(
+      'ion-back-button',
+      {
+        onClick,
+        ...attrs
+      },
+      slots.default && slots.default()
+    )
   }
 });

@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Popover - Position</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <link href="../../../../../css/ionic.bundle.css" rel="stylesheet">
+  <link href="../../../../../scripts/testing/styles.css" rel="stylesheet">
+  <script src="../../../../../scripts/testing/scripts.js"></script>
+  <script nomodule src="../../../../../dist/ionic/ionic.js"></script>
+  <script type="module" src="../../../../../dist/ionic/ionic.esm.js"></script></head>
+  <style>
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-row-gap: 20px;
+    grid-column-gap: 20px;
+
+    padding: 200px;
+  }
+  .grid-item {
+    margin: 0 auto;
+  }
+  h2 {
+    font-size: 12px;
+    font-weight: normal;
+
+    color: #6f7378;
+
+    margin-top: 10px;
+    margin-left: 5px;
+  }
+
+  ion-popover {
+    --width: 75px !important;
+  }
+
+  @media screen and (max-width: 400px) {
+    .grid {
+      grid-template-columns: 1fr;
+      padding: 0px;
+    }
+  }
+  </style>
+<body>
+  <ion-app>
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Popover - Position</ion-title>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content class="ion-padding" id="content">
+      <div class="grid">
+        <div class="grid-item">
+          <h2>Top, Start</h2>
+          <ion-button id="top-start">Click to Open</ion-button>
+          <ion-popover
+            class="top-start-popover"
+            trigger="top-start"
+            side="top"
+            alignment="start"
+            show-backdrop="true"
+          >
+           <list-page></list-page>
+          </ion-popover>
+        </div>
+
+        <div class="grid-item">
+          <h2>Top, Center</h2>
+          <ion-button id="top-center">Click to Open</ion-button>
+          <ion-popover
+            class="top-center-popover"
+            trigger="top-center"
+            side="top"
+            alignment="center"
+            show-backdrop="true"
+          >
+           <list-page></list-page>
+          </ion-popover>
+        </div>
+
+        <div class="grid-item">
+          <h2>Top, End</h2>
+          <ion-button id="top-end">Click to Open</ion-button>
+          <ion-popover
+            class="top-end-popover"
+            trigger="top-end"
+            side="top"
+            alignment="end"
+            show-backdrop="true"
+          >
+           <list-page></list-page>
+          </ion-popover>
+        </div>
+
+        <div class="grid-item">
+          <h2>Right, Start</h2>
+          <ion-button id="right-start">Click to Open</ion-button>
+          <ion-popover
+            class="right-start-popover"
+            trigger="right-start"
+            side="right"
+            alignment="start"
+            show-backdrop="true"
+          >
+           <list-page></list-page>
+          </ion-popover>
+        </div>
+
+        <div class="grid-item">
+          <h2>Right, Center</h2>
+          <ion-button id="right-center">Click to Open</ion-button>
+          <ion-popover
+            class="right-center-popover"
+            trigger="right-center"
+            side="right"
+            alignment="center"
+            show-backdrop="true"
+          >
+           <list-page></list-page>
+          </ion-popover>
+        </div>
+
+        <div class="grid-item">
+          <h2>Right, End</h2>
+          <ion-button id="right-end">Click to Open</ion-button>
+          <ion-popover
+            class="right-end-popover"
+            trigger="right-end"
+            side="right"
+            alignment="end"
+            show-backdrop="true"
+          >
+           <list-page></list-page>
+          </ion-popover>
+        </div>
+
+        <div class="grid-item">
+          <h2>Bottom, Start</h2>
+          <ion-button id="bottom-start">Click to Open</ion-button>
+          <ion-popover
+            class="bottom-start-popover"
+            trigger="bottom-start"
+            side="bottom"
+            alignment="start"
+            show-backdrop="true"
+          >
+           <list-page></list-page>
+          </ion-popover>
+        </div>
+
+        <div class="grid-item">
+          <h2>Bottom, Center</h2>
+          <ion-button id="bottom-center">Click to Open</ion-button>
+          <ion-popover
+            class="bottom-center-popover"
+            trigger="bottom-center"
+            side="bottom"
+            alignment="center"
+            show-backdrop="true"
+          >
+           <list-page></list-page>
+          </ion-popover>
+        </div>
+
+        <div class="grid-item">
+          <h2>Bottom, End</h2>
+          <ion-button id="bottom-end">Click to Open</ion-button>
+          <ion-popover
+            class="bottom-end-popover"
+            trigger="bottom-end"
+            side="bottom"
+            alignment="end"
+            show-backdrop="true"
+          >
+           <list-page></list-page>
+          </ion-popover>
+        </div>
+
+        <div class="grid-item">
+          <h2>Left, Start</h2>
+          <ion-button id="left-start">Click to Open</ion-button>
+          <ion-popover
+            class="left-start-popover"
+            trigger="left-start"
+            side="left"
+            alignment="start"
+            show-backdrop="true"
+          >
+           <list-page></list-page>
+          </ion-popover>
+        </div>
+
+        <div class="grid-item">
+          <h2>Left, Center</h2>
+          <ion-button id="left-center">Click to Open</ion-button>
+          <ion-popover
+            class="left-center-popover"
+            trigger="left-center"
+            side="left"
+            alignment="center"
+            show-backdrop="true"
+          >
+           <list-page></list-page>
+          </ion-popover>
+        </div>
+
+        <div class="grid-item">
+          <h2>Left, End</h2>
+          <ion-button id="left-end">Click to Open</ion-button>
+          <ion-popover
+            class="left-end-popover"
+            trigger="left-end"
+            side="left"
+            alignment="end"
+            show-backdrop="true"
+          >
+           <list-page></list-page>
+          </ion-popover>
+        </div>
+
+        <div class="grid-item">
+          <h2>Start, Start</h2>
+          <ion-button id="start-start">Click to Open</ion-button>
+          <ion-popover
+            class="start-start-popover"
+            trigger="start-start"
+            side="start"
+            alignment="start"
+            show-backdrop="true"
+          >
+           <list-page></list-page>
+          </ion-popover>
+        </div>
+
+        <div class="grid-item">
+          <h2>Start, Center</h2>
+          <ion-button id="start-center">Click to Open</ion-button>
+          <ion-popover
+            class="start-center-popover"
+            trigger="start-center"
+            side="start"
+            alignment="center"
+            show-backdrop="true"
+          >
+           <list-page></list-page>
+          </ion-popover>
+        </div>
+
+        <div class="grid-item">
+          <h2>Start, End</h2>
+          <ion-button id="start-end">Click to Open</ion-button>
+          <ion-popover
+            class="start-end-popover"
+            trigger="start-end"
+            side="start"
+            alignment="end"
+            show-backdrop="true"
+          >
+           <list-page></list-page>
+          </ion-popover>
+        </div>
+
+        <div class="grid-item">
+          <h2>End, Start</h2>
+          <ion-button id="end-start">Click to Open</ion-button>
+          <ion-popover
+            class="end-start-popover"
+            trigger="end-start"
+            side="end"
+            alignment="start"
+            show-backdrop="true"
+          >
+           <list-page></list-page>
+          </ion-popover>
+        </div>
+
+        <div class="grid-item">
+          <h2>End, Center</h2>
+          <ion-button id="end-center">Click to Open</ion-button>
+          <ion-popover
+            class="end-center-popover"
+            trigger="end-center"
+            side="end"
+            alignment="center"
+            show-backdrop="true"
+          >
+           <list-page></list-page>
+          </ion-popover>
+        </div>
+
+        <div class="grid-item">
+          <h2>End, End</h2>
+          <ion-button id="end-end">Click to Open</ion-button>
+          <ion-popover
+            class="end-end-popover"
+            trigger="end-end"
+            side="end"
+            alignment="end"
+            show-backdrop="true"
+          >
+           <list-page></list-page>
+          </ion-popover>
+        </div>
+      </div>
+    </ion-content>
+
+  </ion-app>
+
+  <script>
+  class ListPage extends HTMLElement {
+    constructor() {
+      super();
+
+      this.innerHTML = `
+      <ion-content class="ion-padding">
+        Hello
+      </ion-content>
+      `;
+    }
+  }
+
+  customElements.define('list-page', ListPage);
+  </script>
+</body>
+
+</html>

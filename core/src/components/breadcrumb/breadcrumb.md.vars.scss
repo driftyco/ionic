@@ -1,0 +1,46 @@
+@import "../../themes/ionic.globals.md";
+
+// Material Design Breadcrumb
+// --------------------------------------------------
+
+/// @prop - Color of the breadcrumb
+$breadcrumb-md-color:                               var(--ion-color-step-600, #677483) !default;
+
+/// @prop - Color of the active breadcrumb
+$breadcrumb-md-color-active:                        var(--ion-text-color, #03060b) !default;
+
+/// @prop - Color of the focused breadcrumb
+$breadcrumb-md-color-focused:                        var(--ion-color-step-800, #35404e) !default;
+
+/// @prop - Background color of the focused breadcrumb
+$breadcrumb-md-background-focused:                  var(--ion-color-step-50, #fff) !default;
+
+/// @prop - Color of the breadcrumb icon
+$breadcrumb-md-icon-color:                          var(--ion-color-step-550, #7d8894) !default;
+
+/// @prop - Color of the breadcrumb icon when active
+$breadcrumb-md-icon-color-active:                   var(--ion-color-step-850, #222d3a) !default;
+
+/// @prop - Margin top of the breadcrumb separator
+$breadcrumb-md-separator-margin-top:                -1px !default;
+
+/// @prop - Margin end of the breadcrumb separator
+$breadcrumb-md-separator-margin-end:                10px !default;
+
+/// @prop - Margin bottom of the breadcrumb separator
+$breadcrumb-md-separator-margin-bottom:             null !default;
+
+/// @prop - Margin start of the breadcrumb separator
+$breadcrumb-md-separator-margin-start:              10px !default;
+
+/// @prop - Color of the breadcrumb separator
+$breadcrumb-md-separator-color:                     $breadcrumb-separator-color !default;
+
+/// @prop - Color of the breadcrumb indicator
+$breadcrumb-md-indicator-color:                     $breadcrumb-md-separator-color !default;
+
+/// @prop - Background color of the breadcrumb indicator
+$breadcrumb-md-indicator-background:                var(--ion-color-step-100, #eef1f3) !default;
+
+/// @prop - Background color of the breadcrumb indicator when focused
+$breadcrumb-md-indicator-background-focused:        var(--ion-color-step-150, #dfe5e8) !default;

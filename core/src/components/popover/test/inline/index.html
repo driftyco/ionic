@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <title>Popover - Inline</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <link href="../../../../../css/ionic.bundle.css" rel="stylesheet">
+    <link href="../../../../../scripts/testing/styles.css" rel="stylesheet">
+    <script src="../../../../../scripts/testing/scripts.js"></script>
+    <script type="module" src="../../../../../dist/ionic/ionic.esm.js"></script>
+  </head>
+  <body>
+    <ion-app>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Popover - Inline</ion-title>
+        </ion-toolbar>
+      </ion-header>
+
+      <ion-content class="ion-padding">
+        <ion-button onclick="openPopover(event)">Open Popover</ion-button>
+
+        <ion-popover>
+          <ion-content class="ion-padding">
+            This is my inline popover content!
+          </ion-content>
+        </ion-popover>
+      </ion-content>
+    </ion-app>
+
+    <script>
+      const popover = document.querySelector('ion-popover');
+      const openPopover = (ev) => {
+        popover.isOpen = true;
+        popover.event = ev;
+      }
+
+      popover.addEventListener('didDismiss', () => {
+        popover.isOpen = false;
+        popover.event = undefined;
+      });
+    </script>
+
+  </body>
+</html>

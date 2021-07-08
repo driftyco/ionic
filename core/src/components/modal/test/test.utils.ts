@@ -5,6 +5,7 @@ import { generateE2EUrl } from '../../../utils/test/utils';
 export const testModal = async (
   type: string,
   selector: string,
+  expectUnmount = true,
   rtl = false
 ) => {
   const pageUrl = generateE2EUrl('modal', type, rtl);
@@ -41,8 +42,10 @@ export const testModal = async (
 
   screenshotCompares.push(await page.compareScreenshot('dismiss'));
 
-  modal = await page.find('ion-modal');
-  expect(modal).toBeNull();
+  if (expectUnmount) {
+    modal = await page.find('ion-modal');
+    expect(modal).toBeNull();
+  }
 
   for (const screenshotCompare of screenshotCompares) {
     expect(screenshotCompare).toMatchScreenshot();

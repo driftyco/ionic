@@ -2,6 +2,7 @@
   <ion-page data-pageid="tabs-secondary">
     <ion-content>
       <ion-tabs id="tabs">
+        <ion-router-outlet></ion-router-outlet>
         <ion-tab-bar slot="top">
           <ion-tab-button tab="tab1-secondary" href="/tabs-secondary/tab1">
             <ion-icon :icon="triangle" />
@@ -24,12 +25,12 @@
 </template>
 
 <script lang="ts">
-import { IonTabBar, IonTabButton, IonTabs, IonContent, IonLabel, IonIcon, IonPage } from '@ionic/vue';
+import { IonTabBar, IonTabButton, IonTabs, IonContent, IonLabel, IonIcon, IonPage, IonRouterOutlet } from '@ionic/vue';
 import { ellipse, square, triangle } from 'ionicons/icons';
 
 export default {
   name: 'Tabs',
-  components: { IonContent, IonLabel, IonTabs, IonTabBar, IonTabButton, IonIcon, IonPage },
+  components: { IonContent, IonLabel, IonTabs, IonTabBar, IonTabButton, IonIcon, IonPage, IonRouterOutlet },
   setup() {
     return {
       ellipse,

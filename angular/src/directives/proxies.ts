@@ -4,6 +4,30 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, EventEmitter, NgZone } from "@angular/core";
 import { ProxyCmp, proxyOutputs } from "./proxies-utils";
 import { Components } from "@ionic/core";
+export declare interface IonAccordion extends Components.IonAccordion {
+}
+@ProxyCmp({ inputs: ["disabled", "mode", "readonly", "toggleIcon", "toggleIconSlot", "value"] })
+@Component({ selector: "ion-accordion", changeDetection: ChangeDetectionStrategy.OnPush, template: "<ng-content></ng-content>", inputs: ["disabled", "mode", "readonly", "toggleIcon", "toggleIconSlot", "value"] })
+export class IonAccordion {
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+export declare interface IonAccordionGroup extends Components.IonAccordionGroup {
+}
+@ProxyCmp({ inputs: ["animated", "disabled", "expand", "mode", "multiple", "readonly", "value"] })
+@Component({ selector: "ion-accordion-group", changeDetection: ChangeDetectionStrategy.OnPush, template: "<ng-content></ng-content>", inputs: ["animated", "disabled", "expand", "mode", "multiple", "readonly", "value"] })
+export class IonAccordionGroup {
+  ionChange!: EventEmitter<CustomEvent>;
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ["ionChange"]);
+  }
+}
 export declare interface IonApp extends Components.IonApp {
 }
 @Component({ selector: "ion-app", changeDetection: ChangeDetectionStrategy.OnPush, template: "<ng-content></ng-content>" })
@@ -57,6 +81,33 @@ export class IonBadge {
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
+  }
+}
+export declare interface IonBreadcrumb extends Components.IonBreadcrumb {
+}
+@ProxyCmp({ inputs: ["active", "color", "disabled", "download", "href", "mode", "rel", "routerAnimation", "routerDirection", "separator", "target"] })
+@Component({ selector: "ion-breadcrumb", changeDetection: ChangeDetectionStrategy.OnPush, template: "<ng-content></ng-content>", inputs: ["active", "color", "disabled", "download", "href", "mode", "rel", "routerAnimation", "routerDirection", "separator", "target"] })
+export class IonBreadcrumb {
+  ionFocus!: EventEmitter<CustomEvent>;
+  ionBlur!: EventEmitter<CustomEvent>;
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ["ionFocus", "ionBlur"]);
+  }
+}
+export declare interface IonBreadcrumbs extends Components.IonBreadcrumbs {
+}
+@ProxyCmp({ inputs: ["color", "itemsAfterCollapse", "itemsBeforeCollapse", "maxItems", "mode"] })
+@Component({ selector: "ion-breadcrumbs", changeDetection: ChangeDetectionStrategy.OnPush, template: "<ng-content></ng-content>", inputs: ["color", "itemsAfterCollapse", "itemsBeforeCollapse", "maxItems", "mode"] })
+export class IonBreadcrumbs {
+  ionCollapsedClick!: EventEmitter<CustomEvent>;
+  protected el: HTMLElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ["ionCollapsedClick"]);
   }
 }
 export declare interface IonButton extends Components.IonButton {
@@ -193,8 +244,8 @@ export class IonContent {
 }
 export declare interface IonDatetime extends Components.IonDatetime {
 }
-@ProxyCmp({ inputs: ["cancelText", "dayNames", "dayShortNames", "dayValues", "disabled", "displayFormat", "displayTimezone", "doneText", "hourValues", "max", "min", "minuteValues", "mode", "monthNames", "monthShortNames", "monthValues", "name", "pickerFormat", "pickerOptions", "placeholder", "readonly", "value", "yearValues"], "methods": ["open"] })
-@Component({ selector: "ion-datetime", changeDetection: ChangeDetectionStrategy.OnPush, template: "<ng-content></ng-content>", inputs: ["cancelText", "dayNames", "dayShortNames", "dayValues", "disabled", "displayFormat", "displayTimezone", "doneText", "hourValues", "max", "min", "minuteValues", "mode", "monthNames", "monthShortNames", "monthValues", "name", "pickerFormat", "pickerOptions", "placeholder", "readonly", "value", "yearValues"] })
+@ProxyCmp({ inputs: ["cancelText", "color", "dayValues", "disabled", "doneText", "hourValues", "locale", "max", "min", "minuteValues", "mode", "monthValues", "name", "presentation", "readonly", "showDefaultButtons", "showDefaultTitle", "value", "yearValues"], "methods": ["confirm", "reset", "cancel"] })
+@Component({ selector: "ion-datetime", changeDetection: ChangeDetectionStrategy.OnPush, template: "<ng-content></ng-content>", inputs: ["cancelText", "color", "dayValues", "disabled", "doneText", "hourValues", "locale", "max", "min", "minuteValues", "mode", "monthValues", "name", "presentation", "readonly", "showDefaultButtons", "showDefaultTitle", "value", "yearValues"] })
 export class IonDatetime {
   ionCancel!: EventEmitter<CustomEvent>;
   ionChange!: EventEmitter<CustomEvent>;
@@ -344,8 +395,8 @@ export class IonInput {
 }
 export declare interface IonItem extends Components.IonItem {
 }
-@ProxyCmp({ inputs: ["button", "color", "detail", "detailIcon", "disabled", "download", "href", "lines", "mode", "rel", "routerAnimation", "routerDirection", "target", "type"] })
-@Component({ selector: "ion-item", changeDetection: ChangeDetectionStrategy.OnPush, template: "<ng-content></ng-content>", inputs: ["button", "color", "detail", "detailIcon", "disabled", "download", "href", "lines", "mode", "rel", "routerAnimation", "routerDirection", "target", "type"] })
+@ProxyCmp({ inputs: ["button", "color", "counter", "detail", "detailIcon", "disabled", "download", "fill", "href", "lines", "mode", "rel", "routerAnimation", "routerDirection", "shape", "target", "type"] })
+@Component({ selector: "ion-item", changeDetection: ChangeDetectionStrategy.OnPush, template: "<ng-content></ng-content>", inputs: ["button", "color", "counter", "detail", "detailIcon", "disabled", "download", "fill", "href", "lines", "mode", "rel", "routerAnimation", "routerDirection", "shape", "target", "type"] })
 export class IonItem {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {

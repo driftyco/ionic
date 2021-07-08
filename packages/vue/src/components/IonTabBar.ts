@@ -1,4 +1,6 @@
 import { h, defineComponent, getCurrentInstance, inject, VNode } from 'vue';
+import { defineCustomElement } from '../utils';
+import { IonTabBar as IonTabBarCmp } from '@ionic/core/components/ion-tab-bar.js';
 
 interface TabState {
   activeTab?: string;
@@ -162,6 +164,8 @@ export const IonTabBar = defineComponent({
     ionRouter.registerHistoryChangeListener(() => this.checkActiveTab(ionRouter));
   },
   setup(_, { slots }) {
+    defineCustomElement('ion-tab-bar', IonTabBarCmp);
+
     return () => {
       return h(
         'ion-tab-bar',

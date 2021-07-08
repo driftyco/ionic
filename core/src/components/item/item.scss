@@ -99,13 +99,13 @@
 // Item: Color
 // --------------------------------------------------
 
-:host(.ion-color) .item-native {
+:host(.ion-color:not(.item-fill-solid):not(.item-fill-outline)) .item-native {
   background: current-color(base);
   color: current-color(contrast);
 }
 
-:host(.ion-color) .item-native,
-:host(.ion-color) .item-inner {
+:host(.ion-color:not(.item-fill-solid):not(.item-fill-outline)) .item-native,
+:host(.ion-color:not(.item-fill-solid):not(.item-fill-outline)) .item-inner {
   border-color: current-color(shade);
 }
 
@@ -154,7 +154,7 @@
 // --------------------------------------------------
 
 @media (any-hover: hover) {
-  :host(.ion-activatable:hover) .item-native {
+  :host(.ion-activatable:not(.ion-focused):hover) .item-native {
     color: var(--color-hover);
 
     &::after {
@@ -164,7 +164,7 @@
     }
   }
 
-  :host(.ion-color.ion-activatable:hover) .item-native {
+  :host(.ion-color.ion-activatable:not(.ion-focused):hover) .item-native {
     color: #{current-color(contrast)};
 
     &::after {
@@ -172,6 +172,7 @@
     }
   }
 }
+
 
 // Item: Disabled
 // --------------------------------------------------
@@ -308,7 +309,11 @@ button, a {
   z-index: 1;
 }
 
+// Setting pointer-events to none allows the label
+// to be clicked to open the select interface
 ::slotted(ion-label) {
+  pointer-events: none;
+
   flex: 1;
 }
 
@@ -352,27 +357,67 @@ button, a {
 
 .item-highlight,
 .item-inner-highlight {
-  @include position(null, 0, 0, 0);
-
+  @include position(0, 0, 0, 0);
+  @include border-radius(inherit);
   position: absolute;
 
-  background: var(--highlight-background);
+  width: 100%;
 
-  z-index: 1;
+  height: 100%;
+
+  transform: scaleX(0);
+
+  transition: transform 200ms, border-bottom-width 200ms;
+
+  z-index: 2;
+
+  box-sizing: border-box;
+  pointer-events: none;
 }
 
-.item-highlight {
-  height: var(--full-highlight-height);
+:host(.ion-focused) .item-highlight,
+:host(.ion-focused) .item-inner-highlight,
+:host(.item-has-focus) .item-highlight,
+:host(.item-has-focus) .item-inner-highlight {
+  transform: scaleX(1);
+
+  border-style: var(--border-style);
+  border-color: var(--highlight-background);
 }
 
-.item-inner-highlight {
-  height: var(--inset-highlight-height);
+:host(.ion-focused) .item-highlight,
+:host(.item-has-focus) .item-highlight {
+  border-width: var(--full-highlight-height);
+
+  opacity: var(--show-full-highlight);
+}
+
+:host(.ion-focused) .item-inner-highlight,
+:host(.item-has-focus) .item-inner-highlight {
+  border-bottom-width: var(--inset-highlight-height);
+
+  opacity: var(--show-inset-highlight);
+}
+
+:host(.ion-focused.item-fill-solid) .item-highlight,
+:host(.item-has-focus.item-fill-solid) .item-highlight {
+  border-width: calc(var(--full-highlight-height) - 1px);
+}
+
+:host(.ion-focused) .item-inner-highlight,
+:host(.ion-focused:not(.item-fill-outline)) .item-highlight,
+:host(.item-has-focus) .item-inner-highlight,
+:host(.item-has-focus:not(.item-fill-outline)) .item-highlight {
+  border-top: none;
+  border-right: none;
+  border-left: none;
 }
 
 
 // Item Input Focused
 // --------------------------------------------------
 
+:host(.item-interactive.ion-focused),
 :host(.item-interactive.item-has-focus),
 :host(.item-interactive.ion-touched.ion-invalid) {
   // If the item has a full border and highlight is enabled, show the full item highlight
@@ -385,6 +430,7 @@ button, a {
 // Item Input Focus
 // --------------------------------------------------
 
+:host(.item-interactive.ion-focused),
 :host(.item-interactive.item-has-focus) {
   --highlight-background: var(--highlight-color-focused);
 }
@@ -403,6 +449,13 @@ button, a {
   --highlight-background: var(--highlight-color-invalid);
 }
 
+:host(.item-interactive.ion-invalid) ::slotted([slot="helper"]) {
+  display: none;
+}
+
+:host(.item-interactive.ion-invalid) ::slotted([slot="error"]) {
+  display: block;
+}
 
 // Item Select
 // --------------------------------------------------
@@ -475,4 +528,43 @@ button, a {
 
 ion-ripple-effect {
   color: var(--ripple-color);
+}
+
+// Item Button Ripple effect
+// --------------------------------------------------
+
+.item-bottom {
+  @include margin(0);
+  @include padding(
+    var(--padding-top),
+    var(--inner-padding-end),
+    var(--padding-bottom),
+    calc(var(--padding-start) + var(--ion-safe-area-left, 0px) + var(--bottom-padding-start, 0px))
+  );
+  display: flex;
+
+  justify-content: space-between;
+}
+
+:host(.item-fill-solid) ::slotted([slot="start"]),
+:host(.item-fill-solid) ::slotted([slot="end"]),
+:host(.item-fill-outline) ::slotted([slot="start"]),
+:host(.item-fill-outline) ::slotted([slot="end"]) {
+  align-self: center;
+}
+
+::slotted([slot="helper"]),
+::slotted([slot="error"]),
+.item-counter {
+  padding-top: 5px;
+
+  font-size: 12px;
+
+  z-index: 1;
+}
+
+::slotted([slot="error"]) {
+  display: none;
+
+  color: var(--highlight-color-invalid);
 }

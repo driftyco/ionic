@@ -171,11 +171,6 @@ export interface IonicConfig {
   pickerLeave?: AnimationBuilder;
 
   /**
-   * EXPERIMENTAL: Adds a page shadow to transitioning pages on iOS. Disabled by default.
-   */
-  experimentalTransitionShadow?: boolean;
-
-  /**
    * If `true`, Ionic will enable a basic DOM sanitizer on component properties that accept custom HTML.
    */
   sanitizerEnabled?: boolean;
@@ -195,6 +190,7 @@ export interface IonicConfig {
   _zoneGate?: (h: () => any) => any;
   _ael?: (el: any, name: string, cb: any, opts: any) => any;
   _rel?: (el: any, name: string, cb: any, opts: any) => any;
+  _ce?: (eventName: string, opts: any) => any;
 }
 
 export const setupConfig = (config: IonicConfig) => {

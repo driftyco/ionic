@@ -1,5 +1,5 @@
 <template>
-  <ion-page data-pageid="routingparameter">
+  <ion-page :data-pageid="'routingparameter-' + $props.id">
     <ion-header :translucent="true">
       <ion-toolbar>
         <ion-buttons>

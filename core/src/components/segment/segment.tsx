@@ -331,7 +331,17 @@ export class Segment implements ComponentInterface {
     const currentX = detail.currentX;
 
     const previousY = rect.top + (rect.height / 2);
-    const nextEl = document.elementFromPoint(currentX, previousY) as HTMLIonSegmentButtonElement;
+
+    /**
+     * Segment can be used inside the shadow dom
+     * so doing document.elementFromPoint would never
+     * return a segment button in that instance.
+     * We use getRootNode to which will return the parent
+     * shadow root if used inside a shadow component and
+     * returns document otherwise.
+     */
+    const root = this.el.getRootNode() as Document | ShadowRoot;
+    const nextEl = root.elementFromPoint(currentX, previousY) as HTMLIonSegmentButtonElement;
 
     const decreaseIndex = isRTL ? currentX > (left + width) : currentX < left;
     const increaseIndex = isRTL ? currentX < left : currentX > (left + width);

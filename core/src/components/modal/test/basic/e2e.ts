@@ -56,18 +56,15 @@ test('modal: return focus', async () => {
     await modal.waitForNotVisible(),
   ]);
 
-  modal = await page.find('ion-modal');
-  expect(modal).toBeNull();
-
   const activeElement = await page.evaluateHandle(() => document.activeElement);
   const id = await activeElement.evaluate((node) => node.id);
   expect(id).toEqual('basic-modal');
 });
 
 test('modal: basic', async () => {
-  await testModal(DIRECTORY, '#basic-modal');
+  await testModal(DIRECTORY, '#basic-modal', false);
 });
 
 test('modal:rtl: basic', async () => {
-  await testModal(DIRECTORY, '#basic-modal', true);
+  await testModal(DIRECTORY, '#basic-modal', false, true);
 });

@@ -1,6 +1,6 @@
 import { h, defineComponent } from 'vue';
 
-export const IonPage = defineComponent({
+export const IonPage = /*@__PURE__*/ defineComponent({
   name: 'IonPage',
   props: {
     isInOutlet: { type: Boolean, default: false },

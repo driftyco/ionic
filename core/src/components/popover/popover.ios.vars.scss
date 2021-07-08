@@ -23,3 +23,9 @@ $popover-ios-translucent-background-color:            rgba($background-color-rgb
 
 /// @prop - Filter of the translucent popover
 $popover-ios-translucent-filter:                      saturate(180%) blur(20px) !default;
+
+/// $prop - Box shadow of popover on desktop
+$popover-ios-desktop-box-shadow:                      0px 4px 16px 0px rgba(0, 0, 0, 0.12) !default;
+
+/// $prop - Border of popover content on desktop
+$popover-ios-desktop-border:                          0.5px solid $background-color-step-100 !default;

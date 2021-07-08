@@ -1,3 +1,5 @@
+const external = ['vue', 'vue-router'];
+
 export default {
   input: 'dist-transpiled/index.js',
   output: [
@@ -15,5 +17,5 @@ export default {
       sourcemap: true
     }
   ],
-  external: ['ionicons', 'ionicons/icons', '@ionic/core', '@ionic/core/loader', 'vue', 'vue-router']
+  external: id => external.includes(id) || id.startsWith('@ionic/core') || id.startsWith('ionicons')
 };

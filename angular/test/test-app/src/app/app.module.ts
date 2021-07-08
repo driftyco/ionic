@@ -63,7 +63,7 @@ import { AlertComponent } from './alert/alert.component';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    IonicModule.forRoot(),
+    IonicModule.forRoot({ keyboardHeight: 12345 }),
   ],
   entryComponents: [
     ModalExampleComponent,

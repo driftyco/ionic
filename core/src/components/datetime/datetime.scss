@@ -5,63 +5,375 @@
 
 :host {
   /**
-   * @prop --padding-top: Top padding of the datetime
-   * @prop --padding-end: Right padding if direction is left-to-right, and left padding if direction is right-to-left of the datetime
-   * @prop --padding-bottom: Bottom padding of the datetime
-   * @prop --padding-start: Left padding if direction is left-to-right, and right padding if direction is right-to-left of the datetime
-   *
-   * @prop --placeholder-color: Color of the datetime placeholder
+   * @prop --background: The primary background of the datetime component.
+   * @prop --background-rgb: The primary background of the datetime component in RGB format.
+   * @prop --title-color: The text color of the title.
    */
-  @include padding(var(--padding-top), var(--padding-end), var(--padding-bottom), var(--padding-start));
 
   display: flex;
-  position: relative;
 
-  min-width: $datetime-min-width;
-  min-height: $datetime-min-height;
+  flex-flow: column;
 
-  font-family: $font-family-base;
+  width: 350px;
+  height: 100%;
 
+  background: var(--background);
+
+  overflow: hidden;
+}
+
+:host .calendar-body,
+:host .time-column,
+:host .datetime-year {
+  opacity: 0;
+}
+
+:host(:not(.datetime-ready)) .datetime-year {
+  position: absolute;
+  pointer-events: none;
+}
+
+:host(.datetime-ready) .calendar-body,
+:host(.datetime-ready) .time-column {
+  opacity: 1;
+}
+
+:host(.datetime-ready) .datetime-year {
+  display: none;
+
+  opacity: 1;
+}
+
+// Calendar
+// -----------------------------------
+
+/**
+ * This allows the calendar to take
+ * up 100% of the remaining height.
+ * On iOS, if there are more than
+ * 5 rows of dates, the dates should
+ * be resized to fit into this
+ * container.
+ */
+:host .datetime-calendar,
+:host .datetime-year {
+  display: flex;
+
+  flex: 1 1 auto;
+
+  flex-flow: column;
+}
+
+:host(.show-month-and-year) .datetime-year {
+  display: flex;
+}
+
+:host(.show-month-and-year) .calendar-next-prev,
+:host(.show-month-and-year) .calendar-days-of-week,
+:host(.show-month-and-year) .calendar-body,
+:host(.show-month-and-year) .datetime-time {
+  display: none;
+}
+
+:host(.datetime-readonly),
+:host(.datetime-disabled) {
+  pointer-events: none;
+}
+
+:host(.datetime-disabled) {
+  opacity: 0.4;
+}
+
+/**
+ * Title should not wrap
+ * to the next line and should
+ * show ellipsis instead.
+ */
+:host .datetime-header .datetime-title {
   text-overflow: ellipsis;
 
   white-space: nowrap;
 
   overflow: hidden;
-  z-index: $z-index-item-input;
+}
+
+// Calendar / Header / Action Buttons
+// -----------------------------------
+
+/**
+ * Date/Year button should be on
+ * the opposite side of the component
+ * as the Next/Prev buttons
+ */
+:host .calendar-action-buttons {
+  display: flex;
+
+  justify-content: space-between;
+}
+
+:host .calendar-action-buttons ion-item,
+:host .calendar-action-buttons ion-button {
+  --background: translucent;
+}
+
+:host .calendar-action-buttons ion-item ion-label {
+  display: flex;
+
+  align-items: center;
+}
+
+:host .calendar-action-buttons ion-item ion-icon {
+  @include padding(0, 0, 0, 4px);
+}
+
+// Calendar / Header / Days of Week
+// -----------------------------------
+:host .calendar-days-of-week {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+
+  text-align: center;
+}
+
+// Calendar / Body
+// -----------------------------------
+:host .calendar-body {
+
+  /**
+   * Show all calendar months inline
+   * and allow them to take up 100% of
+   * the free space. Do not use CSS Grid
+   * here as there are issues with nested grid
+   * on older browsers.
+   */
+  display: flex;
+
+  flex-grow: 1;
+
+  scroll-snap-type: x mandatory;
+
+  /**
+   * Need to explicitly set overflow-y: hidden
+   * for older implementations of scroll snapping.
+   */
+  overflow-x: scroll;
+  overflow-y: hidden;
+
+  // Hide scrollbars on Firefox
+  scrollbar-width: none;
+
+  /**
+   * Hide blue outline on calendar body
+   * when it is focused.
+   */
+  outline: none;
+}
+
+:host .calendar-body .calendar-month {
+  /**
+   * Swiping should snap to at
+   * most one month at a time.
+   */
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+
+  flex-shrink: 0;
+
+  width: 100%;
+}
+
+/**
+ * Hide scrollbars on Chrome and Safari
+ */
+:host .calendar-body::-webkit-scrollbar {
+  display: none;
+}
+
+:host .calendar-body .calendar-month-grid {
+  /**
+   * Create 7 columns for
+   * 7 days in a week.
+   */
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+
+  height: 100%;
+}
+
+/**
+ * Center the day text vertically
+ * and horizontally within its grid cell.
+ */
+:host .calendar-day {
+  @include padding(0px, 0px, 0px, 0px);
+  @include margin(0px, 0px, 0px, 0px);
+
+  display: flex;
+
+  position: relative;
+
+  align-items: center;
+  justify-content: center;
+
+  border: none;
+
+  outline: none;
+
+  background: none;
+  color: currentColor;
+
+  cursor: pointer;
+
+  appearance: none;
+
+  z-index: 0;
+}
+
+:host .calendar-day[disabled] {
+  pointer-events: none;
+
+  opacity: 0.4;
+}
+
+:host .calendar-day:after {
+  @include border-radius(32px, 32px, 32px, 32px);
+  @include padding(4px, 4px, 4px, 4px);
+  /**
+   * Explicit position values are required here
+   * as pseudo element positioning is incorrect
+   * in older implementations of css grid.
+   */
+
+  @include position(50%, null, null, 50%);
+
+  position: absolute;
+
+  width: 32px;
+  height: 32px;
+
+  transform: translate(-50%, -50%);
+
+  content: " ";
+
+  z-index: -1;
+}
+
+// Time / Header
+// -----------------------------------
+
+:host .datetime-time {
+  display: flex;
+
+  justify-content: space-between;
+}
+
+:host .time-base {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border: 2px solid transparent;
+
+  background: rgba($text-color-rgb, 0.065);
+
+  font-size: 22px;
+  font-weight: 400;
+
+  text-align: center;
+
+  overflow-y: hidden;
+}
+
+:host .time-base.time-base-active {
+  border: 2px solid current-color(base);
+}
+
+:host .time-wrapper {
+  display: flex;
+
+  align-items: center;
+  justify-content: flex-end;
+
+  height: 100%;
+}
+
+:host .time-column {
+  position: relative;
+
+  height: 100%;
+
+  outline: none;
+  scroll-snap-type: y mandatory;
+
+  overflow-y: scroll;
+  overflow-x: hidden;
+
+  -webkit-overflow-scrolling: touch;
+
+  scrollbar-width: none;
+}
+
+@media (any-hover: hover) {
+  :host .time-column:focus {
+    outline: none;
+
+    background: current-color(base, 0.2);
+  }
+}
+
+:host .time-column.time-column-active {
+  background: transparent;
+  color: current-color(base);
+}
+
+:host .time-base.time-base-active .time-column:not(.time-column-active),
+:host .time-base.time-base-active .time-separator {
+  pointer-events: none;
+
+  opacity: 0.4;
+}
+
+:host .time-column::-webkit-scrollbar {
+  display: none;
+}
+
+:host .time-column-hours .time-item {
+  text-align: end;
+}
+
+:host .time-column-minutes .time-item {
+  text-align: start;
+}
+
+:host .time-item {
+  scroll-snap-align: center;
+
+  height: 100%;
+}
+
+:host .time-separator {
+  height: 100%;
+}
+
+:host .time-header {
+  display: flex;
+
+  align-items: center;
+}
+
+:host .time-body {
+  display: flex;
+}
+
+:host .time-ampm {
+  width: 100px;
+}
+
+:host .time-ampm ion-segment-button {
+  min-width: 50px;
 }
 
 :host(.in-item) {
   position: static;
-}
-
-:host(.datetime-placeholder) {
-  color: var(--placeholder-color);
-}
-
-:host(.datetime-disabled) {
-  opacity: .3;
-  pointer-events: none;
-}
-
-:host(.datetime-readonly) {
-  pointer-events: none;
-}
-
-button {
-  @include input-cover();
-}
-
-.datetime-text {
-  @include text-inherit();
-
-  @include rtl() {
-    direction: rtl;
-  }
-
-  flex: 1;
-
-  min-height: inherit;
-
-  direction: ltr;
-  overflow: inherit;
 }

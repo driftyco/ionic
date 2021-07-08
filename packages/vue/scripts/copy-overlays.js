@@ -19,19 +19,9 @@ function generateOverlays() {
       name: 'IonLoading'
     },
     {
-      tag: 'ion-modal',
-      controller: 'modalController',
-      name: 'IonModal'
-    },
-    {
       tag: 'ion-picker',
       controller: 'pickerController',
       name: 'IonPicker'
-    },
-    {
-      tag: 'ion-popover',
-      controller: 'popoverController',
-      name: 'IonPopover'
     },
     {
       tag: 'ion-toast',
@@ -41,15 +31,17 @@ function generateOverlays() {
   ]
 
   let controllerImports = [];
+  let componentImports = [];
   let componentDefinitions = [];
 
   components.forEach(component => {
     const docsBlock = getDocsBlock(component.tag);
     const props = getPropsFromDocsBlock(docsBlock);
 
+    componentImports.push(`import { ${component.name} as ${component.name}Cmp } from '@ionic/core/components/${component.tag}.js'`);
     controllerImports.push(component.controller);
     componentDefinitions.push(`
-export const ${component.name} = /*@__PURE__*/defineOverlayContainer<JSX.${component.name}>('${component.tag}', [${props.join(', ')}], ${component.controller});
+export const ${component.name} = /*@__PURE__*/ defineOverlayContainer<JSX.${component.name}>('${component.tag}', ${component.name}Cmp, [${props.join(', ')}], ${component.controller});
     `);
   });
 
@@ -57,8 +49,10 @@ export const ${component.name} = /*@__PURE__*/defineOverlayContainer<JSX.${compo
 
 import {
   JSX,
-  ${controllerImports.join(',\n  ')}
-} from '@ionic/core';
+  ${controllerImports.join(',\n  ')},
+} from '@ionic/core/components';
+
+${componentImports.join('\n')}
 
 import { defineOverlayContainer } from '../vue-component-lib/overlays';
 ${componentDefinitions.join('')}

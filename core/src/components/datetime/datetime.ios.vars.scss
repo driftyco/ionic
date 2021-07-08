@@ -1,20 +1,17 @@
-@import "../../themes/ionic.globals.ios";
-@import "../item/item.ios.vars";
-
 // iOS Datetime
 // --------------------------------------------------
 
-/// @prop - Padding top of the datetime
-$datetime-ios-padding-top:          $item-ios-padding-top !default;
+/// @prop - Border color for dividers between header and footer
+$datetime-ios-border-color:         0.55px solid $background-color-step-200 !default;
 
-/// @prop - Padding end of the datetime
-$datetime-ios-padding-end:          ($item-ios-padding-end / 2) !default;
+/// @prop - Padding for content
+$datetime-ios-padding:              16px !default;
 
-/// @prop - Padding bottom of the datetime
-$datetime-ios-padding-bottom:       $item-ios-padding-bottom !default;
+/// @prop - Height of the time picker
+$datetime-ios-time-height:          28px !default;
 
-/// @prop - Padding start of the datetime
-$datetime-ios-padding-start:        $item-ios-padding-start !default;
+/// @prop - Width of the time picker
+$datetime-ios-time-width:           68px !default;
 
-/// @prop - Color of the datetime placeholder
-$datetime-ios-placeholder-color:    $text-color-step-600 !default;
+/// @prop - Border radius of the time picker
+$datetime-ios-time-border-radius:   8px !default;

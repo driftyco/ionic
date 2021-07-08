@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <title>Datetime - Cover</title>
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <link href="../../../../../css/ionic.bundle.css" rel="stylesheet">
+    <link href="../../../../../scripts/testing/styles.css" rel="stylesheet">
+    <script src="../../../../../scripts/testing/scripts.js"></script>
+    <script type="module" src="../../../../../dist/ionic/ionic.esm.js"></script>
+    <style>
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(250px, 1fr));
+        grid-gap: 20px;
+      }
+      h2 {
+        font-size: 12px;
+        font-weight: normal;
+
+        color: #6f7378;
+
+        margin-top: 10px;
+        margin-left: 5px;
+      }
+
+      ion-modal {
+        --width: 350px;
+      }
+
+      .placeholder {
+        color: #777;
+      }
+    </style>
+  </head>
+  <body>
+    <ion-app>
+      <ion-header translucent="true">
+        <ion-toolbar>
+          <ion-title>Datetime - Cover</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <ion-item button="true" id="datetime-trigger">
+          <ion-label>Birthday</ion-label>
+          <ion-text class="placeholder">Select a date</ion-text>
+        </ion-item>
+
+        <ion-modal trigger="datetime-trigger">
+          <ion-datetime
+            show-default-title="true"
+            show-default-buttons="true"
+          ></ion-datetime>
+        </ion-modal>
+      </ion-content>
+
+      <script>
+        const datetime = document.querySelector('ion-datetime');
+        const text = document.querySelector('ion-text');
+        datetime.addEventListener('ionChange', (ev) => {
+          const date = new Date(ev.detail.value);
+          text.innerText = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'long', day: 'numeric' }).format(date);
+          text.classList.remove('placeholder');
+        });
+      </script>
+    </ion-app>
+  </body>
+</html>

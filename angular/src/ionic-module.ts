@@ -13,7 +13,9 @@ import { IonRouterOutlet } from './directives/navigation/ion-router-outlet';
 import { IonTabs } from './directives/navigation/ion-tabs';
 import { NavDelegate } from './directives/navigation/nav-delegate';
 import { RouterLinkDelegate } from './directives/navigation/router-link-delegate';
-import { IonApp, IonAvatar, IonBackButton, IonBackdrop, IonBadge, IonButton, IonButtons, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonCheckbox, IonChip, IonCol, IonContent, IonDatetime, IonFab, IonFabButton, IonFabList, IonFooter, IonGrid, IonHeader, IonIcon, IonImg, IonInfiniteScroll, IonInfiniteScrollContent, IonInput, IonItem, IonItemDivider, IonItemGroup, IonItemOption, IonItemOptions, IonItemSliding, IonLabel, IonList, IonListHeader, IonMenu, IonMenuButton, IonMenuToggle, IonNav, IonNavLink, IonNote, IonProgressBar, IonRadio, IonRadioGroup, IonRange, IonRefresher, IonRefresherContent, IonReorder, IonReorderGroup, IonRippleEffect, IonRow, IonSearchbar, IonSegment, IonSegmentButton, IonSelect, IonSelectOption, IonSkeletonText, IonSlide, IonSlides, IonSpinner, IonSplitPane, IonTabBar, IonTabButton, IonText, IonTextarea, IonThumbnail, IonTitle, IonToggle, IonToolbar } from './directives/proxies';
+import { IonModal } from './directives/overlays/ion-modal';
+import { IonPopover } from './directives/overlays/ion-popover';
+import { IonAccordion, IonAccordionGroup, IonApp, IonAvatar, IonBackButton, IonBackdrop, IonBadge, IonBreadcrumb, IonBreadcrumbs, IonButton, IonButtons, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonCheckbox, IonChip, IonCol, IonContent, IonDatetime, IonFab, IonFabButton, IonFabList, IonFooter, IonGrid, IonHeader, IonIcon, IonImg, IonInfiniteScroll, IonInfiniteScrollContent, IonInput, IonItem, IonItemDivider, IonItemGroup, IonItemOption, IonItemOptions, IonItemSliding, IonLabel, IonList, IonListHeader, IonMenu, IonMenuButton, IonMenuToggle, IonNav, IonNavLink, IonNote, IonProgressBar, IonRadio, IonRadioGroup, IonRange, IonRefresher, IonRefresherContent, IonReorder, IonReorderGroup, IonRippleEffect, IonRow, IonSearchbar, IonSegment, IonSegmentButton, IonSelect, IonSelectOption, IonSkeletonText, IonSlide, IonSlides, IonSpinner, IonSplitPane, IonTabBar, IonTabButton, IonText, IonTextarea, IonThumbnail, IonTitle, IonToggle, IonToolbar } from './directives/proxies';
 import { VirtualFooter } from './directives/virtual-scroll/virtual-footer';
 import { VirtualHeader } from './directives/virtual-scroll/virtual-header';
 import { VirtualItem } from './directives/virtual-scroll/virtual-item';
@@ -25,11 +27,15 @@ import { PopoverController } from './providers/popover-controller';
 
 const DECLARATIONS = [
   // proxies
+  IonAccordion,
+  IonAccordionGroup,
   IonApp,
   IonAvatar,
   IonBackButton,
   IonBackdrop,
   IonBadge,
+  IonBreadcrumb,
+  IonBreadcrumbs,
   IonButton,
   IonButtons,
   IonCard,
@@ -65,9 +71,11 @@ const DECLARATIONS = [
   IonMenu,
   IonMenuButton,
   IonMenuToggle,
+  IonModal,
   IonNav,
   IonNavLink,
   IonNote,
+  IonPopover,
   IonProgressBar,
   IonRadio,
   IonRadioGroup,

@@ -72,6 +72,7 @@ export const ActionSheetExample: React.FC = () => {
           text: 'Delete',
           role: 'destructive',
           icon: trash,
+          id: 'delete-button',
           handler: () => {
             console.log('Delete clicked');
           }

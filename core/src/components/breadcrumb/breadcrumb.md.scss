@@ -1,0 +1,89 @@
+@import "./breadcrumb";
+@import "./breadcrumb.md.vars";
+
+// Breadcrumb
+// --------------------------------------------------
+
+:host {
+  --color: #{$breadcrumb-md-color};
+  --color-active: #{$breadcrumb-md-color-active};
+  --color-hover: #{$breadcrumb-md-color-active};
+  --color-focused: #{$breadcrumb-md-color-focused};
+  --background-focused: $breadcrumb-md-background-focused;
+}
+
+:host(.breadcrumb-active) {
+  font-weight: 500;
+}
+
+.breadcrumb-native {
+  @include padding(6px, 12px, 6px, 12px);
+}
+
+
+// Breadcrumb Separator
+// ------------------------------------------
+
+.breadcrumb-separator {
+  @include margin($breadcrumb-md-separator-margin-top, $breadcrumb-md-separator-margin-end, $breadcrumb-md-separator-margin-bottom, $breadcrumb-md-separator-margin-start);
+}
+
+
+// Breadcrumb: Focused
+// ------------------------------------------
+
+:host(.ion-focused) .breadcrumb-native {
+  @include border-radius(4px);
+
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2), 0px 2px 8px rgba(0, 0, 0, 0.12);
+}
+
+
+// Breadcrumb Separator
+// ------------------------------------------
+
+.breadcrumb-separator {
+  color: $breadcrumb-md-separator-color;
+}
+
+
+// Breadcrumb Slotted Icons
+// ------------------------------------------
+
+::slotted(ion-icon) {
+  color: $breadcrumb-md-icon-color;
+
+  font-size: 18px;
+}
+
+::slotted(ion-icon[slot="start"]) {
+  @include margin(null, 8px, null, null);
+}
+
+::slotted(ion-icon[slot="end"]) {
+  @include margin(null, null, null, 8px);
+}
+
+:host(.breadcrumb-active) ::slotted(ion-icon) {
+  color: $breadcrumb-md-icon-color-active;
+}
+
+
+// Breadcrumbs Collapsed Indicator
+// --------------------------------------------------
+
+.breadcrumbs-collapsed-indicator {
+  @include border-radius(2px);
+
+  background: $breadcrumb-md-indicator-background;
+
+  color: $breadcrumb-md-indicator-color;
+}
+
+.breadcrumbs-collapsed-indicator:hover {
+  opacity: 0.7;
+}
+
+.breadcrumbs-collapsed-indicator:focus {
+  background: $breadcrumb-md-indicator-background-focused;
+}

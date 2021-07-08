@@ -63,6 +63,7 @@ export interface ExternalNavigationOptions {
   routerLink: string;
   routerDirection?: RouteDirection;
   routerAnimation?: AnimationBuilder;
+  routerAction?: RouteAction;
 }
 
 export interface NavigationInformation {

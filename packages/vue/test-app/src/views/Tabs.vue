@@ -2,6 +2,7 @@
   <ion-page data-pageid="tabs">
     <ion-content>
       <ion-tabs id="tabs">
+        <ion-router-outlet></ion-router-outlet>
         <ion-tab-bar slot="bottom">
           <ion-tab-button
             v-for="tab in tabs"
@@ -21,14 +22,14 @@
 </template>
 
 <script lang="ts">
-import { IonButton, IonTabBar, IonTabButton, IonTabs, IonContent, IonLabel, IonIcon, IonPage } from '@ionic/vue';
+import { IonButton, IonTabBar, IonTabButton, IonTabs, IonContent, IonLabel, IonIcon, IonPage, IonRouterOutlet } from '@ionic/vue';
 import { ellipse, square, triangle, shield } from 'ionicons/icons';
 import { useRouter } from 'vue-router';
 import { ref, defineComponent } from 'vue';
 
 export default defineComponent({
   name: 'Tabs',
-  components: { IonButton, IonContent, IonLabel, IonTabs, IonTabBar, IonTabButton, IonIcon, IonPage },
+  components: { IonButton, IonContent, IonLabel, IonTabs, IonTabBar, IonTabButton, IonIcon, IonPage, IonRouterOutlet },
   setup() {
     const tabs = ref([
       { id: 1, icon: triangle },

@@ -1,0 +1,94 @@
+@import "./breadcrumb";
+@import "./breadcrumb.ios.vars";
+
+// Breadcrumb
+// --------------------------------------------------
+
+:host {
+  --color: #{$breadcrumb-ios-color};
+  --color-active: #{$breadcrumb-ios-color-active};
+  --color-hover: #{$breadcrumb-ios-color-active};
+  --color-focused: var(--color-active);
+  --background-focused: #{$breadcrumb-ios-background-focused};
+}
+
+:host(.breadcrumb-active) {
+  font-weight: 600;
+}
+
+.breadcrumb-native {
+  @include border-radius(4px);
+  @include padding(5px, 12px, 5px, 12px);
+
+  border: 1px solid transparent;
+}
+
+
+// Breadcrumb: Focused
+// ------------------------------------------
+
+:host(.ion-focused) .breadcrumb-native {
+  @include border-radius(8px);
+}
+
+:host(.in-breadcrumbs-color.ion-focused) .breadcrumb-native,
+:host(.ion-color.ion-focused) .breadcrumb-native {
+  background: #{current-color(base, .1)};
+  color: #{current-color(base)};
+}
+
+:host(.ion-focused) ::slotted(ion-icon),
+:host(.in-breadcrumbs-color.ion-focused) ::slotted(ion-icon),
+:host(.ion-color.ion-focused) ::slotted(ion-icon) {
+  color: $breadcrumb-ios-icon-color-focused;
+}
+
+
+// Breadcrumb Separator
+// ------------------------------------------
+
+.breadcrumb-separator {
+  color: $breadcrumb-ios-separator-color;
+}
+
+
+// Breadcrumb Slotted Icons
+// ------------------------------------------
+
+::slotted(ion-icon) {
+  color: $breadcrumb-ios-icon-color;
+
+  font-size: 18px;
+}
+
+::slotted(ion-icon[slot="start"]) {
+  @include margin(null, 8px, null, null);
+}
+
+::slotted(ion-icon[slot="end"]) {
+  @include margin(null, null, null, 8px);
+}
+
+:host(.breadcrumb-active) ::slotted(ion-icon) {
+  color: $breadcrumb-ios-icon-color-active;
+}
+
+
+// Breadcrumbs Collapsed Indicator
+// --------------------------------------------------
+
+.breadcrumbs-collapsed-indicator {
+  @include border-radius(4px);
+
+  background: $breadcrumb-ios-indicator-background;
+
+  color: $breadcrumb-ios-indicator-color;
+}
+
+.breadcrumbs-collapsed-indicator:hover {
+  opacity: 0.45;
+}
+
+.breadcrumbs-collapsed-indicator:focus {
+  background: $breadcrumb-ios-indicator-background-focused;
+}

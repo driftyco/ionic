@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <title>Accordion - Basic</title>
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <link href="../../../../../css/ionic.bundle.css" rel="stylesheet">
+    <link href="../../../../../scripts/testing/styles.css" rel="stylesheet">
+    <script src="../../../../../scripts/testing/scripts.js"></script>
+    <script type="module" src="../../../../../dist/ionic/ionic.esm.js"></script>
+  </head>
+  <body>
+    <main>
+      <h1 class="ion-padding">Accordion</h1>
+
+      <div class="grid ion-padding">
+        <div class="grid-item">
+          <h2>Default Accordion</h2>
+
+          <ion-accordion-group>
+            <ion-accordion>
+              <button class="custom-accordion-button" slot="header">
+                Attractions
+              </button>
+              <div class="custom-accordion-content" slot="content">
+                Some content
+              </div>
+            </ion-accordion>
+            <ion-accordion>
+              <button class="custom-accordion-button" slot="header">
+                Second one
+              </button>
+              <div class="custom-accordion-content" slot="content">
+                Some content
+              </div>
+            </ion-accordion>
+          </ion-accordion-group>
+        </div>
+
+        <div class="grid-item">
+          <h2>Readonly Accordion (1st)</h2>
+
+          <ion-accordion-group value="expanded">
+            <ion-accordion readonly value="expanded">
+              <button class="custom-accordion-button" slot="header">
+                Readonly - expanded
+              </button>
+              <div class="custom-accordion-content" slot="content">
+                <input id="checkme-1" type="checkbox"></input>
+                <label for="checkme-1">Check me!</label>
+              </div>
+            </ion-accordion>
+            <ion-accordion value="collapsed">
+              <button class="custom-accordion-button" slot="header">
+                Collapsed
+              </button>
+              <div class="custom-accordion-content" slot="content">
+                <input id="checkme-2" type="checkbox"></input>
+                <label for="checkme-2">Check me!</label>
+              </div>
+            </ion-accordion>
+          </ion-accordion-group>
+        </div>
+
+        <div class="grid-item">
+          <h2>Custom Accordion Colors</h2>
+
+          <ion-accordion-group expand="inset" class="custom-colors">
+            <ion-accordion>
+              <button class="custom-accordion-button" slot="header">
+                Danger
+              </button>
+              <div class="custom-accordion-content" slot="content">
+                Some content
+              </div>
+            </ion-accordion>
+            <ion-accordion>
+              <button class="custom-accordion-button" slot="header">
+                Primary
+              </button>
+              <div class="custom-accordion-content" slot="content">
+                Some content
+              </div>
+            </ion-accordion>
+          </ion-accordion-group>
+        </div>
+      </div>
+    </main>
+  </body>
+
+  <style>
+    body {
+      background: #f6f6f6;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      grid-row-gap: 20px;
+      grid-column-gap: 20px;
+    }
+
+    .custom-accordion-button {
+      width: 100%;
+      background: transparent;
+      outline: none;
+      text-align: left;
+      padding: 20px 16px;
+    }
+
+    .custom-accordion-content {
+      padding: 10px 16px;
+    }
+
+    ion-accordion {
+      border-bottom: 1px solid #ddd;
+    }
+
+    ion-accordion:last-child {
+      border-bottom: none;
+    }
+
+    .custom-colors ion-accordion:first-child {
+      background: rgb(245, 116, 116);
+      border-bottom-color: red;
+    }
+
+    .custom-colors ion-accordion:last-child {
+      background: rgb(160, 160, 250);
+    }
+  </style>
+</html>

@@ -303,6 +303,19 @@ export default defineComponent({
 | `--transition`           | Transition of the checkbox icon                |
 
 
+## Dependencies
+
+### Used by
+
+ - ion-select-popover
+
+### Graph
+```mermaid
+graph TD;
+  ion-select-popover --> ion-checkbox
+  style ion-checkbox fill:#f9f,stroke:#333,stroke-width:4px
+```
+
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*

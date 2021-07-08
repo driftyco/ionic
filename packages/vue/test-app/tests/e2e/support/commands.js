@@ -50,7 +50,6 @@ Cypress.Commands.add('ionPageVisible', (pageId) => {
 Cypress.Commands.add('ionPageHidden', (pageId) => {
   cy.get(`div.ion-page[data-pageid=${pageId}]`)
     .should('have.class', 'ion-page-hidden')
-    .should('have.length', 1)
 })
 
 Cypress.Commands.add('ionBackClick', (pageId) => {

@@ -321,6 +321,23 @@
     <ion-input placeholder="Placeholder"></ion-input>
   </ion-item>
 
+  <ion-item fill="solid">
+    <ion-label position="floating">Input (Fill: Solid)</ion-label>
+    <ion-input></ion-input>
+  </ion-item>
+
+  <ion-item fill="outline">
+    <ion-label position="floating">Input (Fill: Outline)</ion-label>
+    <ion-input></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Helper and Error Text</ion-label>
+    <ion-input></ion-input>
+    <ion-note slot="helper">Helper Text</ion-note>
+    <ion-note slot="error">Error Text</ion-note>
+  </ion-item>
+
   <ion-item>
     <ion-label>Checkbox</ion-label>
     <ion-checkbox slot="start"></ion-checkbox>
@@ -338,6 +355,7 @@ import {
   IonButton,
   IonCheckbox, 
   IonDatetime,
+  IonNote,
   IonIcon,
   IonInput, 
   IonItem, 
@@ -366,6 +384,7 @@ export default defineComponent({
     IonButton,
     IonCheckbox, 
     IonDatetime,
+    IonNote,
     IonIcon,
     IonInput, 
     IonItem, 

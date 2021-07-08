@@ -48,6 +48,13 @@
   outline: none;
 
   contain: strict;
+
+  pointer-events: none;
+}
+
+:host(.modal-interactive) .modal-wrapper,
+:host(.modal-interactive) ion-backdrop {
+  pointer-events: auto;
 }
 
 :host(.overlay-hidden) {

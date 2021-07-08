@@ -36,11 +36,13 @@ function presentAlertConfirm() {
       text: 'Cancel',
       role: 'cancel',
       cssClass: 'secondary',
+      id: 'cancel-button',
       handler: (blah) => {
         console.log('Confirm Cancel: blah');
       }
     }, {
       text: 'Okay',
+      id: 'confirm-button',
       handler: () => {
         console.log('Confirm Okay')
       }

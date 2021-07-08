@@ -17,4 +17,21 @@ export interface PopoverOptions<T extends ComponentRef = ComponentRef> {
 
   enterAnimation?: AnimationBuilder;
   leaveAnimation?: AnimationBuilder;
+
+  size?: PopoverSize;
+  dismissOnSelect?: boolean;
+  reference?: PositionReference;
+  side?: PositionSide;
+  align?: PositionAlign;
+
+  trigger?: string;
+  triggerAction?: string;
 }
+
+export type PopoverSize = 'cover' | 'auto';
+
+export type TriggerAction = 'click' | 'hover' | 'context-menu';
+
+export type PositionReference = 'trigger' | 'event';
+export type PositionSide = 'top' | 'right' | 'bottom' | 'left' | 'start' | 'end';
+export type PositionAlign = 'start' | 'center' | 'end';

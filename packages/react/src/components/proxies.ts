@@ -10,6 +10,12 @@ export const IonRouterLink = /*@__PURE__*/ createReactComponent<
   HrefProps<JSX.IonRouterLink>,
   HTMLIonRouterLinkElement
 >('ion-router-link', true);
+export const IonAccordion = /*@__PURE__*/ createReactComponent<JSX.IonAccordion, HTMLIonAccordionElement>(
+  'ion-accordion'
+);
+export const IonAccordionGroup = /*@__PURE__*/ createReactComponent<JSX.IonAccordionGroup, HTMLIonAccordionGroupElement>(
+  'ion-accordion-group'
+);
 export const IonAvatar = /*@__PURE__*/ createReactComponent<JSX.IonAvatar, HTMLIonAvatarElement>(
   'ion-avatar'
 );
@@ -19,6 +25,12 @@ export const IonBackdrop = /*@__PURE__*/ createReactComponent<
 >('ion-backdrop');
 export const IonBadge = /*@__PURE__*/ createReactComponent<JSX.IonBadge, HTMLIonBadgeElement>(
   'ion-badge'
+);
+export const IonBreadcrumb = /*@__PURE__*/ createReactComponent<JSX.IonBreadcrumb, HTMLIonBreadcrumbElement>(
+  'ion-breadcrumb'
+);
+export const IonBreadcrumbs = /*@__PURE__*/ createReactComponent<JSX.IonBreadcrumbs, HTMLIonBreadcrumbsElement>(
+  'ion-breadcrumbs'
 );
 export const IonButton = /*@__PURE__*/ createReactComponent<
   HrefProps<JSX.IonButton>,

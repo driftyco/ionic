@@ -1,17 +1,19 @@
 import { Animation } from '../../../interface';
 import { createAnimation } from '../../../utils/animation/animation';
+import { getElementRoot } from '../../../utils/helpers';
 
 /**
  * Md Modal Leave Animation
  */
 export const mdLeaveAnimation = (baseEl: HTMLElement): Animation => {
+  const root = getElementRoot(baseEl);
   const baseAnimation = createAnimation();
   const backdropAnimation = createAnimation();
   const wrapperAnimation = createAnimation();
-  const wrapperEl = baseEl.querySelector('.modal-wrapper')!;
+  const wrapperEl = root.querySelector('.modal-wrapper')!;
 
   backdropAnimation
-    .addElement(baseEl.querySelector('ion-backdrop')!)
+    .addElement(root.querySelector('ion-backdrop')!)
     .fromTo('opacity', 'var(--backdrop-opacity)', 0.0);
 
   wrapperAnimation

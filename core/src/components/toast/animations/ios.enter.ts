@@ -1,15 +1,16 @@
 import { Animation } from '../../../interface';
 import { createAnimation } from '../../../utils/animation/animation';
+import { getElementRoot } from '../../../utils/helpers';
 
 /**
  * iOS Toast Enter Animation
  */
-export const iosEnterAnimation = (baseEl: ShadowRoot, position: string): Animation => {
+export const iosEnterAnimation = (baseEl: HTMLElement, position: string): Animation => {
   const baseAnimation = createAnimation();
   const wrapperAnimation = createAnimation();
 
-  const hostEl = baseEl.host || baseEl;
-  const wrapperEl = baseEl.querySelector('.toast-wrapper') as HTMLElement;
+  const root = getElementRoot(baseEl);
+  const wrapperEl = root.querySelector('.toast-wrapper') as HTMLElement;
 
   const bottom = `calc(-10px - var(--ion-safe-area-bottom, 0px))`;
   const top = `calc(10px + var(--ion-safe-area-top, 0px))`;
@@ -22,7 +23,7 @@ export const iosEnterAnimation = (baseEl: ShadowRoot, position: string): Animati
       break;
     case 'middle':
       const topPosition = Math.floor(
-        hostEl.clientHeight / 2 - wrapperEl.clientHeight / 2
+        baseEl.clientHeight / 2 - wrapperEl.clientHeight / 2
       );
       wrapperEl.style.top = `${topPosition}px`;
       wrapperAnimation.fromTo('opacity', 0.01, 1);
@@ -32,7 +33,6 @@ export const iosEnterAnimation = (baseEl: ShadowRoot, position: string): Animati
       break;
   }
   return baseAnimation
-    .addElement(hostEl)
     .easing('cubic-bezier(.155,1.105,.295,1.12)')
     .duration(400)
     .addAnimation(wrapperAnimation);

@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Breadcrumbs - Basic</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link href="../../../../../css/ionic.bundle.css" rel="stylesheet">
+  <link href="../../../../../scripts/testing/styles.css" rel="stylesheet">
+  <script src="../../../../../scripts/testing/scripts.js"></script>
+  <script nomodule src="../../../../../dist/ionic/ionic.js"></script>
+  <script type="module" src="../../../../../dist/ionic/ionic.esm.js"></script></head>
+<body>
+  <ion-app>
+
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Breadcrumbs - Basic</ion-title>
+      </ion-toolbar>
+      <ion-toolbar>
+        <ion-breadcrumbs>
+          <ion-breadcrumb href="#">
+            Home
+          </ion-breadcrumb>
+          <ion-breadcrumb href="#electronics">
+            Electronics
+          </ion-breadcrumb>
+          <ion-breadcrumb href="#disabled" disabled>
+            Disabled
+          </ion-breadcrumb>
+          <ion-breadcrumb>
+            Data
+          </ion-breadcrumb>
+        </ion-breadcrumbs>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content class="ion-padding">
+      <h1>Default</h1>
+
+      <ion-breadcrumbs>
+        <ion-breadcrumb href="#">
+          Home
+        </ion-breadcrumb>
+        <ion-breadcrumb href="#electronics">
+          Electronics
+        </ion-breadcrumb>
+        <ion-breadcrumb href="#photography">
+          Photography
+        </ion-breadcrumb>
+        <ion-breadcrumb href="#cameras">
+          Cameras
+        </ion-breadcrumb>
+        <ion-breadcrumb href="#film">
+          Film
+        </ion-breadcrumb>
+        <ion-breadcrumb>
+          35 mm
+        </ion-breadcrumb>
+      </ion-breadcrumbs>
+
+      <hr>
+
+      <h1>No Links</h1>
+
+      <ion-breadcrumbs>
+        <ion-breadcrumb>
+          Home
+        </ion-breadcrumb>
+        <ion-breadcrumb>
+          Electronics
+        </ion-breadcrumb>
+        <ion-breadcrumb>
+          Photography
+        </ion-breadcrumb>
+        <ion-breadcrumb>
+          Cameras
+        </ion-breadcrumb>
+        <ion-breadcrumb>
+          Film
+        </ion-breadcrumb>
+        <ion-breadcrumb>
+          35 mm
+        </ion-breadcrumb>
+      </ion-breadcrumbs>
+
+      <hr>
+
+      <h1>Color: Primary</h1>
+
+      <ion-breadcrumbs color="primary">
+        <ion-breadcrumb href="#">
+          Home
+        </ion-breadcrumb>
+        <ion-breadcrumb href="#electronics">
+          Electronics
+        </ion-breadcrumb>
+        <ion-breadcrumb href="#photography">
+          Photography
+        </ion-breadcrumb>
+        <ion-breadcrumb href="#cameras">
+          Cameras
+        </ion-breadcrumb>
+        <ion-breadcrumb href="#film">
+          Film
+        </ion-breadcrumb>
+        <ion-breadcrumb>
+          35 mm
+        </ion-breadcrumb>
+      </ion-breadcrumbs>
+
+      <hr>
+
+      <h1>Color: Primary: Tab Focus</h1>
+
+      <ion-breadcrumbs color="primary">
+        <ion-breadcrumb href="#">
+          Home
+        </ion-breadcrumb>
+        <ion-breadcrumb href="#electronics">
+          Electronics
+        </ion-breadcrumb>
+        <ion-breadcrumb href="#photography" class="ion-focused">
+          Photography
+        </ion-breadcrumb>
+        <ion-breadcrumb href="#cameras">
+          Cameras
+        </ion-breadcrumb>
+        <ion-breadcrumb href="#film">
+          Film
+        </ion-breadcrumb>
+        <ion-breadcrumb>
+          35 mm
+        </ion-breadcrumb>
+      </ion-breadcrumbs>
+
+      <hr>
+
+      <h1>Custom separator</h1>
+
+      <ion-breadcrumbs>
+        <ion-breadcrumb href="#">
+          Home
+          <ion-icon slot="separator" name="arrow-forward"></ion-icon>
+        </ion-breadcrumb>
+        <ion-breadcrumb href="#electronics">
+          Electronics
+          <ion-icon slot="separator" name="arrow-forward"></ion-icon>
+        </ion-breadcrumb>
+        <ion-breadcrumb href="#photography">
+          Photography
+          <ion-icon slot="separator" name="arrow-forward"></ion-icon>
+        </ion-breadcrumb>
+        <ion-breadcrumb href="#cameras">
+          Cameras
+          <ion-icon slot="separator" name="arrow-forward"></ion-icon>
+        </ion-breadcrumb>
+        <ion-breadcrumb href="#film">
+          Film
+          <ion-icon slot="separator" name="arrow-forward"></ion-icon>
+        </ion-breadcrumb>
+        <ion-breadcrumb>
+          35 mm
+        </ion-breadcrumb>
+      </ion-breadcrumbs>
+
+      <hr>
+
+      <h1>Custom icons</h1>
+
+      <ion-breadcrumbs>
+        <ion-breadcrumb href="#">
+          <ion-icon slot="start" name="home"></ion-icon>
+          Home
+        </ion-breadcrumb>
+        <ion-breadcrumb href="#files">
+          <ion-icon slot="start" name="folder"></ion-icon>
+          Files
+        </ion-breadcrumb>
+        <ion-breadcrumb href="#projects">
+          <ion-icon slot="start" name="folder"></ion-icon>
+          Projects
+        </ion-breadcrumb>
+        <ion-breadcrumb href="#user-research">
+          <ion-icon slot="start" name="folder"></ion-icon>
+          User Research
+        </ion-breadcrumb>
+        <ion-breadcrumb>
+          <ion-icon slot="start" name="document"></ion-icon>
+          Survey.txt
+        </ion-breadcrumb>
+      </ion-breadcrumbs>
+
+      <hr>
+
+      <h1>Collapsed</h1>
+
+      <ion-breadcrumbs max-items="4" items-before-collapse="0" items-after-collapse="4">
+        <ion-breadcrumb href="#">
+          <ion-icon slot="start" ios="home" md="home-sharp"></ion-icon>
+          Home
+        </ion-breadcrumb>
+        <ion-breadcrumb href="#trips">
+          <ion-icon slot="start" ios="folder" md="folder-sharp"></ion-icon>
+          Trips
+        </ion-breadcrumb>
+        <ion-breadcrumb href="#tokyo">
+          <ion-icon slot="start" ios="folder" md="folder-sharp"></ion-icon>
+          Tokyo 2021
+        </ion-breadcrumb>
+        <ion-breadcrumb href="#photos">
+          <ion-icon slot="start" ios="folder" md="folder-sharp"></ion-icon>
+          Photos
+        </ion-breadcrumb>
+        <ion-breadcrumb>
+          <ion-icon slot="start" ios="image" md="image-sharp"></ion-icon>
+          cityscape-01-2021.png
+        </ion-breadcrumb>
+      </ion-breadcrumbs>
+
+      <hr>
+
+      <h1>Collapsed: Tab Focus</h1>
+
+      <ion-breadcrumbs max-items="4" items-before-collapse="0" items-after-collapse="4">
+        <ion-breadcrumb href="#">
+          <ion-icon slot="start" ios="home" md="home-sharp"></ion-icon>
+          Home
+        </ion-breadcrumb>
+        <ion-breadcrumb href="#trips">
+          <ion-icon slot="start" ios="folder" md="folder-sharp"></ion-icon>
+          Trips
+        </ion-breadcrumb>
+        <ion-breadcrumb href="#tokyo" class="ion-focused">
+          <ion-icon slot="start" ios="folder" md="folder-sharp"></ion-icon>
+          Tokyo 2021
+        </ion-breadcrumb>
+        <ion-breadcrumb href="#photos">
+          <ion-icon slot="start" ios="folder" md="folder-sharp"></ion-icon>
+          Photos
+        </ion-breadcrumb>
+        <ion-breadcrumb>
+          <ion-icon slot="start" ios="image" md="image-sharp"></ion-icon>
+          cityscape-01-2021.png
+        </ion-breadcrumb>
+      </ion-breadcrumbs>
+
+      <hr>
+
+      <h1>
+        Breadcrumbs: collapsed middle / expand on click
+        <ion-button size="small" fill="clear" onClick="collapseBreadcrumbs()">Re-collapse</ion-button>
+      </h1>
+
+      <ion-breadcrumbs id="expandOnClick" max-items="4">
+        <ion-breadcrumb href="#">
+          Home
+        </ion-breadcrumb>
+        <ion-breadcrumb href="#electronics">
+          Cameras & Camcorders
+        </ion-breadcrumb>
+        <ion-breadcrumb href="#digital-camera-accessories">
+          Digital Camera Accessories
+        </ion-breadcrumb>
+        <ion-breadcrumb href="#camera-lenses">
+          Camera Lenses
+        </ion-breadcrumb>
+        <ion-breadcrumb href="#dslr-lenses">
+          DSLR Lenses
+        </ion-breadcrumb>
+        <ion-breadcrumb href="#prime-lenses">
+          Prime Lenses
+        </ion-breadcrumb>
+        <ion-breadcrumb>
+          Product Info
+        </ion-breadcrumb>
+      </ion-breadcrumbs>
+
+      <hr>
+
+      <h1>Breadcrumbs: collapsed / popover on click</h1>
+
+      <ion-breadcrumbs id="popoverOnClick" max-items="4" items-before-collapse="0" items-after-collapse="3">
+        <ion-breadcrumb href="#">
+          Home
+        </ion-breadcrumb>
+        <ion-breadcrumb href="#electronics">
+          Cameras & Camcorders
+        </ion-breadcrumb>
+        <ion-breadcrumb href="#digital-camera-accessories">
+          Digital Camera Accessories
+        </ion-breadcrumb>
+        <ion-breadcrumb href="#camera-lenses">
+          Camera Lenses
+        </ion-breadcrumb>
+        <ion-breadcrumb href="#dslr-lenses">
+          DSLR Lenses
+        </ion-breadcrumb>
+        <ion-breadcrumb href="#prime-lenses">
+          Prime Lenses
+        </ion-breadcrumb>
+        <ion-breadcrumb>
+          Product Info
+        </ion-breadcrumb>
+      </ion-breadcrumbs>
+
+      <hr>
+
+      <h1>Show last separator</h1>
+
+      <ion-breadcrumbs>
+        <ion-breadcrumb href="#disabled" disabled>
+          Home
+        </ion-breadcrumb>
+        <ion-breadcrumb href="#electronics">
+          Electronics
+        </ion-breadcrumb>
+        <ion-breadcrumb href="#data" active>
+          Data
+        </ion-breadcrumb>
+        <ion-breadcrumb href="#file" separator>
+          File
+        </ion-breadcrumb>
+      </ion-breadcrumbs>
+
+      <hr>
+
+      <h1>Breadcrumbs Color: Primary</h1>
+
+      <ion-breadcrumbs color="primary">
+        <ion-breadcrumb href="#">
+          Home
+        </ion-breadcrumb>
+        <ion-breadcrumb href="#electronics">
+          Electronics
+        </ion-breadcrumb>
+        <ion-breadcrumb href="#disabled" disabled>
+          Disabled
+        </ion-breadcrumb>
+        <ion-breadcrumb>
+          Data
+        </ion-breadcrumb>
+      </ion-breadcrumbs>
+
+      <hr>
+
+      <h1>Breadcrumb Color: Varied</h1>
+
+      <ion-breadcrumbs>
+        <ion-breadcrumb href="#" color="secondary">
+          Home
+        </ion-breadcrumb>
+        <ion-breadcrumb href="#electronics" color="danger">
+          Electronics
+        </ion-breadcrumb>
+        <ion-breadcrumb href="#disabled" disabled>
+          Disabled
+        </ion-breadcrumb>
+        <ion-breadcrumb color="tertiary">
+          Data
+        </ion-breadcrumb>
+      </ion-breadcrumbs>
+
+
+      <hr>
+
+      <h1>Breadcrumbs (Secondary); Breadcrumb (Danger)</h1>
+
+      <ion-breadcrumbs color="secondary">
+        <ion-breadcrumb href="#">
+          Home
+        </ion-breadcrumb>
+        <ion-breadcrumb href="#electronics" color="danger">
+          Electronics
+        </ion-breadcrumb>
+        <ion-breadcrumb href="#disabled" disabled>
+          Disabled
+        </ion-breadcrumb>
+        <ion-breadcrumb>
+          Data
+        </ion-breadcrumb>
+      </ion-breadcrumbs>
+
+      <hr>
+
+      <h1>Custom Separator: Icon w/ last separator showing</h1>
+
+      <ion-breadcrumbs>
+        <ion-breadcrumb href="#">
+          Home
+          <ion-icon slot="separator" name="caret-forward-outline"></ion-icon>
+        </ion-breadcrumb>
+        <ion-breadcrumb href="#electronics">
+          Electronics
+          <ion-icon slot="separator" name="caret-forward-outline"></ion-icon>
+        </ion-breadcrumb>
+        <ion-breadcrumb href="#disabled" disabled>
+          Disabled
+          <ion-icon slot="separator" name="caret-forward-outline"></ion-icon>
+        </ion-breadcrumb>
+        <ion-breadcrumb separator="true">
+          Data
+          <ion-icon slot="separator" name="star-outline"></ion-icon>
+        </ion-breadcrumb>
+      </ion-breadcrumbs>
+
+      <hr>
+
+      <h1>Breadcrumbs: default wrapping</h1>
+
+      <ion-breadcrumbs>
+        <ion-breadcrumb href="#">
+          Home
+        </ion-breadcrumb>
+        <ion-breadcrumb href="#electronics">
+          Cameras & Camcorders
+        </ion-breadcrumb>
+        <ion-breadcrumb href="#digital-camera-accessories">
+          Digital Camera Accessories
+        </ion-breadcrumb>
+        <ion-breadcrumb href="#camera-lenses">
+          Camera Lenses
+        </ion-breadcrumb>
+        <ion-breadcrumb href="#dslr-lenses">
+          DSLR Lenses
+        </ion-breadcrumb>
+        <ion-breadcrumb href="#prime-lenses">
+          Prime Lenses
+        </ion-breadcrumb>
+        <ion-breadcrumb>
+          Product Info
+        </ion-breadcrumb>
+      </ion-breadcrumbs>
+    </ion-content>
+  </ion-app>
+
+  <script>
+    const expandOnClick = document.querySelector('#expandOnClick');
+    expandOnClick.addEventListener('ionCollapsedClick', () => expandBreadcrumbs());
+
+    function expandBreadcrumbs() {
+      console.log('expand onClick');
+      expandOnClick.maxItems = undefined;
+    }
+
+    function collapseBreadcrumbs() {
+      expandOnClick.maxItems = 4;
+    }
+
+    const popoverOnClick = document.querySelector('#popoverOnClick');
+    popoverOnClick.addEventListener('ionCollapsedClick', (ev) => presentPopover(ev));
+
+    class ListPopover extends HTMLElement {
+      constructor() {
+        super();
+      }
+
+      connectedCallback() {
+        this.innerHTML = `
+          <ion-content>
+            <ion-list>
+              <ion-item href="#">
+                <ion-label>Home</ion-label>
+              </ion-item>
+              <ion-item href="#electronics">
+                <ion-label>Cameras & Camcorders</ion-label>
+              </ion-item>
+              <ion-item href="#digital-camera-accessories">
+                <ion-label>Digital Camera Accessories</ion-label>
+              </ion-item>
+              <ion-item href="#camera-lenses">
+                <ion-label>Camera Lenses</ion-label>
+              </ion-item>
+            </ion-list>
+          </ion-content>
+        `;
+      }
+    }
+
+    customElements.define('list-popover', ListPopover);
+
+    async function presentPopover(ev) {
+      console.log('present ev', ev);
+      const popover = Object.assign(document.createElement('ion-popover'), {
+        component: 'list-popover',
+        event: ev,
+      });
+      document.body.appendChild(popover);
+
+      await popover.present();
+    }
+  </script>
+
+  <style>
+    h1 {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      font-size: 12px;
+      font-weight: normal;
+
+      color: #a1a7b0;
+
+      margin-top: 10px;
+      margin-left: 5px;
+    }
+
+    hr {
+      background: #eff1f3;
+
+      margin-top: 18px;
+      margin-bottom: 25px;
+    }
+
+    ion-content ion-breadcrumbs {
+      padding: 3px 5px;
+    }
+  </style>
+</body>
+
+</html>

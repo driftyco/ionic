@@ -26,6 +26,10 @@ html:not(.hydrated) body {
   display: none;
 }
 
+html.ion-ce body {
+  display: block;
+}
+
 html.plt-pwa {
   height: 100vh;
 }

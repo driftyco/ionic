@@ -369,6 +369,23 @@ The highlight color changes based on the item state, but all of the states use I
   <ion-input placeholder="Placeholder"></ion-input>
 </ion-item>
 
+<ion-item fill="solid">
+  <ion-label position="floating">Input (Fill: Solid)</ion-label>
+  <ion-input></ion-input>
+</ion-item>
+
+<ion-item fill="outline">
+  <ion-label position="floating">Input (Fill: Outline)</ion-label>
+  <ion-input></ion-input>
+</ion-item>
+
+<ion-item>
+  <ion-label>Helper and Error Text</ion-label>
+  <ion-input></ion-input>
+  <ion-note slot="helper">Helper Text</ion-note>
+  <ion-note slot="error">Error Text</ion-note>
+</ion-item>
+
 <ion-item>
   <ion-label>Checkbox</ion-label>
   <ion-checkbox slot="start"></ion-checkbox>
@@ -691,6 +708,23 @@ The highlight color changes based on the item state, but all of the states use I
   <ion-input placeholder="Placeholder"></ion-input>
 </ion-item>
 
+<ion-item fill="solid">
+  <ion-label position="floating">Input (Fill: Solid)</ion-label>
+  <ion-input></ion-input>
+</ion-item>
+
+<ion-item fill="outline">
+  <ion-label position="floating">Input (Fill: Outline)</ion-label>
+  <ion-input></ion-input>
+</ion-item>
+
+<ion-item>
+  <ion-label>Helper and Error Text</ion-label>
+  <ion-input></ion-input>
+  <ion-note slot="helper">Helper Text</ion-note>
+  <ion-note slot="error">Error Text</ion-note>
+</ion-item>
+
 <ion-item>
   <ion-label>Checkbox</ion-label>
   <ion-checkbox slot="start"></ion-checkbox>
@@ -707,7 +741,7 @@ The highlight color changes based on the item state, but all of the states use I
 
 ```tsx
 import React from 'react';
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonItem, IonLabel, IonList, IonText, IonAvatar, IonThumbnail, IonButton, IonIcon, IonDatetime, IonSelect, IonSelectOption, IonToggle, IonInput, IonCheckbox, IonRange } from '@ionic/react';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonItem, IonLabel, IonList, IonText, IonAvatar, IonThumbnail, IonButton, IonIcon, IonDatetime, IonSelect, IonSelectOption, IonToggle, IonInput, IonCheckbox, IonRange, IonNote } from '@ionic/react';
 import { closeCircle, home, star, navigate, informationCircle, checkmarkCircle, shuffle } from 'ionicons/icons';
 
 export const ItemExamples: React.FC = () => {
@@ -996,6 +1030,23 @@ export const ItemExamples: React.FC = () => {
         <IonItem>
           <IonLabel>Input (placeholder)</IonLabel>
           <IonInput placeholder="Placeholder"></IonInput>
+        </IonItem>
+
+        <IonItem fill="solid">
+          <IonLabel position="stacked">Input (Fill: Solid)</IonLabel>
+          <IonInput></IonInput>
+        </IonItem>
+
+        <IonItem fill="outline">
+          <IonLabel position="floating">Input (Fill: Outline)</IonLabel>
+          <IonInput></IonInput>
+        </IonItem>
+
+        <IonItem>
+          <IonLabel>Helper and Error Text</IonLabel>
+          <IonInput></IonInput>
+          <IonNote slot="helper">Helper Text</IonNote>
+          <IonNote slot="error">Error Text</IonNote>
         </IonItem>
 
         <IonItem>
@@ -1427,6 +1478,23 @@ export class ItemExample {
         <ion-input placeholder="Placeholder"></ion-input>
       </ion-item>,
 
+      <ion-item fill="solid">
+        <ion-label position="floating">Input (Fill: Solid)</ion-label>
+        <ion-input></ion-input>
+      </ion-item>,
+
+      <ion-item fill="outline">
+        <ion-label position="floating">Input (Fill: Outline)</ion-label>
+        <ion-input></ion-input>
+      </ion-item>,
+
+      <ion-item>
+        <ion-label>Helper and Error Text</ion-label>
+        <ion-input></ion-input>
+        <ion-note slot="helper">Helper Text</ion-note>
+        <ion-note slot="error">Error Text</ion-note>
+      </ion-item>,
+
       <ion-item>
         <ion-label>Checkbox</ion-label>
         <ion-checkbox slot="start"></ion-checkbox>
@@ -1767,6 +1835,23 @@ export class ItemExample {
     <ion-input placeholder="Placeholder"></ion-input>
   </ion-item>
 
+  <ion-item fill="solid">
+    <ion-label position="floating">Input (Fill: Solid)</ion-label>
+    <ion-input></ion-input>
+  </ion-item>
+
+  <ion-item fill="outline">
+    <ion-label position="floating">Input (Fill: Outline)</ion-label>
+    <ion-input></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Helper and Error Text</ion-label>
+    <ion-input></ion-input>
+    <ion-note slot="helper">Helper Text</ion-note>
+    <ion-note slot="error">Error Text</ion-note>
+  </ion-item>
+
   <ion-item>
     <ion-label>Checkbox</ion-label>
     <ion-checkbox slot="start"></ion-checkbox>
@@ -1784,6 +1869,7 @@ import {
   IonButton,
   IonCheckbox, 
   IonDatetime,
+  IonNote,
   IonIcon,
   IonInput, 
   IonItem, 
@@ -1812,6 +1898,7 @@ export default defineComponent({
     IonButton,
     IonCheckbox, 
     IonDatetime,
+    IonNote,
     IonIcon,
     IonInput, 
     IonItem, 
@@ -1846,16 +1933,19 @@ export default defineComponent({
 | ----------------- | ------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------- | ------------------- |
 | `button`          | `button`           | If `true`, a button tag will be rendered and the item will be tappable.                                                                                                                                                                                                                   | `boolean`                                               | `false`             |
 | `color`           | `color`            | The color to use from your application's color palette. Default options are: `"primary"`, `"secondary"`, `"tertiary"`, `"success"`, `"warning"`, `"danger"`, `"light"`, `"medium"`, and `"dark"`. For more information on colors, see [theming](/docs/theming/basics).                    | `string \| undefined`                                   | `undefined`         |
+| `counter`         | `counter`          | If `true`, a character counter will display the ratio of characters used and the total character limit. Only applies when the `maxlength` property is set on the inner `ion-input` or `ion-textarea`.                                                                                     | `boolean`                                               | `true`              |
 | `detail`          | `detail`           | If `true`, a detail arrow will appear on the item. Defaults to `false` unless the `mode` is `ios` and an `href` or `button` property is present.                                                                                                                                          | `boolean \| undefined`                                  | `undefined`         |
 | `detailIcon`      | `detail-icon`      | The icon to use when `detail` is set to `true`.                                                                                                                                                                                                                                           | `string`                                                | `'chevron-forward'` |
 | `disabled`        | `disabled`         | If `true`, the user cannot interact with the item.                                                                                                                                                                                                                                        | `boolean`                                               | `false`             |
 | `download`        | `download`         | This attribute instructs browsers to download a URL instead of navigating to it, so the user will be prompted to save it as a local file. If the attribute has a value, it is used as the pre-filled file name in the Save prompt (the user can still change the file name if they want). | `string \| undefined`                                   | `undefined`         |
+| `fill`            | `fill`             | The fill for the item. If `'solid'` the item will have a background. If `'outline'` the item will be transparent with a border. Only available in `md` mode.                                                                                                                              | `"outline" \| "solid" \| undefined`                     | `undefined`         |
 | `href`            | `href`             | Contains a URL or a URL fragment that the hyperlink points to. If this property is set, an anchor tag will be rendered.                                                                                                                                                                   | `string \| undefined`                                   | `undefined`         |
 | `lines`           | `lines`            | How the bottom border should be displayed on the item.                                                                                                                                                                                                                                    | `"full" \| "inset" \| "none" \| undefined`              | `undefined`         |
 | `mode`            | `mode`             | The mode determines which platform styles to use.                                                                                                                                                                                                                                         | `"ios" \| "md"`                                         | `undefined`         |
 | `rel`             | `rel`              | Specifies the relationship of the target object to the link object. The value is a space-separated list of [link types](https://developer.mozilla.org/en-US/docs/Web/HTML/Link_types).                                                                                                    | `string \| undefined`                                   | `undefined`         |
 | `routerAnimation` | --                 | When using a router, it specifies the transition animation when navigating to another page using `href`.                                                                                                                                                                                  | `((baseEl: any, opts?: any) => Animation) \| undefined` | `undefined`         |
 | `routerDirection` | `router-direction` | When using a router, it specifies the transition direction when navigating to another page using `href`.                                                                                                                                                                                  | `"back" \| "forward" \| "root"`                         | `'forward'`         |
+| `shape`           | `shape`            | The shape of the item. If "round" it will have increased border radius.                                                                                                                                                                                                                   | `"round" \| undefined`                                  | `undefined`         |
 | `target`          | `target`           | Specifies where to display the linked URL. Only applies when an `href` is provided. Special keywords: `"_blank"`, `"_self"`, `"_parent"`, `"_top"`.                                                                                                                                       | `string \| undefined`                                   | `undefined`         |
 | `type`            | `type`             | The type of the button. Only used when an `onclick` or `button` property is present.                                                                                                                                                                                                      | `"button" \| "reset" \| "submit"`                       | `'button'`          |
 
@@ -1922,18 +2012,22 @@ export default defineComponent({
 
 ### Used by
 
+ - [ion-datetime](../datetime)
  - ion-select-popover
 
 ### Depends on
 
 - ion-icon
 - [ion-ripple-effect](../ripple-effect)
+- [ion-note](../note)
 
 ### Graph
 ```mermaid
 graph TD;
   ion-item --> ion-icon
   ion-item --> ion-ripple-effect
+  ion-item --> ion-note
+  ion-datetime --> ion-item
   ion-select-popover --> ion-item
   style ion-item fill:#f9f,stroke:#333,stroke-width:4px
 ```

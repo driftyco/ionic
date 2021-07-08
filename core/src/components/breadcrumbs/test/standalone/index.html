@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Breadcrumbs - Standalone</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link href="../../../../../css/ionic.bundle.css" rel="stylesheet">
+  <link href="../../../../../scripts/testing/styles.css" rel="stylesheet">
+  <script src="../../../../../scripts/testing/scripts.js"></script>
+  <script nomodule src="../../../../../dist/ionic/ionic.js"></script>
+  <script type="module" src="../../../../../dist/ionic/ionic.esm.js"></script></head>
+<body>
+  <h1>Default</h1>
+
+  <ion-breadcrumbs max-items="4" items-before-collapse="2">
+    <ion-breadcrumb>
+      <ion-icon slot="start" name="folder"></ion-icon>
+      Home
+    </ion-breadcrumb>
+    <ion-breadcrumb href="#electronics" class="ion-focused">
+      <ion-icon slot="start" name="folder"></ion-icon>
+      Electronics
+    </ion-breadcrumb>
+    <ion-breadcrumb href="#photography">
+      <ion-icon slot="start" name="folder"></ion-icon>
+      Photography
+    </ion-breadcrumb>
+    <ion-breadcrumb href="#cameras">
+      <ion-icon slot="start" name="folder"></ion-icon>
+      Cameras
+    </ion-breadcrumb>
+    <ion-breadcrumb href="#film">
+      <ion-icon slot="start" name="folder"></ion-icon>
+      Film
+    </ion-breadcrumb>
+    <ion-breadcrumb>
+      <ion-icon slot="start" name="document"></ion-icon>
+      35 mm
+    </ion-breadcrumb>
+  </ion-breadcrumbs>
+
+  <h1>Colors</h1>
+
+  <ion-breadcrumbs max-items="4" items-before-collapse="2" color="primary">
+    <ion-breadcrumb>
+      <ion-icon slot="start" name="folder"></ion-icon>
+      Home
+    </ion-breadcrumb>
+    <ion-breadcrumb href="#electronics" class="ion-focused">
+      <ion-icon slot="start" name="folder"></ion-icon>
+      Electronics
+    </ion-breadcrumb>
+    <ion-breadcrumb href="#photography">
+      <ion-icon slot="start" name="folder"></ion-icon>
+      Photography
+    </ion-breadcrumb>
+    <ion-breadcrumb href="#cameras">
+      <ion-icon slot="start" name="folder"></ion-icon>
+      Cameras
+    </ion-breadcrumb>
+    <ion-breadcrumb href="#film">
+      <ion-icon slot="start" name="folder"></ion-icon>
+      Film
+    </ion-breadcrumb>
+    <ion-breadcrumb>
+      <ion-icon slot="start" name="document"></ion-icon>
+      35 mm
+    </ion-breadcrumb>
+  </ion-breadcrumbs>
+
+  <ion-breadcrumbs max-items="4" items-before-collapse="2" color="secondary">
+    <ion-breadcrumb>
+      <ion-icon slot="start" name="folder"></ion-icon>
+      Home
+    </ion-breadcrumb>
+    <ion-breadcrumb href="#electronics" class="ion-focused">
+      <ion-icon slot="start" name="folder"></ion-icon>
+      Electronics
+    </ion-breadcrumb>
+    <ion-breadcrumb href="#photography">
+      <ion-icon slot="start" name="folder"></ion-icon>
+      Photography
+    </ion-breadcrumb>
+    <ion-breadcrumb href="#cameras">
+      <ion-icon slot="start" name="folder"></ion-icon>
+      Cameras
+    </ion-breadcrumb>
+    <ion-breadcrumb href="#film">
+      <ion-icon slot="start" name="folder"></ion-icon>
+      Film
+    </ion-breadcrumb>
+    <ion-breadcrumb>
+      <ion-icon slot="start" name="document"></ion-icon>
+      35 mm
+    </ion-breadcrumb>
+  </ion-breadcrumbs>
+
+  <ion-breadcrumbs max-items="4" items-before-collapse="2" color="tertiary">
+    <ion-breadcrumb>
+      <ion-icon slot="start" name="folder"></ion-icon>
+      Home
+    </ion-breadcrumb>
+    <ion-breadcrumb href="#electronics" class="ion-focused">
+      <ion-icon slot="start" name="folder"></ion-icon>
+      Electronics
+    </ion-breadcrumb>
+    <ion-breadcrumb href="#photography">
+      <ion-icon slot="start" name="folder"></ion-icon>
+      Photography
+    </ion-breadcrumb>
+    <ion-breadcrumb href="#cameras">
+      <ion-icon slot="start" name="folder"></ion-icon>
+      Cameras
+    </ion-breadcrumb>
+    <ion-breadcrumb href="#film">
+      <ion-icon slot="start" name="folder"></ion-icon>
+      Film
+    </ion-breadcrumb>
+    <ion-breadcrumb>
+      <ion-icon slot="start" name="document"></ion-icon>
+      35 mm
+    </ion-breadcrumb>
+  </ion-breadcrumbs>
+
+  <ion-breadcrumbs max-items="4" items-before-collapse="2" color="success">
+    <ion-breadcrumb>
+      <ion-icon slot="start" name="folder"></ion-icon>
+      Home
+    </ion-breadcrumb>
+    <ion-breadcrumb href="#electronics" class="ion-focused">
+      <ion-icon slot="start" name="folder"></ion-icon>
+      Electronics
+    </ion-breadcrumb>
+    <ion-breadcrumb href="#photography">
+      <ion-icon slot="start" name="folder"></ion-icon>
+      Photography
+    </ion-breadcrumb>
+    <ion-breadcrumb href="#cameras">
+      <ion-icon slot="start" name="folder"></ion-icon>
+      Cameras
+    </ion-breadcrumb>
+    <ion-breadcrumb href="#film">
+      <ion-icon slot="start" name="folder"></ion-icon>
+      Film
+    </ion-breadcrumb>
+    <ion-breadcrumb>
+      <ion-icon slot="start" name="document"></ion-icon>
+      35 mm
+    </ion-breadcrumb>
+  </ion-breadcrumbs>
+
+  <ion-breadcrumbs max-items="4" items-before-collapse="2" color="warning">
+    <ion-breadcrumb>
+      <ion-icon slot="start" name="folder"></ion-icon>
+      Home
+    </ion-breadcrumb>
+    <ion-breadcrumb href="#electronics" class="ion-focused">
+      <ion-icon slot="start" name="folder"></ion-icon>
+      Electronics
+    </ion-breadcrumb>
+    <ion-breadcrumb href="#photography">
+      <ion-icon slot="start" name="folder"></ion-icon>
+      Photography
+    </ion-breadcrumb>
+    <ion-breadcrumb href="#cameras">
+      <ion-icon slot="start" name="folder"></ion-icon>
+      Cameras
+    </ion-breadcrumb>
+    <ion-breadcrumb href="#film">
+      <ion-icon slot="start" name="folder"></ion-icon>
+      Film
+    </ion-breadcrumb>
+    <ion-breadcrumb>
+      <ion-icon slot="start" name="document"></ion-icon>
+      35 mm
+    </ion-breadcrumb>
+  </ion-breadcrumbs>
+
+  <ion-breadcrumbs max-items="4" items-before-collapse="2" color="danger">
+    <ion-breadcrumb>
+      <ion-icon slot="start" name="folder"></ion-icon>
+      Home
+    </ion-breadcrumb>
+    <ion-breadcrumb href="#electronics" class="ion-focused">
+      <ion-icon slot="start" name="folder"></ion-icon>
+      Electronics
+    </ion-breadcrumb>
+    <ion-breadcrumb href="#photography">
+      <ion-icon slot="start" name="folder"></ion-icon>
+      Photography
+    </ion-breadcrumb>
+    <ion-breadcrumb href="#cameras">
+      <ion-icon slot="start" name="folder"></ion-icon>
+      Cameras
+    </ion-breadcrumb>
+    <ion-breadcrumb href="#film">
+      <ion-icon slot="start" name="folder"></ion-icon>
+      Film
+    </ion-breadcrumb>
+    <ion-breadcrumb>
+      <ion-icon slot="start" name="document"></ion-icon>
+      35 mm
+    </ion-breadcrumb>
+  </ion-breadcrumbs>
+
+  <ion-breadcrumbs max-items="4" items-before-collapse="2" color="light">
+    <ion-breadcrumb>
+      <ion-icon slot="start" name="folder"></ion-icon>
+      Home
+    </ion-breadcrumb>
+    <ion-breadcrumb href="#electronics" class="ion-focused">
+      <ion-icon slot="start" name="folder"></ion-icon>
+      Electronics
+    </ion-breadcrumb>
+    <ion-breadcrumb href="#photography">
+      <ion-icon slot="start" name="folder"></ion-icon>
+      Photography
+    </ion-breadcrumb>
+    <ion-breadcrumb href="#cameras">
+      <ion-icon slot="start" name="folder"></ion-icon>
+      Cameras
+    </ion-breadcrumb>
+    <ion-breadcrumb href="#film">
+      <ion-icon slot="start" name="folder"></ion-icon>
+      Film
+    </ion-breadcrumb>
+    <ion-breadcrumb>
+      <ion-icon slot="start" name="document"></ion-icon>
+      35 mm
+    </ion-breadcrumb>
+  </ion-breadcrumbs>
+
+  <ion-breadcrumbs max-items="4" items-before-collapse="2" color="medium">
+    <ion-breadcrumb>
+      <ion-icon slot="start" name="folder"></ion-icon>
+      Home
+    </ion-breadcrumb>
+    <ion-breadcrumb href="#electronics" class="ion-focused">
+      <ion-icon slot="start" name="folder"></ion-icon>
+      Electronics
+    </ion-breadcrumb>
+    <ion-breadcrumb href="#photography">
+      <ion-icon slot="start" name="folder"></ion-icon>
+      Photography
+    </ion-breadcrumb>
+    <ion-breadcrumb href="#cameras">
+      <ion-icon slot="start" name="folder"></ion-icon>
+      Cameras
+    </ion-breadcrumb>
+    <ion-breadcrumb href="#film">
+      <ion-icon slot="start" name="folder"></ion-icon>
+      Film
+    </ion-breadcrumb>
+    <ion-breadcrumb>
+      <ion-icon slot="start" name="document"></ion-icon>
+      35 mm
+    </ion-breadcrumb>
+  </ion-breadcrumbs>
+
+  <ion-breadcrumbs max-items="4" items-before-collapse="2" color="dark">
+    <ion-breadcrumb>
+      <ion-icon slot="start" name="folder"></ion-icon>
+      Home
+    </ion-breadcrumb>
+    <ion-breadcrumb href="#electronics" class="ion-focused">
+      <ion-icon slot="start" name="folder"></ion-icon>
+      Electronics
+    </ion-breadcrumb>
+    <ion-breadcrumb href="#photography">
+      <ion-icon slot="start" name="folder"></ion-icon>
+      Photography
+    </ion-breadcrumb>
+    <ion-breadcrumb href="#cameras">
+      <ion-icon slot="start" name="folder"></ion-icon>
+      Cameras
+    </ion-breadcrumb>
+    <ion-breadcrumb href="#film">
+      <ion-icon slot="start" name="folder"></ion-icon>
+      Film
+    </ion-breadcrumb>
+    <ion-breadcrumb>
+      <ion-icon slot="start" name="document"></ion-icon>
+      35 mm
+    </ion-breadcrumb>
+  </ion-breadcrumbs>
+
+  <h1>Custom</h1>
+
+  <ion-breadcrumbs max-items="4" items-before-collapse="2">
+    <ion-breadcrumb>
+      <ion-icon slot="start" name="folder"></ion-icon>
+      Home
+    </ion-breadcrumb>
+    <ion-breadcrumb href="#electronics" class="ion-focused">
+      <ion-icon slot="start" name="folder"></ion-icon>
+      Electronics
+    </ion-breadcrumb>
+    <ion-breadcrumb href="#photography">
+      <ion-icon slot="start" name="folder"></ion-icon>
+      Photography
+    </ion-breadcrumb>
+    <ion-breadcrumb href="#cameras">
+      <ion-icon slot="start" name="folder"></ion-icon>
+      Cameras
+    </ion-breadcrumb>
+    <ion-breadcrumb href="#film">
+      <ion-icon slot="start" name="folder"></ion-icon>
+      Film
+    </ion-breadcrumb>
+    <ion-breadcrumb>
+      <ion-icon slot="start" name="document"></ion-icon>
+      35 mm
+    </ion-breadcrumb>
+  </ion-breadcrumbs>
+
+  <h1>Custom</h1>
+
+  <ion-breadcrumbs max-items="4" items-before-collapse="2" class="custom">
+    <ion-breadcrumb>
+      <ion-icon slot="start" name="folder"></ion-icon>
+      Home
+    </ion-breadcrumb>
+    <ion-breadcrumb href="#electronics" class="ion-focused">
+      <ion-icon slot="start" name="folder"></ion-icon>
+      Electronics
+    </ion-breadcrumb>
+    <ion-breadcrumb href="#photography">
+      <ion-icon slot="start" name="folder"></ion-icon>
+      Photography
+    </ion-breadcrumb>
+    <ion-breadcrumb href="#cameras">
+      <ion-icon slot="start" name="folder"></ion-icon>
+      Cameras
+    </ion-breadcrumb>
+    <ion-breadcrumb href="#film">
+      <ion-icon slot="start" name="folder"></ion-icon>
+      Film
+    </ion-breadcrumb>
+    <ion-breadcrumb>
+      <ion-icon slot="start" name="document"></ion-icon>
+      35 mm
+    </ion-breadcrumb>
+  </ion-breadcrumbs>
+
+  <ion-breadcrumbs max-items="4" items-before-collapse="2" class="custom" color="secondary">
+    <ion-breadcrumb>
+      <ion-icon slot="start" name="folder"></ion-icon>
+      Home
+    </ion-breadcrumb>
+    <ion-breadcrumb href="#electronics" class="ion-focused">
+      <ion-icon slot="start" name="folder"></ion-icon>
+      Electronics
+    </ion-breadcrumb>
+    <ion-breadcrumb href="#photography">
+      <ion-icon slot="start" name="folder"></ion-icon>
+      Photography
+    </ion-breadcrumb>
+    <ion-breadcrumb href="#cameras">
+      <ion-icon slot="start" name="folder"></ion-icon>
+      Cameras
+    </ion-breadcrumb>
+    <ion-breadcrumb href="#film">
+      <ion-icon slot="start" name="folder"></ion-icon>
+      Film
+    </ion-breadcrumb>
+    <ion-breadcrumb>
+      <ion-icon slot="start" name="document"></ion-icon>
+      35 mm
+    </ion-breadcrumb>
+  </ion-breadcrumbs>
+
+
+  <style>
+    body {
+      padding: 16px;
+    }
+
+    h1 {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      font-size: 12px;
+      font-weight: normal;
+
+      color: #a1a7b0;
+
+      margin-top: 10px;
+      margin-left: 10px;
+    }
+
+    hr {
+      background: #eff1f3;
+
+      margin-top: 18px;
+      margin-bottom: 25px;
+    }
+
+    ion-breadcrumbs {
+      display: inline-flex;
+      padding: 3px 5px;
+    }
+
+    .custom ion-breadcrumb {
+      --color: #882be6;
+      --color-active: #910b3e;
+      --color-hover: #55b439;
+      --color-focused: #926f2f;
+      --background-focused: #eedab6;
+    }
+  </style>
+</body>
+
+</html>

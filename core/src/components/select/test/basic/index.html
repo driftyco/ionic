@@ -134,14 +134,11 @@
         </ion-item>
 
         <ion-item>
-          <ion-label>Gaming</ion-label>
-          <ion-select name="gaming" ok-text="Okay" cancel-text="Dismiss" value="n64" interface="popover">
-            <ion-select-option value="nes">NES</ion-select-option>
-            <ion-select-option value="n64">Nintendo64</ion-select-option>
-            <ion-select-option value="ps">PlayStation</ion-select-option>
-            <ion-select-option value="genesis">Sega Genesis</ion-select-option>
-            <ion-select-option value="saturn">Sega Saturn</ion-select-option>
-            <ion-select-option value="snes">SNES</ion-select-option>
+          <ion-label>Favorite food</ion-label>
+          <ion-select name="food" interface="popover">
+            <ion-select-option value="steak">Steak</ion-select-option>
+            <ion-select-option value="pizza">Pizza</ion-select-option>
+            <ion-select-option value="tacos">Tacos</ion-select-option>
           </ion-select>
         </ion-item>
 
@@ -177,7 +174,6 @@
         </ion-item>
 
       </ion-list>
-
 
       <ion-list>
         <ion-list-header>
@@ -244,13 +240,24 @@
 
         <ion-item>
           <ion-label>Numbers</ion-label>
-          <ion-select id="numberSelect">
+          <ion-select id="numberSelect" multiple interface="popover">
             <ion-select-option>0</ion-select-option>
             <ion-select-option>1</ion-select-option>
             <ion-select-option>2</ion-select-option>
             <ion-select-option>3</ion-select-option>
             <ion-select-option>4</ion-select-option>
             <ion-select-option>5</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Toppings</ion-label>
+          <ion-select multiple interface="popover">
+            <ion-select-option>Extra cheese</ion-select-option>
+            <ion-select-option>Mushroom</ion-select-option>
+            <ion-select-option>Onion</ion-select-option>
+            <ion-select-option>Pepperoni</ion-select-option>
+            <ion-select-option>Sausage</ion-select-option>
           </ion-select>
         </ion-item>
 
@@ -348,7 +355,7 @@
 
         objectSelectElement.appendChild(selectOption)
       });
-      
+
       objectSelectElement.value = {
         id: 1,
         first: 'Alice',

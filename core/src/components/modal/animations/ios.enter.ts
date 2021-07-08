@@ -1,5 +1,6 @@
 import { Animation } from '../../../interface';
 import { createAnimation } from '../../../utils/animation/animation';
+import { getElementRoot } from '../../../utils/helpers';
 import { SwipeToCloseDefaults } from '../gestures/swipe-to-close';
 
 /**
@@ -9,8 +10,9 @@ export const iosEnterAnimation = (
     baseEl: HTMLElement,
     presentingEl?: HTMLElement,
   ): Animation => {
+  const root = getElementRoot(baseEl);
   const backdropAnimation = createAnimation()
-    .addElement(baseEl.querySelector('ion-backdrop')!)
+    .addElement(root.querySelector('ion-backdrop')!)
     .fromTo('opacity', 0.01, 'var(--backdrop-opacity)')
     .beforeStyles({
       'pointer-events': 'none'
@@ -18,7 +20,7 @@ export const iosEnterAnimation = (
     .afterClearStyles(['pointer-events']);
 
   const wrapperAnimation = createAnimation()
-    .addElement(baseEl.querySelectorAll('.modal-wrapper, .modal-shadow')!)
+    .addElement(root.querySelectorAll('.modal-wrapper, .modal-shadow')!)
     .beforeStyles({ 'opacity': 1 })
     .fromTo('transform', 'translateY(100vh)', 'translateY(0vh)');
 
@@ -31,6 +33,7 @@ export const iosEnterAnimation = (
   if (presentingEl) {
     const isMobile = window.innerWidth < 768;
     const hasCardModal = (presentingEl.tagName === 'ION-MODAL' && (presentingEl as HTMLIonModalElement).presentingElement !== undefined);
+    const presentingElRoot = getElementRoot(presentingEl);
 
     const presentingAnimation = createAnimation()
       .beforeStyles({
@@ -77,7 +80,7 @@ export const iosEnterAnimation = (
           .afterStyles({
             'transform': finalTransform
           })
-          .addElement(presentingEl.querySelector('.modal-wrapper')!)
+          .addElement(presentingElRoot.querySelector('.modal-wrapper')!)
           .keyframes([
             { offset: 0, filter: 'contrast(1)', transform: 'translateY(0) scale(1)' },
             { offset: 1, filter: 'contrast(0.85)', transform: finalTransform }
@@ -87,7 +90,7 @@ export const iosEnterAnimation = (
           .afterStyles({
             'transform': finalTransform
           })
-          .addElement(presentingEl.querySelector('.modal-shadow')!)
+          .addElement(presentingElRoot.querySelector('.modal-shadow')!)
           .keyframes([
             { offset: 0, opacity: '1', transform: 'translateY(0) scale(1)' },
             { offset: 1, opacity: '0', transform: finalTransform }

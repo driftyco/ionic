@@ -99,11 +99,13 @@ export class AlertExample {
           text: 'Cancel',
           role: 'cancel',
           cssClass: 'secondary',
+          id: 'cancel-button',
           handler: (blah) => {
             console.log('Confirm Cancel: blah');
           }
         }, {
           text: 'Okay',
+          id: 'confirm-button',
           handler: () => {
             console.log('Confirm Okay');
           }
@@ -412,11 +414,13 @@ function presentAlertConfirm() {
       text: 'Cancel',
       role: 'cancel',
       cssClass: 'secondary',
+      id: 'cancel-button',
       handler: (blah) => {
         console.log('Confirm Cancel: blah');
       }
     }, {
       text: 'Okay',
+      id: 'confirm-button',
       handler: () => {
         console.log('Confirm Okay')
       }
@@ -759,12 +763,14 @@ export const AlertExample: React.FC = () => {
               text: 'Cancel',
               role: 'cancel',
               cssClass: 'secondary',
+              id: 'cancel-button',
               handler: blah => {
                 console.log('Confirm Cancel: blah');
               }
             },
             {
               text: 'Okay',
+              id: 'confirm-button',
               handler: () => {
                 console.log('Confirm Okay');
               }
@@ -1064,11 +1070,13 @@ export class AlertExample {
           text: 'Cancel',
           role: 'cancel',
           cssClass: 'secondary',
+          id: 'cancel-button',
           handler: (blah) => {
             console.log('Confirm Cancel: blah');
           }
         }, {
           text: 'Okay',
+          id: 'confirm-button',
           handler: () => {
             console.log('Confirm Okay');
           }
@@ -1402,12 +1410,14 @@ export default defineComponent({
               text: 'Cancel',
               role: 'cancel',
               cssClass: 'secondary',
+              id: 'cancel-button',
               handler: blah => {
                 console.log('Confirm Cancel:', blah)
               },
             },
             {
               text: 'Okay',
+              id: 'confirm-button',
               handler: () => {
                 console.log('Confirm Okay')
               },

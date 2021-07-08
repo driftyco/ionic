@@ -129,7 +129,7 @@ export class Searchbar implements ComponentInterface {
    * Setting to `"always"` shows the clear button regardless
    * of focus state, but only if the input is not empty.
    */
-  @Prop() showClearButton: 'never' | 'focus' | 'always' = 'focus';
+  @Prop() showClearButton: 'never' | 'focus' | 'always' = 'always';
 
   /**
    * If `true`, enable spellcheck on the input.

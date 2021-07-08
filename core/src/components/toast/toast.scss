@@ -39,7 +39,7 @@
   --min-height: auto;
   --height: auto;
   --max-height: auto;
-  --white-space: pre-wrap;
+  --white-space: normal;
 
   @include position(0, null, null, 0);
 

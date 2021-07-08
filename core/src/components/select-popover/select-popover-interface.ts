@@ -5,5 +5,5 @@ export interface SelectPopoverOption {
   disabled: boolean;
   checked: boolean;
   cssClass?: string | string[];
-  handler?: () => void;
+  handler?: (value: any) => boolean | void | {[key: string]: any};
 }

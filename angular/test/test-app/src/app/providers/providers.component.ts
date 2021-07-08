@@ -69,7 +69,6 @@ export class ProvidersComponent {
 
     // test config
     this.isTesting = config.getBoolean('_testing');
-    config.set('keyboardHeight', 12345);
     this.keyboardHeight = config.getNumber('keyboardHeight');
 
     zone.runOutsideAngular(() => {

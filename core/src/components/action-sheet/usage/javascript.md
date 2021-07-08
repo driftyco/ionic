@@ -8,6 +8,7 @@ async function presentActionSheet() {
     text: 'Delete',
     role: 'destructive',
     icon: 'trash',
+    id: 'delete-button',
     handler: () => {
       console.log('Delete clicked');
     }

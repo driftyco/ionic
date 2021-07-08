@@ -1,4 +1,25 @@
 
+ion-accordion,shadow
+ion-accordion,prop,disabled,boolean,false,false,false
+ion-accordion,prop,mode,"ios" | "md",undefined,false,false
+ion-accordion,prop,readonly,boolean,false,false,false
+ion-accordion,prop,toggleIcon,string,'chevron-down',false,false
+ion-accordion,prop,toggleIconSlot,"end" | "start",'end',false,false
+ion-accordion,prop,value,string,`ion-accordion-${accordionIds++}`,false,false
+ion-accordion,part,content
+ion-accordion,part,expanded
+ion-accordion,part,header
+
+ion-accordion-group,shadow
+ion-accordion-group,prop,animated,boolean,true,false,false
+ion-accordion-group,prop,disabled,boolean,false,false,false
+ion-accordion-group,prop,expand,"compact" | "inset",'compact',false,false
+ion-accordion-group,prop,mode,"ios" | "md",undefined,false,false
+ion-accordion-group,prop,multiple,boolean | undefined,undefined,false,false
+ion-accordion-group,prop,readonly,boolean,false,false,false
+ion-accordion-group,prop,value,null | string | string[] | undefined,undefined,false,false
+ion-accordion-group,event,ionChange,AccordionGroupChangeEventDetail<any>,true
+
 ion-action-sheet,scoped
 ion-action-sheet,prop,animated,boolean,true,false,false
 ion-action-sheet,prop,backdropDismiss,boolean,true,false,false
@@ -139,6 +160,39 @@ ion-badge,css-prop,--padding-bottom
 ion-badge,css-prop,--padding-end
 ion-badge,css-prop,--padding-start
 ion-badge,css-prop,--padding-top
+
+ion-breadcrumb,shadow
+ion-breadcrumb,prop,active,boolean,false,false,false
+ion-breadcrumb,prop,color,string | undefined,undefined,false,false
+ion-breadcrumb,prop,disabled,boolean,false,false,false
+ion-breadcrumb,prop,download,string | undefined,undefined,false,false
+ion-breadcrumb,prop,href,string | undefined,undefined,false,false
+ion-breadcrumb,prop,mode,"ios" | "md",undefined,false,false
+ion-breadcrumb,prop,rel,string | undefined,undefined,false,false
+ion-breadcrumb,prop,routerAnimation,((baseEl: any, opts?: any) => Animation) | undefined,undefined,false,false
+ion-breadcrumb,prop,routerDirection,"back" | "forward" | "root",'forward',false,false
+ion-breadcrumb,prop,separator,boolean | undefined,undefined,false,false
+ion-breadcrumb,prop,target,string | undefined,undefined,false,false
+ion-breadcrumb,event,ionBlur,void,true
+ion-breadcrumb,event,ionFocus,void,true
+ion-breadcrumb,css-prop,--background-focused
+ion-breadcrumb,css-prop,--color
+ion-breadcrumb,css-prop,--color-active
+ion-breadcrumb,css-prop,--color-focused
+ion-breadcrumb,css-prop,--color-hover
+ion-breadcrumb,part,collapsed-indicator
+ion-breadcrumb,part,native
+ion-breadcrumb,part,separator
+
+ion-breadcrumbs,shadow
+ion-breadcrumbs,prop,color,string | undefined,undefined,false,false
+ion-breadcrumbs,prop,itemsAfterCollapse,number,1,false,false
+ion-breadcrumbs,prop,itemsBeforeCollapse,number,1,false,false
+ion-breadcrumbs,prop,maxItems,number | undefined,undefined,false,false
+ion-breadcrumbs,prop,mode,"ios" | "md",undefined,false,false
+ion-breadcrumbs,event,ionCollapsedClick,BreadcrumbCollapsedClickEventDetail,true
+ion-breadcrumbs,css-prop,--background
+ion-breadcrumbs,css-prop,--color
 
 ion-button,shadow
 ion-button,prop,buttonType,string,'button',false,false
@@ -316,40 +370,34 @@ ion-content,part,scroll
 
 ion-datetime,shadow
 ion-datetime,prop,cancelText,string,'Cancel',false,false
-ion-datetime,prop,dayNames,string | string[] | undefined,undefined,false,false
-ion-datetime,prop,dayShortNames,string | string[] | undefined,undefined,false,false
+ion-datetime,prop,color,string | undefined,'primary',false,false
 ion-datetime,prop,dayValues,number | number[] | string | undefined,undefined,false,false
 ion-datetime,prop,disabled,boolean,false,false,false
-ion-datetime,prop,displayFormat,string,'MMM D, YYYY',false,false
-ion-datetime,prop,displayTimezone,string | undefined,undefined,false,false
 ion-datetime,prop,doneText,string,'Done',false,false
 ion-datetime,prop,hourValues,number | number[] | string | undefined,undefined,false,false
+ion-datetime,prop,locale,string,'default',false,false
 ion-datetime,prop,max,string | undefined,undefined,false,false
 ion-datetime,prop,min,string | undefined,undefined,false,false
 ion-datetime,prop,minuteValues,number | number[] | string | undefined,undefined,false,false
 ion-datetime,prop,mode,"ios" | "md",undefined,false,false
-ion-datetime,prop,monthNames,string | string[] | undefined,undefined,false,false
-ion-datetime,prop,monthShortNames,string | string[] | undefined,undefined,false,false
 ion-datetime,prop,monthValues,number | number[] | string | undefined,undefined,false,false
 ion-datetime,prop,name,string,this.inputId,false,false
-ion-datetime,prop,pickerFormat,string | undefined,undefined,false,false
-ion-datetime,prop,pickerOptions,undefined | { columns?: PickerColumn[] | undefined; buttons?: PickerButton[] | undefined; cssClass?: string | string[] | undefined; showBackdrop?: boolean | undefined; backdropDismiss?: boolean | undefined; animated?: boolean | undefined; mode?: Mode | undefined; keyboardClose?: boolean | undefined; id?: string | undefined; enterAnimation?: AnimationBuilder | undefined; leaveAnimation?: AnimationBuilder | undefined; },undefined,false,false
-ion-datetime,prop,placeholder,null | string | undefined,undefined,false,false
+ion-datetime,prop,presentation,"date" | "date-time" | "time" | "time-date",'date-time',false,false
 ion-datetime,prop,readonly,boolean,false,false,false
+ion-datetime,prop,showDefaultButtons,boolean,false,false,false
+ion-datetime,prop,showDefaultTitle,boolean,false,false,false
 ion-datetime,prop,value,null | string | undefined,undefined,false,false
 ion-datetime,prop,yearValues,number | number[] | string | undefined,undefined,false,false
-ion-datetime,method,open,open() => Promise<void>
+ion-datetime,method,cancel,cancel(closeOverlay?: boolean) => Promise<void>
+ion-datetime,method,confirm,confirm(closeOverlay?: boolean) => Promise<void>
+ion-datetime,method,reset,reset(value?: string | undefined) => Promise<void>
 ion-datetime,event,ionBlur,void,true
 ion-datetime,event,ionCancel,void,true
 ion-datetime,event,ionChange,DatetimeChangeEventDetail,true
 ion-datetime,event,ionFocus,void,true
-ion-datetime,css-prop,--padding-bottom
-ion-datetime,css-prop,--padding-end
-ion-datetime,css-prop,--padding-start
-ion-datetime,css-prop,--padding-top
-ion-datetime,css-prop,--placeholder-color
-ion-datetime,part,placeholder
-ion-datetime,part,text
+ion-datetime,css-prop,--background
+ion-datetime,css-prop,--background-rgb
+ion-datetime,css-prop,--title-color
 
 ion-fab,shadow
 ion-fab,prop,activated,boolean,false,false,false
@@ -446,7 +494,7 @@ ion-infinite-scroll,method,complete,complete() => Promise<void>
 ion-infinite-scroll,event,ionInfinite,void,true
 
 ion-infinite-scroll-content,none
-ion-infinite-scroll-content,prop,loadingSpinner,"bubbles" | "circles" | "circular" | "crescent" | "dots" | "lines" | "lines-small" | null | undefined,undefined,false,false
+ion-infinite-scroll-content,prop,loadingSpinner,"bubbles" | "circles" | "circular" | "crescent" | "dots" | "lines" | "lines-sharp" | "lines-sharp-small" | "lines-small" | null | undefined,undefined,false,false
 ion-infinite-scroll-content,prop,loadingText,IonicSafeString | string | undefined,undefined,false,false
 
 ion-input,scoped
@@ -470,7 +518,7 @@ ion-input,prop,mode,"ios" | "md",undefined,false,false
 ion-input,prop,multiple,boolean | undefined,undefined,false,false
 ion-input,prop,name,string,this.inputId,false,false
 ion-input,prop,pattern,string | undefined,undefined,false,false
-ion-input,prop,placeholder,null | string | undefined,undefined,false,false
+ion-input,prop,placeholder,string | undefined,undefined,false,false
 ion-input,prop,readonly,boolean,false,false,false
 ion-input,prop,required,boolean,false,false,false
 ion-input,prop,size,number | undefined,undefined,false,false
@@ -498,16 +546,19 @@ ion-input,css-prop,--placeholder-opacity
 ion-item,shadow
 ion-item,prop,button,boolean,false,false,false
 ion-item,prop,color,string | undefined,undefined,false,true
+ion-item,prop,counter,boolean,true,false,false
 ion-item,prop,detail,boolean | undefined,undefined,false,false
 ion-item,prop,detailIcon,string,'chevron-forward',false,false
 ion-item,prop,disabled,boolean,false,false,false
 ion-item,prop,download,string | undefined,undefined,false,false
+ion-item,prop,fill,"outline" | "solid" | undefined,undefined,false,false
 ion-item,prop,href,string | undefined,undefined,false,false
 ion-item,prop,lines,"full" | "inset" | "none" | undefined,undefined,false,false
 ion-item,prop,mode,"ios" | "md",undefined,false,false
 ion-item,prop,rel,string | undefined,undefined,false,false
 ion-item,prop,routerAnimation,((baseEl: any, opts?: any) => Animation) | undefined,undefined,false,false
 ion-item,prop,routerDirection,"back" | "forward" | "root",'forward',false,false
+ion-item,prop,shape,"round" | undefined,undefined,false,false
 ion-item,prop,target,string | undefined,undefined,false,false
 ion-item,prop,type,"button" | "reset" | "submit",'button',false,false
 ion-item,css-prop,--background
@@ -626,7 +677,7 @@ ion-loading,prop,leaveAnimation,((baseEl: any, opts?: any) => Animation) | undef
 ion-loading,prop,message,IonicSafeString | string | undefined,undefined,false,false
 ion-loading,prop,mode,"ios" | "md",undefined,false,false
 ion-loading,prop,showBackdrop,boolean,true,false,false
-ion-loading,prop,spinner,"bubbles" | "circles" | "circular" | "crescent" | "dots" | "lines" | "lines-small" | null | undefined,undefined,false,false
+ion-loading,prop,spinner,"bubbles" | "circles" | "circular" | "crescent" | "dots" | "lines" | "lines-sharp" | "lines-sharp-small" | "lines-small" | null | undefined,undefined,false,false
 ion-loading,prop,translucent,boolean,false,false,false
 ion-loading,method,dismiss,dismiss(data?: any, role?: string | undefined) => Promise<boolean>
 ion-loading,method,onDidDismiss,onDidDismiss<T = any>() => Promise<OverlayEventDetail<T>>
@@ -701,27 +752,30 @@ ion-menu-toggle,shadow
 ion-menu-toggle,prop,autoHide,boolean,true,false,false
 ion-menu-toggle,prop,menu,string | undefined,undefined,false,false
 
-ion-modal,scoped
+ion-modal,shadow
 ion-modal,prop,animated,boolean,true,false,false
 ion-modal,prop,backdropDismiss,boolean,true,false,false
-ion-modal,prop,component,Function | HTMLElement | null | string,undefined,true,false
-ion-modal,prop,componentProps,undefined | { [key: string]: any; },undefined,false,false
-ion-modal,prop,cssClass,string | string[] | undefined,undefined,false,false
 ion-modal,prop,enterAnimation,((baseEl: any, opts?: any) => Animation) | undefined,undefined,false,false
+ion-modal,prop,isOpen,boolean,false,false,false
 ion-modal,prop,keyboardClose,boolean,true,false,false
 ion-modal,prop,leaveAnimation,((baseEl: any, opts?: any) => Animation) | undefined,undefined,false,false
 ion-modal,prop,mode,"ios" | "md",undefined,false,false
 ion-modal,prop,presentingElement,HTMLElement | undefined,undefined,false,false
 ion-modal,prop,showBackdrop,boolean,true,false,false
 ion-modal,prop,swipeToClose,boolean,false,false,false
+ion-modal,prop,trigger,string | undefined,undefined,false,false
 ion-modal,method,dismiss,dismiss(data?: any, role?: string | undefined) => Promise<boolean>
 ion-modal,method,onDidDismiss,onDidDismiss<T = any>() => Promise<OverlayEventDetail<T>>
 ion-modal,method,onWillDismiss,onWillDismiss<T = any>() => Promise<OverlayEventDetail<T>>
 ion-modal,method,present,present() => Promise<void>
+ion-modal,event,didDismiss,OverlayEventDetail<any>,true
+ion-modal,event,didPresent,void,true
 ion-modal,event,ionModalDidDismiss,OverlayEventDetail<any>,true
 ion-modal,event,ionModalDidPresent,void,true
 ion-modal,event,ionModalWillDismiss,OverlayEventDetail<any>,true
 ion-modal,event,ionModalWillPresent,void,true
+ion-modal,event,willDismiss,OverlayEventDetail<any>,true
+ion-modal,event,willPresent,void,true
 ion-modal,css-prop,--backdrop-opacity
 ion-modal,css-prop,--background
 ion-modal,css-prop,--border-color
@@ -734,6 +788,8 @@ ion-modal,css-prop,--max-width
 ion-modal,css-prop,--min-height
 ion-modal,css-prop,--min-width
 ion-modal,css-prop,--width
+ion-modal,part,backdrop
+ion-modal,part,content
 
 ion-nav,shadow
 ion-nav,prop,animated,boolean,true,false,false
@@ -803,27 +859,39 @@ ion-picker,css-prop,--min-height
 ion-picker,css-prop,--min-width
 ion-picker,css-prop,--width
 
-ion-popover,scoped
+ion-popover,shadow
+ion-popover,prop,alignment,"center" | "end" | "start",'start',false,false
 ion-popover,prop,animated,boolean,true,false,false
+ion-popover,prop,arrow,boolean,true,false,false
 ion-popover,prop,backdropDismiss,boolean,true,false,false
-ion-popover,prop,component,Function | HTMLElement | null | string,undefined,true,false
+ion-popover,prop,component,Function | HTMLElement | null | string | undefined,undefined,false,false
 ion-popover,prop,componentProps,undefined | { [key: string]: any; },undefined,false,false
-ion-popover,prop,cssClass,string | string[] | undefined,undefined,false,false
+ion-popover,prop,dismissOnSelect,boolean,false,false,false
 ion-popover,prop,enterAnimation,((baseEl: any, opts?: any) => Animation) | undefined,undefined,false,false
 ion-popover,prop,event,any,undefined,false,false
+ion-popover,prop,isOpen,boolean,false,false,false
 ion-popover,prop,keyboardClose,boolean,true,false,false
 ion-popover,prop,leaveAnimation,((baseEl: any, opts?: any) => Animation) | undefined,undefined,false,false
 ion-popover,prop,mode,"ios" | "md",undefined,false,false
+ion-popover,prop,reference,"event" | "trigger",'trigger',false,false
 ion-popover,prop,showBackdrop,boolean,true,false,false
+ion-popover,prop,side,"bottom" | "end" | "left" | "right" | "start" | "top",'bottom',false,false
+ion-popover,prop,size,"auto" | "cover",'auto',false,false
 ion-popover,prop,translucent,boolean,false,false,false
-ion-popover,method,dismiss,dismiss(data?: any, role?: string | undefined) => Promise<boolean>
+ion-popover,prop,trigger,string | undefined,undefined,false,false
+ion-popover,prop,triggerAction,"click" | "context-menu" | "hover",'click',false,false
+ion-popover,method,dismiss,dismiss(data?: any, role?: string | undefined, dismissParentPopover?: boolean) => Promise<boolean>
 ion-popover,method,onDidDismiss,onDidDismiss<T = any>() => Promise<OverlayEventDetail<T>>
 ion-popover,method,onWillDismiss,onWillDismiss<T = any>() => Promise<OverlayEventDetail<T>>
 ion-popover,method,present,present() => Promise<void>
+ion-popover,event,didDismiss,OverlayEventDetail<any>,true
+ion-popover,event,didPresent,void,true
 ion-popover,event,ionPopoverDidDismiss,OverlayEventDetail<any>,true
 ion-popover,event,ionPopoverDidPresent,void,true
 ion-popover,event,ionPopoverWillDismiss,OverlayEventDetail<any>,true
 ion-popover,event,ionPopoverWillPresent,void,true
+ion-popover,event,willDismiss,OverlayEventDetail<any>,true
+ion-popover,event,willPresent,void,true
 ion-popover,css-prop,--backdrop-opacity
 ion-popover,css-prop,--background
 ion-popover,css-prop,--box-shadow
@@ -832,7 +900,12 @@ ion-popover,css-prop,--max-height
 ion-popover,css-prop,--max-width
 ion-popover,css-prop,--min-height
 ion-popover,css-prop,--min-width
+ion-popover,css-prop,--offset-x
+ion-popover,css-prop,--offset-y
 ion-popover,css-prop,--width
+ion-popover,part,arrow
+ion-popover,part,backdrop
+ion-popover,part,content
 
 ion-progress-bar,shadow
 ion-progress-bar,prop,buffer,number,1,false,false
@@ -921,7 +994,7 @@ ion-refresher,event,ionStart,void,true
 ion-refresher-content,none
 ion-refresher-content,prop,pullingIcon,null | string | undefined,undefined,false,false
 ion-refresher-content,prop,pullingText,IonicSafeString | string | undefined,undefined,false,false
-ion-refresher-content,prop,refreshingSpinner,"bubbles" | "circles" | "circular" | "crescent" | "dots" | "lines" | "lines-small" | null | undefined,undefined,false,false
+ion-refresher-content,prop,refreshingSpinner,"bubbles" | "circles" | "circular" | "crescent" | "dots" | "lines" | "lines-sharp" | "lines-sharp-small" | "lines-small" | null | undefined,undefined,false,false
 ion-refresher-content,prop,refreshingText,IonicSafeString | string | undefined,undefined,false,false
 
 ion-reorder,shadow
@@ -990,7 +1063,7 @@ ion-searchbar,prop,mode,"ios" | "md",undefined,false,false
 ion-searchbar,prop,placeholder,string,'Search',false,false
 ion-searchbar,prop,searchIcon,string | undefined,undefined,false,false
 ion-searchbar,prop,showCancelButton,"always" | "focus" | "never",'never',false,false
-ion-searchbar,prop,showClearButton,"always" | "focus" | "never",'focus',false,false
+ion-searchbar,prop,showClearButton,"always" | "focus" | "never",'always',false,false
 ion-searchbar,prop,spellcheck,boolean,false,false,false
 ion-searchbar,prop,type,"email" | "number" | "password" | "search" | "tel" | "text" | "url",'search',false,false
 ion-searchbar,prop,value,null | string | undefined,'',false,false
@@ -1072,7 +1145,7 @@ ion-select,prop,mode,"ios" | "md",undefined,false,false
 ion-select,prop,multiple,boolean,false,false,false
 ion-select,prop,name,string,this.inputId,false,false
 ion-select,prop,okText,string,'OK',false,false
-ion-select,prop,placeholder,null | string | undefined,undefined,false,false
+ion-select,prop,placeholder,string | undefined,undefined,false,false
 ion-select,prop,selectedText,null | string | undefined,undefined,false,false
 ion-select,prop,value,any,undefined,false,false
 ion-select,method,open,open(event?: UIEvent | undefined) => Promise<any>
@@ -1149,7 +1222,7 @@ ion-slides,css-prop,--scroll-bar-background-active
 ion-spinner,shadow
 ion-spinner,prop,color,string | undefined,undefined,false,true
 ion-spinner,prop,duration,number | undefined,undefined,false,false
-ion-spinner,prop,name,"bubbles" | "circles" | "circular" | "crescent" | "dots" | "lines" | "lines-small" | undefined,undefined,false,false
+ion-spinner,prop,name,"bubbles" | "circles" | "circular" | "crescent" | "dots" | "lines" | "lines-sharp" | "lines-sharp-small" | "lines-small" | undefined,undefined,false,false
 ion-spinner,prop,paused,boolean,false,false,false
 ion-spinner,css-prop,--color
 
@@ -1226,7 +1299,7 @@ ion-textarea,prop,maxlength,number | undefined,undefined,false,false
 ion-textarea,prop,minlength,number | undefined,undefined,false,false
 ion-textarea,prop,mode,"ios" | "md",undefined,false,false
 ion-textarea,prop,name,string,this.inputId,false,false
-ion-textarea,prop,placeholder,null | string | undefined,undefined,false,false
+ion-textarea,prop,placeholder,string | undefined,undefined,false,false
 ion-textarea,prop,readonly,boolean,false,false,false
 ion-textarea,prop,required,boolean,false,false,false
 ion-textarea,prop,rows,number | undefined,undefined,false,false

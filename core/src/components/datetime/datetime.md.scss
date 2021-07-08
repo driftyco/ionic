@@ -1,13 +1,259 @@
-@import "./datetime";
-@import "./datetime.md.vars";
-
-// Material Design Datetime
-// --------------------------------------------------
+@import "./datetime.scss";
+@import "./datetime.md.vars.scss";
+@import "../../themes/ionic.globals.md";
 
 :host {
-  --placeholder-color: #{$datetime-md-placeholder-color};
-  --padding-top: #{$datetime-md-padding-top};
-  --padding-end: #{$datetime-md-padding-end};
-  --padding-bottom: #{$datetime-md-padding-bottom};
-  --padding-start: #{$datetime-md-padding-start};
+  --background: var(--ion-color-step-100, #ffffff);
+  --title-color: #{current-color(contrast)};
+}
+
+// Header
+// -----------------------------------
+:host .datetime-header {
+  @include padding($datetime-md-header-padding, $datetime-md-header-padding, $datetime-md-header-padding, $datetime-md-header-padding);
+
+  background: current-color(base);
+  color: var(--title-color);
+}
+
+:host .datetime-header .datetime-title {
+  font-size: $datetime-md-title-font-size;
+
+  text-transform: uppercase;
+}
+
+:host .datetime-header .datetime-selected-date {
+  @include margin(30px, null, null, null);
+
+  font-size: $datetime-md-selected-date-font-size;
+}
+
+// Calendar / Header / Action Buttons
+// -----------------------------------
+:host .datetime-calendar .calendar-action-buttons ion-item {
+  --padding-start: #{$datetime-md-header-padding};
+}
+
+:host .calendar-action-buttons ion-item,
+:host .calendar-action-buttons ion-button {
+  color: #{$text-color-step-350};
+}
+
+// Calendar / Header / Days of Week
+// -----------------------------------
+:host .calendar-days-of-week {
+  @include padding(0px, 10px, 0px, 10px);
+
+  color: $text-color-step-500;
+
+  font-size: $datetime-md-calendar-item-font-size;
+
+  line-height: 36px;
+}
+
+// Calendar / Body
+// -----------------------------------
+:host .calendar-body .calendar-month .calendar-month-grid {
+  @include padding(0px, 10px, 0px, 10px);
+
+  /**
+   * Calendar on MD will show an empty row
+   * if not enough dates to fill 6th row.
+   * Calendar on iOS fits all dates into
+   * a fixed number of rows and resizes
+   * if necessary.
+   */
+  grid-template-rows: repeat(6, 1fr);
+
+}
+
+// Individual day button in month
+:host .calendar-day {
+  @include padding(13px, 0, 13px, 0px);
+
+  font-size: $datetime-md-calendar-item-font-size;
+}
+
+:host .calendar-day:focus:after {
+  background: current-color(base, 0.2);
+
+  box-shadow: 0px 0px 0px 4px current-color(base, 0.2);
+}
+
+/**
+ * Day that today but not selected
+ * should have ion-color for text color.
+ */
+:host .calendar-day.calendar-day-today {
+  color: current-color(base);
+}
+
+:host .calendar-day.calendar-day-today:after {
+  border: 1px solid current-color(base);
+}
+
+/**
+ * Day that is not today but
+ * is selected should have ion-color for
+ * text color and be bolder.
+ */
+:host .calendar-day.calendar-day-active {
+  color: current-color(contrast);
+}
+
+:host .calendar-day.calendar-day-active:after {
+  border: 1px solid current-color(base);
+
+  background: current-color(base);
+}
+
+// Time / Header
+// -----------------------------------
+:host .datetime-time {
+  @include padding($datetime-md-padding / 2, $datetime-md-padding, $datetime-md-padding / 2, $datetime-md-padding);
+}
+
+:host .time-header {
+  color: #{$text-color-step-350};
+}
+
+:host .time-base {
+  @include border-radius($datetime-md-time-border-radius, $datetime-md-time-border-radius, $datetime-md-time-border-radius, $datetime-md-time-border-radius);
+  @include margin(0, $datetime-md-padding / 2, 0, 0);
+
+  width: $datetime-md-time-width;
+  height: $datetime-md-time-height;
+}
+
+:host .time-column {
+  @include border-radius($datetime-md-time-border-radius, $datetime-md-time-border-radius, $datetime-md-time-border-radius, $datetime-md-time-border-radius);
+}
+
+:host .time-item {
+  line-height: $datetime-md-time-height;
+}
+
+:host .time-ampm ion-segment {
+  @include border-radius($datetime-md-time-border-radius, $datetime-md-time-border-radius, $datetime-md-time-border-radius, $datetime-md-time-border-radius);
+
+  border: 1px solid rgba($text-color-rgb, 0.1);
+}
+
+:host .time-ampm ion-segment-button {
+  --indicator-height: 0px;
+  --background-checked: #{current-color(base, 0.1)};
+
+  min-height: $datetime-md-time-height + 2;
+}
+
+:host .time-ampm ion-segment-button.segment-button-checked {
+  background: var(--background-checked);
+}
+
+// Year Picker
+// -----------------------------------
+:host(.show-month-and-year) .datetime-calendar {
+  flex: 0;
+}
+:host(.show-month-and-year) .datetime-year {
+  flex: 1;
+
+  min-height: 0;
+}
+
+:host(.show-month-and-year) .datetime-footer {
+  border-top: 1px solid var(--ion-color-step-250, #dddddd);
+}
+
+:host .datetime-year-body {
+  @include padding(0, $datetime-md-padding, $datetime-md-padding, $datetime-md-padding);
+
+  display: grid;
+
+  grid-template-columns: repeat(auto-fit, minmax(74px, 1fr));
+  grid-gap: 0px 6px;
+
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+
+:host .datetime-year-item {
+  @include padding(0px, 0px, 0px, 0px);
+  @include margin(0px, 0px, 0px, 0px);
+
+  position: relative;
+
+  align-items: center;
+  justify-content: center;
+
+  border: none;
+
+  outline: none;
+
+  background: none;
+  color: currentColor;
+
+  cursor: pointer;
+
+  appearance: none;
+
+  z-index: 0;
+}
+
+:host .datetime-year-item[disabled] {
+  pointer-events: none;
+
+  opacity: 0.4;
+}
+
+:host .datetime-year-item .datetime-year-inner {
+  @include border-radius(20px, 20px, 20px, 20px);
+  @include margin(10px, 10px, 10px, 10px);
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  height: 32px;
+
+  border: 1px solid transparent;
+
+  font-size: 16px;
+}
+
+:host .datetime-current-year .datetime-year-inner {
+  border: 1px solid current-color(base);
+
+  color: current-color(base);
+}
+
+:host .datetime-active-year .datetime-year-inner {
+  border: 1px solid current-color(base);
+
+  background: current-color(base);
+  color: current-color(contrast);
+}
+
+@media (any-hover: hover) {
+  :host .datetime-year-item:hover,
+  :host .datetime-year-item:focus {
+    background: current-color(base, 0.1);
+  }
+}
+
+// Footer
+// -----------------------------------
+:host .datetime-buttons {
+  @include padding(10px, 10px, 10px, 10px);
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: flex-end;
+}
+
+:host .datetime-view-buttons ion-button {
+  color: $text-color-step-200;
 }

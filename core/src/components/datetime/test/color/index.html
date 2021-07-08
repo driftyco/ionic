@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <title>Datetime - Color</title>
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <link href="../../../../../css/ionic.bundle.css" rel="stylesheet">
+    <link href="../../../../../scripts/testing/styles.css" rel="stylesheet">
+    <script src="../../../../../scripts/testing/scripts.js"></script>
+    <script type="module" src="../../../../../dist/ionic/ionic.esm.js"></script>
+    <style>
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(250px, 1fr));
+        grid-gap: 20px;
+      }
+      h2 {
+        font-size: 12px;
+        font-weight: normal;
+
+        color: #6f7378;
+
+        margin-top: 10px;
+        margin-left: 5px;
+      }
+
+      ion-datetime {
+        box-shadow: 0px 16px 32px rgba(0, 0, 0, 0.25), 0px 8px 16px rgba(0, 0, 0, 0.25);
+        border-radius: 8px;
+      }
+
+      /*
+       * Dark Colors
+       * -------------------------------------------
+       */
+
+      body.dark {
+        --ion-color-primary: #428cff;
+        --ion-color-primary-rgb: 66,140,255;
+        --ion-color-primary-contrast: #ffffff;
+        --ion-color-primary-contrast-rgb: 255,255,255;
+        --ion-color-primary-shade: #3a7be0;
+        --ion-color-primary-tint: #5598ff;
+
+        --ion-color-secondary: #50c8ff;
+        --ion-color-secondary-rgb: 80,200,255;
+        --ion-color-secondary-contrast: #ffffff;
+        --ion-color-secondary-contrast-rgb: 255,255,255;
+        --ion-color-secondary-shade: #46b0e0;
+        --ion-color-secondary-tint: #62ceff;
+
+        --ion-color-tertiary: #6a64ff;
+        --ion-color-tertiary-rgb: 106,100,255;
+        --ion-color-tertiary-contrast: #ffffff;
+        --ion-color-tertiary-contrast-rgb: 255,255,255;
+        --ion-color-tertiary-shade: #5d58e0;
+        --ion-color-tertiary-tint: #7974ff;
+
+        --ion-color-success: #2fdf75;
+        --ion-color-success-rgb: 47,223,117;
+        --ion-color-success-contrast: #000000;
+        --ion-color-success-contrast-rgb: 0,0,0;
+        --ion-color-success-shade: #29c467;
+        --ion-color-success-tint: #44e283;
+
+        --ion-color-warning: #ffd534;
+        --ion-color-warning-rgb: 255,213,52;
+        --ion-color-warning-contrast: #000000;
+        --ion-color-warning-contrast-rgb: 0,0,0;
+        --ion-color-warning-shade: #e0bb2e;
+        --ion-color-warning-tint: #ffd948;
+
+        --ion-color-danger: #ff4961;
+        --ion-color-danger-rgb: 255,73,97;
+        --ion-color-danger-contrast: #ffffff;
+        --ion-color-danger-contrast-rgb: 255,255,255;
+        --ion-color-danger-shade: #e04055;
+        --ion-color-danger-tint: #ff5b71;
+
+        --ion-color-dark: #f4f5f8;
+        --ion-color-dark-rgb: 244,245,248;
+        --ion-color-dark-contrast: #000000;
+        --ion-color-dark-contrast-rgb: 0,0,0;
+        --ion-color-dark-shade: #d7d8da;
+        --ion-color-dark-tint: #f5f6f9;
+
+        --ion-color-medium: #989aa2;
+        --ion-color-medium-rgb: 152,154,162;
+        --ion-color-medium-contrast: #000000;
+        --ion-color-medium-contrast-rgb: 0,0,0;
+        --ion-color-medium-shade: #86888f;
+        --ion-color-medium-tint: #a2a4ab;
+
+        --ion-color-light: #222428;
+        --ion-color-light-rgb: 34,36,40;
+        --ion-color-light-contrast: #ffffff;
+        --ion-color-light-contrast-rgb: 255,255,255;
+        --ion-color-light-shade: #1e2023;
+        --ion-color-light-tint: #383a3e;
+      }
+
+      /*
+       * iOS Dark Theme
+       * -------------------------------------------
+       */
+
+      .ios body.dark {
+        --ion-background-color: #000000;
+        --ion-background-color-rgb: 0,0,0;
+
+        --ion-text-color: #ffffff;
+        --ion-text-color-rgb: 255,255,255;
+
+        --ion-color-step-50: #0d0d0d;
+        --ion-color-step-100: #1a1a1a;
+        --ion-color-step-150: #262626;
+        --ion-color-step-200: #333333;
+        --ion-color-step-250: #404040;
+        --ion-color-step-300: #4d4d4d;
+        --ion-color-step-350: #595959;
+        --ion-color-step-400: #666666;
+        --ion-color-step-450: #737373;
+        --ion-color-step-500: #808080;
+        --ion-color-step-550: #8c8c8c;
+        --ion-color-step-600: #999999;
+        --ion-color-step-650: #a6a6a6;
+        --ion-color-step-700: #b3b3b3;
+        --ion-color-step-750: #bfbfbf;
+        --ion-color-step-800: #cccccc;
+        --ion-color-step-850: #d9d9d9;
+        --ion-color-step-900: #e6e6e6;
+        --ion-color-step-950: #f2f2f2;
+
+        --ion-item-background: #000000;
+
+        --ion-card-background: #1c1c1d;
+      }
+
+      .ios body.dark ion-modal {
+        --ion-background-color: var(--ion-color-step-100);
+        --ion-toolbar-background: var(--ion-color-step-150);
+        --ion-toolbar-border-color: var(--ion-color-step-250);
+        --ion-item-background: var(--ion-color-step-150);
+      }
+
+      /*
+       * Material Design Dark Theme
+       * -------------------------------------------
+       */
+
+      .md body.dark {
+        --ion-background-color: #121212;
+        --ion-background-color-rgb: 18,18,18;
+
+        --ion-text-color: #ffffff;
+        --ion-text-color-rgb: 255,255,255;
+
+        --ion-border-color: #222222;
+
+        --ion-color-step-50: #1e1e1e;
+        --ion-color-step-100: #2a2a2a;
+        --ion-color-step-150: #363636;
+        --ion-color-step-200: #414141;
+        --ion-color-step-250: #4d4d4d;
+        --ion-color-step-300: #595959;
+        --ion-color-step-350: #656565;
+        --ion-color-step-400: #717171;
+        --ion-color-step-450: #7d7d7d;
+        --ion-color-step-500: #898989;
+        --ion-color-step-550: #949494;
+        --ion-color-step-600: #a0a0a0;
+        --ion-color-step-650: #acacac;
+        --ion-color-step-700: #b8b8b8;
+        --ion-color-step-750: #c4c4c4;
+        --ion-color-step-800: #d0d0d0;
+        --ion-color-step-850: #dbdbdb;
+        --ion-color-step-900: #e7e7e7;
+        --ion-color-step-950: #f3f3f3;
+
+        --ion-item-background: #1e1e1e;
+
+        --ion-toolbar-background: #1f1f1f;
+
+        --ion-tab-bar-background: #1f1f1f;
+
+        --ion-card-background: #1e1e1e;
+      }
+    </style>
+  </head>
+  <body>
+    <ion-app>
+      <ion-header translucent="true">
+        <ion-toolbar>
+          <ion-title>Datetime - Color</ion-title>
+          <ion-item lines="none" slot="end">
+            <ion-label>Dark Mode</ion-label>
+            <ion-checkbox slot="end"></ion-checkbox>
+          </ion-item>
+
+          <ion-item lines="none" slot="end">
+            <ion-label>Color</ion-label>
+            <ion-select value="primary">
+              <ion-select-option value="primary">Primary</ion-select-option>
+              <ion-select-option value="secondary">Secondary</ion-select-option>
+              <ion-select-option value="tertiary">Tertiary</ion-select-option>
+              <ion-select-option value="success">Success</ion-select-option>
+              <ion-select-option value="warning">Warning</ion-select-option>
+              <ion-select-option value="danger">Danger</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <div class="grid">
+          <div class="grid-item">
+            <h2>Default</h2>
+            <ion-datetime show-default-title="true" show-default-buttons="true"></ion-datetime>
+          </div>
+
+          <div class="grid-item">
+            <h2>Custom</h2>
+            <ion-datetime show-default-title="true" show-default-buttons="true">
+              <ion-buttons slot="buttons">
+                <ion-button color="danger">Reset</ion-button>
+                <ion-button color="primary">Confirm</ion-button>
+              </ion-buttons>
+            </ion-datetime>
+          </div>
+        </div>
+      </ion-content>
+      <script>
+        const colorSelect = document.querySelector('ion-select');
+        const darkModeToggle = document.querySelector('ion-checkbox');
+        const datetimes = document.querySelectorAll('ion-datetime');
+
+        colorSelect.addEventListener('ionChange', (ev) => {
+          datetimes.forEach(datetime => {
+            datetime.color = ev.detail.value;
+          });
+        });
+
+        darkModeToggle.addEventListener('ionChange', (ev) => {
+          document.body.classList.toggle('dark')
+        });
+      </script>
+    </ion-app>
+  </body>
+</html>

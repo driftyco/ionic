@@ -3,10 +3,19 @@ import { Component, ComponentInterface, Element, Event, EventEmitter, Host, Meth
 import { getIonMode } from '../../global/ionic-global';
 import { Animation, Gesture, GestureDetail, RefresherEventDetail } from '../../interface';
 import { getTimeGivenProgression } from '../../utils/animation/cubic-bezier';
-import { clamp, componentOnReady, getElementRoot, raf } from '../../utils/helpers';
+import { clamp, componentOnReady, getElementRoot, raf, transitionEndAsync } from '../../utils/helpers';
 import { hapticImpact } from '../../utils/native/haptic';
 
-import { createPullingAnimation, createSnapBackAnimation, getRefresherAnimationType, handleScrollWhilePulling, handleScrollWhileRefreshing, setSpinnerOpacity, shouldUseNativeRefresher, transitionEndAsync, translateElement } from './refresher.utils';
+import {
+  createPullingAnimation,
+  createSnapBackAnimation,
+  getRefresherAnimationType,
+  handleScrollWhilePulling,
+  handleScrollWhileRefreshing,
+  setSpinnerOpacity,
+  shouldUseNativeRefresher,
+  translateElement
+} from './refresher.utils';
 
 @Component({
   tag: 'ion-refresher',
@@ -147,7 +156,7 @@ export class Refresher implements ComponentInterface {
     this.state = state;
 
     if (getIonMode(this) === 'ios') {
-      await translateElement(el, undefined);
+      await translateElement(el, undefined, 300);
     } else {
       await transitionEndAsync(this.el.querySelector('.refresher-refreshing-icon'), 200);
     }
@@ -190,7 +199,6 @@ export class Refresher implements ComponentInterface {
             return;
           }
 
-          writeTask(() => setSpinnerOpacity(pullingSpinner, 0));
           return;
         }
 
@@ -206,11 +214,16 @@ export class Refresher implements ComponentInterface {
           }
         }
 
-        // delay showing the next tick marks until user has pulled 30px
-        const opacity = clamp(0, Math.abs(scrollTop) / refresherHeight, 0.99);
-        const pullAmount = this.progress = clamp(0, (Math.abs(scrollTop) - 30) / MAX_PULL, 1);
-        const currentTickToShow = clamp(0, Math.floor(pullAmount * NUM_TICKS), NUM_TICKS - 1);
-        const shouldShowRefreshingSpinner = this.state === RefresherState.Refreshing || currentTickToShow === NUM_TICKS - 1;
+        /**
+         * We want to delay the start of this gesture by ~30px
+         * when initially pulling down so the refresher does not
+         * overlap with the content. But when letting go of the
+         * gesture before the refresher completes, we want the
+         * refresher tick marks to quickly fade out.
+         */
+        const offset = (this.didStart) ? 30 : 0;
+        const pullAmount = this.progress = clamp(0, (Math.abs(scrollTop) - offset) / MAX_PULL, 1);
+        const shouldShowRefreshingSpinner = this.state === RefresherState.Refreshing || pullAmount === 1;
 
         if (shouldShowRefreshingSpinner) {
           if (this.pointerDown) {
@@ -232,7 +245,7 @@ export class Refresher implements ComponentInterface {
           }
         } else {
           this.state = RefresherState.Pulling;
-          handleScrollWhilePulling(pullingSpinner, ticks, opacity, currentTickToShow);
+          handleScrollWhilePulling(ticks, NUM_TICKS, pullAmount);
         }
       });
     };

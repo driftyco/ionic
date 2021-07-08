@@ -5,6 +5,7 @@ import { AnimationBuilder, Color, CssClassMap, RouterDirection, StyleEventDetail
 import { AnchorInterface, ButtonInterface } from '../../utils/element-interface';
 import { raf } from '../../utils/helpers';
 import { createColorClasses, hostContext, openURL } from '../../utils/theme';
+import { InputChangeEventDetail } from '../input/input-interface';
 
 /**
  * @virtualProp {"ios" | "md"} mode - The mode determines which platform styles to use.
@@ -73,6 +74,17 @@ export class Item implements ComponentInterface, AnchorInterface, ButtonInterfac
   @Prop() download: string | undefined;
 
   /**
+   * The fill for the item. If `'solid'` the item will have a background. If
+   * `'outline'` the item will be transparent with a border. Only available in `md` mode.
+   */
+  @Prop() fill?: 'outline' | 'solid';
+
+  /**
+   * The shape of the item. If "round" it will have increased
+   * border radius.
+   */
+  @Prop() shape?: 'round';
+  /**
    * Contains a URL or a URL fragment that the hyperlink points to.
    * If this property is set, an anchor tag will be rendered.
    */
@@ -88,6 +100,11 @@ export class Item implements ComponentInterface, AnchorInterface, ButtonInterfac
    * How the bottom border should be displayed on the item.
    */
   @Prop() lines?: 'full' | 'inset' | 'none';
+
+  /**
+   * If `true`, a character counter will display the ratio of characters used and the total character limit. Only applies when the `maxlength` property is set on the inner `ion-input` or `ion-textarea`.
+   */
+  @Prop() counter = true;
 
   /**
    * When using a router, it specifies the transition animation when navigating to
@@ -112,6 +129,15 @@ export class Item implements ComponentInterface, AnchorInterface, ButtonInterfac
    * The type of the button. Only used when an `onclick` or `button` property is present.
    */
   @Prop() type: 'submit' | 'reset' | 'button' = 'button';
+
+  @State() counterString: string | null | undefined;
+
+  @Listen('ionChange')
+  handleIonChange(ev: CustomEvent<InputChangeEventDetail>) {
+    if (this.counter && ev.target === this.getFirstInput()) {
+      this.updateCounterOutput(ev.target as HTMLIonInputElement | HTMLIonTextareaElement);
+    }
+  }
 
   @Listen('ionColor')
   labelColorChanged(ev: CustomEvent<string>) {
@@ -151,6 +177,14 @@ export class Item implements ComponentInterface, AnchorInterface, ButtonInterfac
       this.itemStyles.set(tagName, newStyles);
       forceUpdate(this);
     }
+  }
+
+  connectedCallback() {
+    if (this.counter) {
+      this.updateCounterOutput(this.getFirstInput());
+    }
+
+    this.hasStartEl();
   }
 
   componentDidUpdate() {
@@ -239,7 +273,7 @@ export class Item implements ComponentInterface, AnchorInterface, ButtonInterfac
 
     // Only focus the first input if we clicked on an ion-item
     // and the first input exists
-    if (clickedItem && firstActive) {
+    if (clickedItem && (firstActive || !this.multipleInputs)) {
       input.fireFocusEvents = false;
       input.setBlur();
       input.setFocus();
@@ -249,12 +283,27 @@ export class Item implements ComponentInterface, AnchorInterface, ButtonInterfac
     }
   }
 
+  private updateCounterOutput(inputEl: HTMLIonInputElement | HTMLIonTextareaElement) {
+    if (this.counter && !this.multipleInputs && inputEl?.maxlength !== undefined) {
+      const length = inputEl?.value?.toString().length ?? '0';
+      this.counterString = `${length}/${inputEl.maxlength}`;
+    }
+  }
+
+  private hasStartEl() {
+    const startEl = this.el.querySelector('[slot="start"]');
+    if (startEl !== null) {
+      this.el.classList.add('item-has-start-slot');
+    }
+  }
+
   render() {
-    const { detail, detailIcon, download, labelColorStyles, lines, disabled, href, rel, target, routerAnimation, routerDirection } = this;
+    const { counterString, detail, detailIcon, download, fill, labelColorStyles, lines, disabled, href, rel, shape, target, routerAnimation, routerDirection } = this;
     const childStyles = {};
     const mode = getIonMode(this);
     const clickable = this.isClickable();
     const canActivate = this.canActivate();
+    const hasFill = fill === 'outline' || fill === 'solid';
     const TagType = clickable ? (href === undefined ? 'button' : 'a') : 'div' as any;
     const attrs = (TagType === 'button')
       ? { type: this.type }
@@ -284,33 +333,42 @@ export class Item implements ComponentInterface, AnchorInterface, ButtonInterfac
             'item': true,
             [mode]: true,
             [`item-lines-${lines}`]: lines !== undefined,
+            [`item-fill-${fill}`]: fill !== undefined,
+            [`item-shape-${shape}`]: shape !== undefined,
             'item-disabled': disabled,
             'in-list': hostContext('ion-list', this.el),
             'item-multiple-inputs': this.multipleInputs,
             'ion-activatable': canActivate,
             'ion-focusable': true,
+            'item-rtl': document.dir === 'rtl'
           })
         }}
       >
-          <TagType
-            {...attrs}
-            class="item-native"
-            part="native"
-            disabled={disabled}
-            {...clickFn}
-          >
-            <slot name="start"></slot>
-            <div class="item-inner">
-              <div class="input-wrapper">
-                <slot></slot>
-              </div>
-              <slot name="end"></slot>
-              {showDetail && <ion-icon icon={detailIcon} lazy={false} class="item-detail-icon" part="detail-icon" aria-hidden="true"></ion-icon>}
-              <div class="item-inner-highlight"></div>
+        <TagType
+          {...attrs}
+          class="item-native"
+          part="native"
+          disabled={disabled}
+          {...clickFn}
+        >
+          <slot name="start"></slot>
+          <div class="item-inner">
+            <div class="input-wrapper">
+              <slot></slot>
             </div>
-            {canActivate && mode === 'md' && <ion-ripple-effect></ion-ripple-effect>}
-          </TagType>
-          <div class="item-highlight"></div>
+            <slot name="end"></slot>
+            {showDetail && <ion-icon icon={detailIcon} lazy={false} class="item-detail-icon" part="detail-icon" aria-hidden="true"></ion-icon>}
+            <div class="item-inner-highlight"></div>
+          </div>
+          {canActivate && mode === 'md' && <ion-ripple-effect></ion-ripple-effect>}
+          {hasFill && <div class="item-highlight"></div>}
+        </TagType>
+        {!hasFill && <div class="item-highlight"></div>}
+        <div class="item-bottom">
+          <slot name="error"></slot>
+          <slot name="helper"></slot>
+          {counterString && <ion-note class="item-counter">{counterString}</ion-note>}
+        </div>
       </Host>
     );
   }

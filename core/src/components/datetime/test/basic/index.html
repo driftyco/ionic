@@ -1,277 +1,400 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-
-<head>
-  <meta charset="UTF-8">
-  <title>Datetime - Basic</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <link href="../../../../../css/ionic.bundle.css" rel="stylesheet">
-  <link href="../../../../../scripts/testing/styles.css" rel="stylesheet">
-  <script src="../../../../../scripts/testing/scripts.js"></script>
-  <script nomodule src="../../../../../dist/ionic/ionic.js"></script>
-  <script type="module" src="../../../../../dist/ionic/ionic.esm.js"></script></head>
-
-<body>
-  <ion-app>
-
-    <ion-header>
-      <ion-toolbar>
-        <ion-title>Datetime - Basic</ion-title>
-        <ion-buttons slot="primary">
-          <ion-button onclick="toggleBoolean('dynamicDisabled', 'disabled')">
-            (disabled)
-          </ion-button>
-        </ion-buttons>
-      </ion-toolbar>
-    </ion-header>
-
-    <ion-content id="content" class="outer-content test-content">
-      <ion-list>
-        <ion-item>
-          <ion-label>Default</ion-label>
-          <ion-datetime></ion-datetime>
-        </ion-item>
-
-        <ion-item>
-          <ion-label position="floating">Default with floating label</ion-label>
-          <ion-datetime></ion-datetime>
-        </ion-item>
-
-        <ion-item>
-          <ion-label position="floating">Placeholder with floating label</ion-label>
-          <ion-datetime id="datetime-part" placeholder="Select a date"></ion-datetime>
-        </ion-item>
-
-        <ion-item>
-          <ion-label>Max</ion-label>
-          <ion-datetime max="2018-07-29"></ion-datetime>
-        </ion-item>
-
-        <ion-item>
-          <ion-label>MMMM</ion-label>
-          <ion-datetime display-format="MMMM" value="2012-12-15T13:47:20.789"></ion-datetime>
-        </ion-item>
-
-        <ion-item>
-          <ion-label position="floating">MM DD YY</ion-label>
-          <ion-datetime display-format="MM DD YY" placeholder="Select Date"></ion-datetime>
-        </ion-item>
-
-        <ion-item>
-          <ion-label>Disabled</ion-label>
-          <ion-datetime id="dynamicDisabled" display-format="MM DD YY" disabled value="1994-12-15"></ion-datetime>
-        </ion-item>
-
-        <ion-item>
-          <ion-label>YYYY</ion-label>
-          <ion-datetime id="customPickerOptions" placeholder="Custom Options" display-format="YYYY" min="1981" max="2002" value="2000"></ion-datetime>
-        </ion-item>
-
-        <ion-item>
-          <ion-label>Multiple</ion-label>
-          <ion-datetime value="1994-12-24" display-format="YYYY" placeholder="year"></ion-datetime>
-          <ion-datetime value="1994-12-24" display-format="MM" placeholder="month"></ion-datetime>
-          <ion-datetime value="1994-12-24" display-format="DD" placeholder="day"></ion-datetime>
-        </ion-item>
-
-        <ion-item>
-          <ion-label position="stacked">MMMM YY</ion-label>
-          <ion-datetime display-format="MMMM YY" min="1989-06-04" max="2004-08-23" value="1994-12-15T13:47:20.789"></ion-datetime>
-        </ion-item>
-
-        <ion-item>
-          <ion-label position="floating">MM/DD/YYYY</ion-label>
-          <ion-datetime display-format="MM/DD/YYYY" min="1994-03-14" max="2012-12-09" value="2002-09-23T15:03:46.789" class="e2eOpenMMDDYYYY"></ion-datetime>
-        </ion-item>
-
-        <ion-item>
-          <ion-label position="floating">MM/DD/YYYY</ion-label>
-          <ion-datetime display-format="MM/DD/YYYY" min="1994-03-14" max="2012-12-09" class="e2eOpenMMDDYYYY"></ion-datetime>
-        </ion-item>
-
-        <ion-item>
-          <ion-label>DDD. MMM DD, YY (custom locale)</ion-label>
-          <ion-datetime id="customDayShortNames" value="1995-04-15" min="1990-02" max="2000" display-format="DDD. MMM DD, YY" month-short-names="jan, feb, mar, apr, mai, jun, jul, aug, sep, okt, nov, des"></ion-datetime>
-        </ion-item>
-
-        <ion-item>
-          <ion-label>DDD. MMM DD, YY (English/French switch)</ion-label>
-          <ion-datetime id="customMonthShortNames" value="1995-04-15" min="1990-02" max="2000"
-            display-format="DDD. MMM DD, YY"></ion-datetime>
-          <ion-button slot="end" onclick="toggleLanguage()">Language Selected: <span id="selectedLang">en</span>
-          </ion-button>
-        </ion-item>
-
-        <ion-item>
-          <ion-label>D MMM YYYY H:mm</ion-label>
-          <ion-datetime display-format="D MMM YYYY H:mm" min="1997" max="2010" value="2005-06-17T11:06Z"></ion-datetime>
-        </ion-item>
-
-        <ion-item>
-          <ion-label>DDDD MMM D, YYYY</ion-label>
-          <ion-datetime display-format="DDDD MMM D, YYYY" min="2005" max="2016" value="2008-09-02"></ion-datetime>
-        </ion-item>
-
-        <ion-item>
-          <ion-label>HH:mm A</ion-label>
-          <ion-datetime display-format="HH:mm A"></ion-datetime>
-        </ion-item>
-
-        <ion-item>
-          <ion-label>HH:mm (initial value 00:00)</ion-label>
-          <ion-datetime display-format="HH:mm" value="00:00"></ion-datetime>
-        </ion-item>
-
-        <ion-item>
-          <ion-label>h:mm a</ion-label>
-          <ion-datetime display-format="h:mm a" value="01:47"></ion-datetime>
-        </ion-item>
-
-        <ion-item>
-          <ion-label>h:mm A</ion-label>
-          <ion-datetime display-format="h:mm A" value="14:23"></ion-datetime>
-        </ion-item>
-
-        <ion-item>
-          <ion-label>hh:mm A (15 min steps)</ion-label>
-          <ion-datetime display-format="h:mm A" minute-values="0,15,30,45"></ion-datetime>
-        </ion-item>
-
-        <ion-item>
-          <ion-label>YYYY MMM DD hh:mm A</ion-label>
-          <ion-datetime
-            id="todaysDate"
-            display-format="YYYY MMM DD hh:mm A"
-            minute-values="00,05,10,15,20,25,30,35,40,45,50,55">
-          </ion-datetime>
-        </ion-item>
-
-        <ion-item>
-          <ion-label>Leap years, summer months</ion-label>
-          <ion-datetime id="customYearValues" display-format="MM/YYYY" pickerFormat="MMMM YYYY" month-values="6,7,8"></ion-datetime>
-        </ion-item>
-
-        <ion-item>
-          <ion-label>Specific days/months/years</ion-label>
-          <ion-datetime month-values="6,7,8" year-values="2014,2015" day-values="01,02,03,04,05,06,08,09,10, 11, 12, 13, 14" display-format="DD/MMM/YYYY"></ion-datetime>
-        </ion-item>
-      </ion-list>
-
-      <ion-list>
-        <ion-item>
-          <ion-label>myDate</ion-label>
-          <ion-datetime display-format="MMM DD, YYYY HH:mm"></ion-datetime>
-        </ion-item>
-      </ion-list>
-
-      <ion-list>
-        <ion-item>
-          <ion-label>Display UTC 00:00 in Local Timezone (default behavior)</ion-label>
-          <ion-datetime display-format="MMM DD, YYYY HH:mm" value="2020-01-01T00:00:00Z"></ion-datetime>
-        </ion-item>
-
-        <ion-item>
-          <ion-label>Display UTC 00:00 in UTC (display-timezone = 'utc')</ion-label>
-          <ion-datetime display-format="MMM DD, YYYY HH:mm" value="2020-01-01T00:00:00Z" display-timezone="utc"></ion-datetime>
-        </ion-item>
-
-        <ion-item>
-          <ion-label>Display UTC 00:00 in US Pacific Time (display-timezone = 'America/Los_Angeles')</ion-label>
-          <ion-datetime display-format="MMM DD, YYYY HH:mm" value="2020-01-01T00:00:00Z" display-timezone="America/Los_Angeles"></ion-datetime>
-        </ion-item>
-      </ion-list>
-
-      <ion-list>
-        <ion-item>
-          <ion-label>HH:mm:ss</ion-label>
-          <ion-datetime display-format="HH:mm:ss"></ion-datetime>
-        </ion-item>
-
-        <ion-item>
-          <ion-label>No display-format</ion-label>
-          <ion-datetime></ion-datetime>
-        </ion-item>
-
-      </ion-list>
-
-    </ion-content>
-
+  <head>
+    <meta charset="UTF-8">
+    <title>Datetime - Basic</title>
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <link href="../../../../../css/ionic.bundle.css" rel="stylesheet">
+    <link href="../../../../../scripts/testing/styles.css" rel="stylesheet">
+    <script src="../../../../../scripts/testing/scripts.js"></script>
+    <script type="module" src="../../../../../dist/ionic/ionic.esm.js"></script>
     <style>
-      .outer-content {
-        --background: #f2f2f2;
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(250px, 1fr));
+        grid-row-gap: 20px;
+        grid-column-gap: 20px;
+      }
+      h2 {
+        font-size: 12px;
+        font-weight: normal;
+
+        color: #6f7378;
+
+        margin-top: 10px;
+        margin-left: 5px;
+      }
+      @media screen and (max-width: 800px) {
+        .grid {
+          grid-template-columns: 1fr;
+          padding: 0;
+        }
       }
 
-      ion-datetime#datetime-part::part(placeholder) {
-        color: rgba(255, 0, 0, 0.5);
+      .options-popover {
+        --width: 300px;
       }
 
-      ion-datetime#datetime-part::part(text) {
-        color: green;
+      ion-modal.ios,
+      ion-popover.datetime-popover.ios {
+        --width: 350px;
+        --height: 420px;
       }
+
+      ion-modal.md,
+      ion-popover.datetime-popover.md {
+        --width: 350px;
+      }
+
+      ion-datetime {
+        width: 350px;
+      }
+
+      body.dark {
+        --ion-color-primary: #428cff;
+        --ion-color-primary-rgb: 66,140,255;
+        --ion-color-primary-contrast: #ffffff;
+        --ion-color-primary-contrast-rgb: 255,255,255;
+        --ion-color-primary-shade: #3a7be0;
+        --ion-color-primary-tint: #5598ff;
+
+        --ion-color-secondary: #50c8ff;
+        --ion-color-secondary-rgb: 80,200,255;
+        --ion-color-secondary-contrast: #ffffff;
+        --ion-color-secondary-contrast-rgb: 255,255,255;
+        --ion-color-secondary-shade: #46b0e0;
+        --ion-color-secondary-tint: #62ceff;
+
+        --ion-color-tertiary: #6a64ff;
+        --ion-color-tertiary-rgb: 106,100,255;
+        --ion-color-tertiary-contrast: #ffffff;
+        --ion-color-tertiary-contrast-rgb: 255,255,255;
+        --ion-color-tertiary-shade: #5d58e0;
+        --ion-color-tertiary-tint: #7974ff;
+
+        --ion-color-success: #2fdf75;
+        --ion-color-success-rgb: 47,223,117;
+        --ion-color-success-contrast: #000000;
+        --ion-color-success-contrast-rgb: 0,0,0;
+        --ion-color-success-shade: #29c467;
+        --ion-color-success-tint: #44e283;
+
+        --ion-color-warning: #ffd534;
+        --ion-color-warning-rgb: 255,213,52;
+        --ion-color-warning-contrast: #000000;
+        --ion-color-warning-contrast-rgb: 0,0,0;
+        --ion-color-warning-shade: #e0bb2e;
+        --ion-color-warning-tint: #ffd948;
+
+        --ion-color-danger: #ff4961;
+        --ion-color-danger-rgb: 255,73,97;
+        --ion-color-danger-contrast: #ffffff;
+        --ion-color-danger-contrast-rgb: 255,255,255;
+        --ion-color-danger-shade: #e04055;
+        --ion-color-danger-tint: #ff5b71;
+
+        --ion-color-dark: #f4f5f8;
+        --ion-color-dark-rgb: 244,245,248;
+        --ion-color-dark-contrast: #000000;
+        --ion-color-dark-contrast-rgb: 0,0,0;
+        --ion-color-dark-shade: #d7d8da;
+        --ion-color-dark-tint: #f5f6f9;
+
+        --ion-color-medium: #989aa2;
+        --ion-color-medium-rgb: 152,154,162;
+        --ion-color-medium-contrast: #000000;
+        --ion-color-medium-contrast-rgb: 0,0,0;
+        --ion-color-medium-shade: #86888f;
+        --ion-color-medium-tint: #a2a4ab;
+
+        --ion-color-light: #222428;
+        --ion-color-light-rgb: 34,36,40;
+        --ion-color-light-contrast: #ffffff;
+        --ion-color-light-contrast-rgb: 255,255,255;
+        --ion-color-light-shade: #1e2023;
+        --ion-color-light-tint: #383a3e;
+      }
+
+      /*
+       * iOS Dark Theme
+       * -------------------------------------------
+       */
+
+      .ios body.dark {
+        --ion-background-color: #000000;
+        --ion-background-color-rgb: 0,0,0;
+
+        --ion-text-color: #ffffff;
+        --ion-text-color-rgb: 255,255,255;
+
+        --ion-color-step-50: #0d0d0d;
+        --ion-color-step-100: #1a1a1a;
+        --ion-color-step-150: #262626;
+        --ion-color-step-200: #333333;
+        --ion-color-step-250: #404040;
+        --ion-color-step-300: #4d4d4d;
+        --ion-color-step-350: #595959;
+        --ion-color-step-400: #666666;
+        --ion-color-step-450: #737373;
+        --ion-color-step-500: #808080;
+        --ion-color-step-550: #8c8c8c;
+        --ion-color-step-600: #999999;
+        --ion-color-step-650: #a6a6a6;
+        --ion-color-step-700: #b3b3b3;
+        --ion-color-step-750: #bfbfbf;
+        --ion-color-step-800: #cccccc;
+        --ion-color-step-850: #d9d9d9;
+        --ion-color-step-900: #e6e6e6;
+        --ion-color-step-950: #f2f2f2;
+
+        --ion-item-background: #000000;
+
+        --ion-card-background: #1c1c1d;
+      }
+
+      .ios body.dark ion-modal {
+        --ion-background-color: var(--ion-color-step-100);
+        --ion-toolbar-background: var(--ion-color-step-150);
+        --ion-toolbar-border-color: var(--ion-color-step-250);
+        --ion-item-background: var(--ion-color-step-150);
+      }
+
+
+      /*
+       * Material Design Dark Theme
+       * -------------------------------------------
+       */
+
+      .md body.dark {
+        --ion-background-color: #121212;
+        --ion-background-color-rgb: 18,18,18;
+
+        --ion-text-color: #ffffff;
+        --ion-text-color-rgb: 255,255,255;
+
+        --ion-border-color: #222222;
+
+        --ion-color-step-50: #1e1e1e;
+        --ion-color-step-100: #2a2a2a;
+        --ion-color-step-150: #363636;
+        --ion-color-step-200: #414141;
+        --ion-color-step-250: #4d4d4d;
+        --ion-color-step-300: #595959;
+        --ion-color-step-350: #656565;
+        --ion-color-step-400: #717171;
+        --ion-color-step-450: #7d7d7d;
+        --ion-color-step-500: #898989;
+        --ion-color-step-550: #949494;
+        --ion-color-step-600: #a0a0a0;
+        --ion-color-step-650: #acacac;
+        --ion-color-step-700: #b8b8b8;
+        --ion-color-step-750: #c4c4c4;
+        --ion-color-step-800: #d0d0d0;
+        --ion-color-step-850: #dbdbdb;
+        --ion-color-step-900: #e7e7e7;
+        --ion-color-step-950: #f3f3f3;
+
+        --ion-item-background: #1e1e1e;
+
+        --ion-toolbar-background: #1f1f1f;
+
+        --ion-tab-bar-background: #1f1f1f;
+
+        --ion-card-background: #1e1e1e;
+      }
+
     </style>
+  </head>
+  <body>
+    <ion-app>
+      <ion-header translucent="true">
+        <ion-toolbar>
+          <ion-title>Datetime - Basic</ion-title>
+          <ion-buttons slot="end">
+            <ion-button id="popover-trigger">Options</ion-button>
+          </ion-buttons>
+          <ion-popover class="options-popover" trigger="popover-trigger">
+            <ion-list lines="none">
+              <ion-item>
+                <ion-label>Dark Mode</ion-label>
+                <ion-checkbox slot="end"></ion-checkbox>
+              </ion-item>
+              <ion-item detail="true" href="?ionic:mode=ios">
+                <ion-label>iOS Mode</ion-label>
+              </ion-item>
+              <ion-item detail="true" href="?ionic:mode=md">
+                <ion-label>MD Mode</ion-label>
+              </ion-item>
 
-    <script>
-      var todaysDateDatetime = document.querySelector('#todaysDate');
-      todaysDateDatetime.value = '2020-09-02T17:15:03.488Z';
+              <ion-item>
+                <ion-label>Show Default Title</ion-label>
+                <ion-toggle id="titleToggle"></ion-toggle>
+              </ion-item>
 
-      var yearValuesArray = [2020, 2016, 2008, 2004, 2000, 1996];
-      var customYearValues = document.getElementById('customYearValues');
-      customYearValues.yearValues = yearValuesArray;
+              <ion-item>
+                <ion-label>Show Default Buttons</ion-label>
+                <ion-toggle id="buttonsToggle"></ion-toggle>
+              </ion-item>
 
-      var dayShortNamesArray = [
-        's\u00f8n',
-        'man',
-        'tir',
-        'ons',
-        'tor',
-        'fre',
-        'l\u00f8r'
-      ];
-      var customDayShortNames = document.getElementById('customDayShortNames');
-      customDayShortNames.dayShortNames = dayShortNamesArray;
+              <ion-item>
+                <ion-label>Locale</ion-label>
+                <ion-input placeholder="default" id="locale"></ion-input>
+              </ion-item>
 
-      var customPickerButtons = {
-        buttons: [{
-          text: 'Save',
-          handler: () => console.log('Clicked Save!')
-        }, {
-          text: 'Log',
-          handler: () => {
-            console.log('Clicked Log. Don\'t Dismiss.');
-            return false;
+              <ion-item>
+                <ion-label>Color</ion-label>
+                <ion-select id="color" value="primary">
+                  <ion-select-option value="primary">Primary</ion-select-option>
+                  <ion-select-option value="secondary">Secondary</ion-select-option>
+                  <ion-select-option value="tertiary">Tertiary</ion-select-option>
+                  <ion-select-option value="success">Success</ion-select-option>
+                  <ion-select-option value="warning">Warning</ion-select-option>
+                  <ion-select-option value="danger">Danger</ion-select-option>
+                </ion-select>
+              </ion-item>
+            </ion-list>
+          </ion-popover>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <div class="grid">
+          <div class="grid-item">
+            <h2>Inline</h2>
+            <ion-datetime value="2020-03-14T14:23:00.000Z" id="inline-datetime"></ion-datetime>
+          </div>
+
+          <div class="grid-item">
+            <h2>Popover</h2>
+            <ion-button onclick="presentPopover(defaultPopover, event)">Present Popover</ion-button>
+            <ion-popover class="datetime-popover" id="default-popover">
+              <ion-datetime></ion-datetime>
+            </ion-popover>
+          </div>
+
+          <div class="grid-item">
+            <h2>Modal</h2>
+            <ion-button onclick="presentModal()">Present Modal</ion-button>
+          </div>
+
+          <div class="grid-item">
+            <h2>Inline - Custom</h2>
+            <ion-datetime show-default-buttons="true" color="danger" id="custom-datetime">
+              <span slot="title">Select Date</span>
+            </ion-datetime>
+          </div>
+
+          <div class="grid-item">
+            <h2>Popover - Custom</h2>
+            <ion-button id="open-popover">Present Popover</ion-button>
+            <ion-popover class="datetime-popover" trigger="open-popover" id="custom-popover">
+              <ion-datetime>
+                <span slot="title">My Custom Title</span>
+                <ion-buttons slot="buttons">
+                  <ion-button color="danger">Destroy</ion-button>
+                  <ion-button color="primary">Confirm</ion-button>
+                </ion-buttons>
+              </ion-datetime>
+            </ion-popover>
+          </div>
+
+          <div class="grid-item">
+            <h2>Modal - Custom</h2>
+            <ion-button id="open-modal">Present Modal</ion-button>
+            <ion-modal trigger="open-modal" id="modal">
+              <ion-datetime>
+                <span slot="title">My Custom Title</span>
+                <ion-buttons slot="buttons">
+                  <ion-button color="danger">Destroy</ion-button>
+                  <ion-button color="primary">Confirm</ion-button>
+                </ion-buttons>
+              </ion-datetime>
+            </ion-modal>
+          </div>
+        </div>
+      </ion-content>
+      <script>
+        const datetimes = document.querySelectorAll('ion-datetime');
+        const color = document.querySelector('#color');
+        const locale = document.querySelector('#locale');
+        const datetime = document.querySelector('ion-datetime');
+        const buttons = document.querySelectorAll('ion-button');
+        const titleToggle = document.querySelector('#titleToggle');
+        const buttonsToggle = document.querySelector('#buttonsToggle');
+
+        locale.addEventListener('ionBlur', (ev) => {
+          const value = ev.target.value;
+          datetimes.forEach(datetime => {
+            datetime.locale = (!!value) ? value : 'default';
+          });
+        })
+
+        const darkModeCheckbox = document.querySelector('ion-checkbox');
+        darkModeCheckbox.addEventListener('ionChange', (ev) => {
+          if (ev.detail.checked) {
+            document.body.classList.add('dark');
+          } else {
+            document.body.classList.remove('dark');
           }
-        }]
-      }
-      var customPickerOptions = document.getElementById('customPickerOptions');
-      customPickerOptions.pickerOptions = customPickerButtons;
+        });
+        color.addEventListener('ionChange', (ev) => {
+          datetime.color = ev.target.value;
+          buttons.forEach(button => {
+            button.color = ev.target.value;
+          })
+        })
 
-      function toggleBoolean(id, prop) {
-        var el = document.getElementById(id);
+        titleToggle.addEventListener('ionChange', (ev) => {
+          datetimes.forEach(datetime => {
+            datetime.showDefaultTitle = ev.detail.checked;
+          });
+        })
+        buttonsToggle.addEventListener('ionChange', (ev) => {
+          datetimes.forEach(datetime => {
+            datetime.showDefaultButtons = ev.detail.checked;
+          });
+        })
 
-        var isTrue = el[prop] ? false : true;
-        el[prop] = isTrue;
-        console.log('in toggleBoolean, setting', prop, 'to', isTrue);
-      }
+        const defaultPopover = document.querySelector('ion-popover#default-popover');
+        const customPopover = document.querySelector('ion-popover#custom-popover');
+        const presentPopover = (popover, ev) => {
+          popover.event = ev;
+          popover.showBackdrop = false;
+          popover.isOpen = true;
 
-      var monthShortNamesEnglish = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-      var monthShortNamesFrench = ["jan", "fév", "mar", "avr", "mai", "jui", "jui", "aou", "sep", "oct", "nov", "déc"];
+          const dismiss = () => {
+            popover.isOpen = false;
+            popover.event = undefined;
 
-      var selectedLang = "en";
-      var customDayShortNames = document.getElementById('customMonthShortNames');
-      customDayShortNames.monthShortNames = monthShortNamesEnglish;
+            popover.removeEventListener('didDismiss', dismiss);
+          }
 
-      function toggleLanguage() {
-        selectedLang = selectedLang === 'en' ? 'fr' : 'en';
+          popover.addEventListener('didDismiss', dismiss);
+        }
 
-        var customMonthShortNames = document.getElementById('customMonthShortNames');
-        var el = document.getElementById('selectedLang');
+        const presentModal = async () => {
+          const modal = await createModal();
 
-        el.innerText = selectedLang;
-        if (selectedLang === 'en') { customMonthShortNames.monthShortNames = monthShortNamesEnglish; }
-        else { customMonthShortNames.monthShortNames = monthShortNamesFrench; }
-      }
-    </script>
-  </ion-app>
-</body>
+          await modal.present();
+        }
 
+        const createModal = () => {
+          // create component to open
+          const element = document.createElement('div');
+          element.innerHTML = `
+            <ion-datetime show-default-buttons="true" color="danger">
+              <span slot="title">Select Date</span>
+            </ion-datetime>
+          `;
+
+          // present the modal
+          const modalElement = Object.assign(document.createElement('ion-modal'), {
+            component: element
+          });
+          document.body.appendChild(modalElement);
+          return modalElement;
+        }
+      </script>
+    </ion-app>
+  </body>
 </html>

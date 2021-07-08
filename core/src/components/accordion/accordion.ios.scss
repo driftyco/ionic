@@ -1,0 +1,9 @@
+@import "./accordion.scss";
+@import "../item/item.ios.vars";
+
+// iOS Accordion
+// --------------------------------------------------
+
+:host(.accordion-next) ::slotted(ion-item[slot="header"]) {
+  --border-width: #{$item-ios-border-bottom-width 0px $item-ios-border-bottom-width 0px};
+}

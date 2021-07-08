@@ -1,0 +1,11 @@
+@import "./breadcrumbs";
+
+// Material Design Breadcrumbs
+// --------------------------------------------------
+
+// Breadcrumbs: In Toolbar
+// --------------------------------------------------
+
+:host(.in-toolbar) {
+  @include padding(0, 8px);
+}

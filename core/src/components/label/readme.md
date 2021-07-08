@@ -303,11 +303,13 @@ export default defineComponent({
 
 ### Used by
 
+ - [ion-datetime](../datetime)
  - ion-select-popover
 
 ### Graph
 ```mermaid
 graph TD;
+  ion-datetime --> ion-label
   ion-select-popover --> ion-label
   style ion-label fill:#f9f,stroke:#333,stroke-width:4px
 ```

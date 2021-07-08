@@ -54,7 +54,7 @@ export class Select implements ComponentInterface {
   /**
    * The text to display when the select is empty.
    */
-  @Prop() placeholder?: string | null;
+  @Prop() placeholder?: string;
 
   /**
    * The name of the control, which is submitted with the form data.
@@ -125,7 +125,8 @@ export class Select implements ComponentInterface {
 
   @Watch('disabled')
   @Watch('placeholder')
-  disabledChanged() {
+  @Watch('isExpanded')
+  styleChanged() {
     this.emitStyle();
   }
 
@@ -183,21 +184,21 @@ export class Select implements ComponentInterface {
 
   private createOverlay(ev?: UIEvent): Promise<OverlaySelect> {
     let selectInterface = this.interface;
-    if ((selectInterface === 'action-sheet' || selectInterface === 'popover') && this.multiple) {
+    if (selectInterface === 'action-sheet' && this.multiple) {
       console.warn(`Select interface cannot be "${selectInterface}" with a multi-value select. Using the "alert" interface instead.`);
       selectInterface = 'alert';
     }
 
     if (selectInterface === 'popover' && !ev) {
-      console.warn('Select interface cannot be a "popover" without passing an event. Using the "alert" interface instead.');
+      console.warn(`Select interface cannot be a "${selectInterface}" without passing an event. Using the "alert" interface instead.`);
       selectInterface = 'alert';
     }
 
-    if (selectInterface === 'popover') {
-      return this.openPopover(ev!);
-    }
     if (selectInterface === 'action-sheet') {
       return this.openActionSheet();
+    }
+    if (selectInterface === 'popover') {
+      return this.openPopover(ev!);
     }
     return this.openAlert();
   }
@@ -291,9 +292,11 @@ export class Select implements ComponentInterface {
         value,
         checked: isOptionSelected(value, selectValue, this.compareWith),
         disabled: option.disabled,
-        handler: () => {
-          this.value = value;
-          this.close();
+        handler: (selected: any) => {
+          this.value = selected;
+          if (!this.multiple) {
+            this.close();
+          }
         }
       };
     });
@@ -304,18 +307,43 @@ export class Select implements ComponentInterface {
   private async openPopover(ev: UIEvent) {
     const interfaceOptions = this.interfaceOptions;
     const mode = getIonMode(this);
+    const showBackdrop = mode === 'md' ? false : true;
+    const multiple = this.multiple;
     const value = this.value;
+
+    let event: Event | CustomEvent = ev;
+    let size = 'auto';
+
+    const item = this.el.closest('ion-item');
+
+    // If the select is inside of an item containing a floating
+    // or stacked label then the popover should take up the
+    // full width of the item when it presents
+    if (item && (item.classList.contains('item-label-floating') || item.classList.contains('item-label-stacked'))) {
+      event = {
+        ...ev,
+        detail: {
+          ionShadowTarget: item
+        }
+      }
+      size = 'cover';
+    }
+
     const popoverOpts: PopoverOptions = {
       mode,
+      event,
+      alignment: 'center',
+      size,
+      showBackdrop,
       ...interfaceOptions,
 
       component: 'ion-select-popover',
       cssClass: ['select-popover', interfaceOptions.cssClass],
-      event: ev,
       componentProps: {
         header: interfaceOptions.header,
         subHeader: interfaceOptions.subHeader,
         message: interfaceOptions.message,
+        multiple,
         value,
         options: this.createPopoverOptions(this.childOpts, value)
       }
@@ -411,11 +439,12 @@ export class Select implements ComponentInterface {
   private emitStyle() {
     this.ionStyle.emit({
       'interactive': true,
-      'select': true,
-      'has-placeholder': this.placeholder != null,
-      'has-value': this.hasValue(),
       'interactive-disabled': this.disabled,
-      'select-disabled': this.disabled
+      'select': true,
+      'select-disabled': this.disabled,
+      'has-placeholder': this.placeholder !== undefined,
+      'has-value': this.hasValue(),
+      'has-focus': this.isExpanded,
     });
   }
 
@@ -423,6 +452,7 @@ export class Select implements ComponentInterface {
     this.setFocus();
     this.open(ev);
   }
+
   private onFocus = () => {
     this.ionFocus.emit();
   }
@@ -442,7 +472,7 @@ export class Select implements ComponentInterface {
 
     let addPlaceholderClass = false;
     let selectText = displayValue;
-    if (selectText === '' && placeholder != null) {
+    if (selectText === '' && placeholder !== undefined) {
       selectText = placeholder;
       addPlaceholderClass = true;
     }

@@ -52,6 +52,7 @@
       font-size: 48px;
     }
 
+    ion-breadcrumbs,
     ion-progress-bar {
       margin-bottom: 10px;
     }
@@ -145,6 +146,37 @@
         </ion-header>
 
         <ion-content class="ion-padding">
+          <ion-breadcrumbs max-items="6" items-before-collapse="3" items-after-collapse="3">
+            <ion-breadcrumb href="#">
+              <ion-icon slot="start" name="home"></ion-icon>
+              Home
+            </ion-breadcrumb>
+            <ion-breadcrumb href="#documents" class="ion-focused">
+              <ion-icon slot="start" name="folder"></ion-icon>
+              Documents
+            </ion-breadcrumb>
+            <ion-breadcrumb href="#folders">
+              <ion-icon slot="start" name="folder"></ion-icon>
+              Folders
+            </ion-breadcrumb>
+            <ion-breadcrumb href="#files">
+              <ion-icon slot="start" name="folder"></ion-icon>
+              Files
+            </ion-breadcrumb>
+            <ion-breadcrumb href="#projects">
+              <ion-icon slot="start" name="folder"></ion-icon>
+              Projects
+            </ion-breadcrumb>
+            <ion-breadcrumb href="#user-research">
+              <ion-icon slot="start" name="folder"></ion-icon>
+              User Research
+            </ion-breadcrumb>
+            <ion-breadcrumb>
+              <ion-icon slot="start" name="document"></ion-icon>
+              Survey.txt
+            </ion-breadcrumb>
+          </ion-breadcrumbs>
+
           <div class="wrapper">
             <section>
               <ion-card>
@@ -190,6 +222,24 @@
                   <ion-icon name="walk" slot="start"></ion-icon>
                   Card Button Item 2 focused
                 </ion-item>
+              </ion-card>
+
+              <ion-card>
+                <ion-card-content>
+                  <ion-item fill="solid">
+                    <ion-icon slot="start" name="calendar-clear-outline"></ion-icon>
+                    <ion-label position="floating">Standard</ion-label>
+                    <ion-input value="Has Initial Value"></ion-input>
+                    <ion-note slot="error">Error Text</ion-note>
+                  </ion-item>
+
+                  <ion-item fill="outline">
+                    <ion-label position="floating">Standard</ion-label>
+                    <ion-icon slot="end" name="trash"></ion-icon>
+                    <ion-input></ion-input>
+                    <ion-note slot="error">Helper Text</ion-note>
+                  </ion-item>
+                </ion-card-content>
               </ion-card>
             </section>
 
@@ -572,8 +622,92 @@
                 <ion-icon name="calculator"></ion-icon>
                 <ion-icon name="bus"></ion-icon>
                 <ion-icon name="wine" color="danger"></ion-icon>
+              </p>
 
+              <p>
+                <ion-breadcrumbs color="primary" max-items="4">
+                  <ion-breadcrumb href="#" class="ion-focused">
+                    Home
+                  </ion-breadcrumb>
+                  <ion-breadcrumb href="#electronics">
+                    Electronics
+                  </ion-breadcrumb>
+                  <ion-breadcrumb href="#photography">
+                    Photography
+                  </ion-breadcrumb>
+                  <ion-breadcrumb href="#cameras">
+                    Cameras
+                  </ion-breadcrumb>
+                  <ion-breadcrumb href="#film">
+                    Film
+                  </ion-breadcrumb>
+                  <ion-breadcrumb>
+                    35 mm
+                  </ion-breadcrumb>
+                </ion-breadcrumbs>
 
+                <ion-breadcrumbs color="secondary" max-items="4">
+                  <ion-breadcrumb href="#" class="ion-focused">
+                    Home
+                  </ion-breadcrumb>
+                  <ion-breadcrumb href="#electronics">
+                    Electronics
+                  </ion-breadcrumb>
+                  <ion-breadcrumb href="#photography">
+                    Photography
+                  </ion-breadcrumb>
+                  <ion-breadcrumb href="#cameras">
+                    Cameras
+                  </ion-breadcrumb>
+                  <ion-breadcrumb href="#film">
+                    Film
+                  </ion-breadcrumb>
+                  <ion-breadcrumb>
+                    35 mm
+                  </ion-breadcrumb>
+                </ion-breadcrumbs>
+
+                <ion-breadcrumbs color="danger" max-items="4">
+                  <ion-breadcrumb href="#" class="ion-focused">
+                    Home
+                  </ion-breadcrumb>
+                  <ion-breadcrumb href="#electronics">
+                    Electronics
+                  </ion-breadcrumb>
+                  <ion-breadcrumb href="#photography">
+                    Photography
+                  </ion-breadcrumb>
+                  <ion-breadcrumb href="#cameras">
+                    Cameras
+                  </ion-breadcrumb>
+                  <ion-breadcrumb href="#film">
+                    Film
+                  </ion-breadcrumb>
+                  <ion-breadcrumb>
+                    35 mm
+                  </ion-breadcrumb>
+                </ion-breadcrumbs>
+
+                <ion-breadcrumbs color="warning" max-items="4">
+                  <ion-breadcrumb href="#" class="ion-focused">
+                    Home
+                  </ion-breadcrumb>
+                  <ion-breadcrumb href="#electronics">
+                    Electronics
+                  </ion-breadcrumb>
+                  <ion-breadcrumb href="#photography">
+                    Photography
+                  </ion-breadcrumb>
+                  <ion-breadcrumb href="#cameras">
+                    Cameras
+                  </ion-breadcrumb>
+                  <ion-breadcrumb href="#film">
+                    Film
+                  </ion-breadcrumb>
+                  <ion-breadcrumb>
+                    35 mm
+                  </ion-breadcrumb>
+                </ion-breadcrumbs>
               </p>
             </section>
 

@@ -1,5 +1,5 @@
 import { Ref, ComponentPublicInstance } from 'vue';
-import { Config as CoreConfig, LIFECYCLE_DID_ENTER, LIFECYCLE_DID_LEAVE, LIFECYCLE_WILL_ENTER, LIFECYCLE_WILL_LEAVE } from '@ionic/core';
+import { Config as CoreConfig, LIFECYCLE_DID_ENTER, LIFECYCLE_DID_LEAVE, LIFECYCLE_WILL_ENTER, LIFECYCLE_WILL_LEAVE } from '@ionic/core/components';
 
 type LIFECYCLE_EVENTS = typeof LIFECYCLE_WILL_ENTER | typeof LIFECYCLE_DID_ENTER | typeof LIFECYCLE_WILL_LEAVE | typeof LIFECYCLE_DID_LEAVE;
 
@@ -58,4 +58,10 @@ export const getConfig = (): CoreConfig | null => {
   return null;
 };
 
-export const needsKebabCase = (version: string) => !['3.0.0', '3.0.1', '3.0.2', '3.0.3', '3.0.4', '3.0.5'].includes(version);
+export const defineCustomElement = (tagName: string, customElement: any) => {
+  if (typeof customElements === 'undefined') return;
+
+  if (!customElements.get(tagName)) {
+    customElements.define(tagName, customElement);
+  }
+}

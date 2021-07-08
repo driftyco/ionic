@@ -11,8 +11,16 @@
   --backdrop-opacity: var(--ion-backdrop-opacity, 0.08);
 }
 
+:host(.popover-desktop) {
+  --box-shadow: #{$popover-ios-desktop-box-shadow};
+}
+
 .popover-content {
   @include border-radius($popover-ios-border-radius);
+}
+
+:host(.popover-desktop) .popover-content {
+  border: #{$popover-ios-desktop-border};
 }
 
 
@@ -53,6 +61,32 @@
 
 :host(.popover-bottom) .popover-arrow::after {
   top: -6px;
+}
+
+:host(.popover-side-left) .popover-arrow {
+  transform: rotate(90deg);
+}
+
+:host(.popover-side-right) .popover-arrow {
+  transform: rotate(-90deg);
+}
+
+:host(.popover-side-top) .popover-arrow {
+  transform: rotate(180deg);
+}
+
+:host(.popover-side-start) .popover-arrow {
+  @include rtl() {
+    transform: rotate(-90deg);
+  }
+  transform: rotate(90deg);
+}
+
+:host(.popover-side-end) .popover-arrow {
+  @include rtl() {
+    transform: rotate(90deg);
+  }
+  transform: rotate(-90deg);
 }
 
 // Translucent Popover

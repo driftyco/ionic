@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <title>Popover - Triggers</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <link href="../../../../../css/ionic.bundle.css" rel="stylesheet">
+    <link href="../../../../../scripts/testing/styles.css" rel="stylesheet">
+    <script src="../../../../../scripts/testing/scripts.js"></script>
+    <script type="module" src="../../../../../dist/ionic/ionic.esm.js"></script>
+    <style>
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-row-gap: 20px;
+        grid-column-gap: 20px;
+
+        padding: 200px;
+      }
+      .grid-item {
+        margin: 0 auto;
+      }
+      h2 {
+        font-size: 12px;
+        font-weight: normal;
+
+        color: #6f7378;
+
+        margin-top: 10px;
+        margin-left: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <ion-app>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Popover - Triggers</ion-title>
+        </ion-toolbar>
+      </ion-header>
+
+      <ion-content class="ion-padding">
+        <div class="grid">
+          <div class="grid-item">
+            <h2>Left Click</h2>
+            <ion-button id="left-click-trigger">Trigger</ion-button>
+            <ion-popover
+              class="left-click-popover"
+              trigger="left-click-trigger"
+            >
+              <ion-content class="ion-padding">
+                Popover Content
+              </ion-content>
+            </ion-popover>
+          </div>
+          <div class="grid-item">
+            <h2>Right Click</h2>
+            <ion-button id="right-click-trigger">Trigger</ion-button>
+            <ion-popover
+              class="right-click-popover"
+              trigger="right-click-trigger"
+              trigger-action="context-menu"
+            >
+              <ion-content class="ion-padding">
+                Popover Content
+              </ion-content>
+            </ion-popover>
+          </div>
+          <div class="grid-item">
+            <h2>Hover</h2>
+            <ion-button id="hover-trigger">Trigger</ion-button>
+            <ion-popover
+              class="hover-popover"
+              trigger="hover-trigger"
+              trigger-action="hover"
+            >
+              <ion-content class="ion-padding">
+                Popover Content
+              </ion-content>
+            </ion-popover>
+          </div>
+          <div class="grid-item">
+            <h2>Dismiss On Select</h2>
+            <ion-button id="nested-click-trigger">Trigger</ion-button>
+            <ion-popover
+              class="nested-click-popover"
+              trigger="nested-click-trigger"
+              dismiss-on-select="true"
+            >
+              <ion-content>
+                Popover Content
+                <ion-item button id="nested-click-trigger-two">
+                  <ion-label>Trigger</ion-label>
+                </ion-item>
+                <ion-item button id="other-button">
+                  <ion-label>Other Button</ion-label>
+                </ion-item>
+                <ion-popover
+                  class="nested-click-popover-two"
+                  side="right"
+                  trigger="nested-click-trigger-two"
+                >
+                  <ion-content class="ion-padding">
+                    Inner Popover Content
+                  </ion-content>
+                </ion-popover>
+              </ion-content>
+            </ion-popover>
+          </div>
+        </div>
+      </ion-content>
+    </ion-app>
+  </body>
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Popover - Dismiss On Select</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <link href="../../../../../css/ionic.bundle.css" rel="stylesheet">
+  <link href="../../../../../scripts/testing/styles.css" rel="stylesheet">
+  <script src="../../../../../scripts/testing/scripts.js"></script>
+  <script nomodule src="../../../../../dist/ionic/ionic.js"></script>
+  <script type="module" src="../../../../../dist/ionic/ionic.esm.js"></script></head>
+  <style>
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-row-gap: 20px;
+    grid-column-gap: 20px;
+
+    padding: 200px;
+  }
+  .grid-item {
+    margin: 0 auto;
+  }
+  h2 {
+    font-size: 12px;
+    font-weight: normal;
+
+    color: #6f7378;
+
+    margin-top: 10px;
+    margin-left: 5px;
+  }
+  </style>
+<body>
+  <ion-app>
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Popover - Dismiss On Select</ion-title>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content class="ion-padding" id="content">
+      <div class="grid">
+        <div class="grid-item">
+          <h2>Dismiss On Select - Click</h2>
+          <ion-button id="click-trigger">Click to Open</ion-button>
+          <ion-popover
+            class="click-trigger-popover"
+            trigger="click-trigger"
+            side="bottom"
+            alignment="start"
+            size="cover"
+            show-backdrop="false"
+            dismiss-on-select="true"
+          >
+            <ion-content>
+              <ion-list lines="none">
+                <ion-item button detail="false">
+                  <ion-label>Copy</ion-label>
+                </ion-item>
+                <ion-item button detail="false">
+                  <ion-label>Cut</ion-label>
+                </ion-item>
+
+                <ion-item button detail="false" disabled>
+                  <ion-label>Paste</ion-label>
+                </ion-item>
+
+                <ion-item button id="more-click-trigger">
+                  <ion-label>More</ion-label>
+                </ion-item>
+
+                <ion-popover
+                  trigger="more-click-trigger"
+                  dismiss-on-select="true"
+                  side="end"
+                  alignment="start"
+                >
+                  <ion-content>
+                    <ion-item button detail="false">
+                      <ion-label>My Item</ion-label>
+                    </ion-item>
+                  </ion-content>
+                </ion-popover>
+              </ion-list>
+            </ion-content>
+          </ion-popover>
+        </div>
+        <div class="grid-item">
+          <h2>Dismiss On Select - Hover</h2>
+          <ion-button id="hover-trigger">Click to Open</ion-button>
+          <ion-popover
+            class="hover-trigger-popover"
+            trigger="hover-trigger"
+            side="bottom"
+            alignment="start"
+            size="cover"
+            show-backdrop="false"
+            dismiss-on-select="true"
+          >
+            <ion-content>
+              <ion-list lines="none">
+                <ion-item button detail="false">
+                  <ion-label>Copy</ion-label>
+                </ion-item>
+                <ion-item button detail="false">
+                  <ion-label>Cut</ion-label>
+                </ion-item>
+
+                <ion-item button detail="false" disabled>
+                  <ion-label>Paste</ion-label>
+                </ion-item>
+
+                <ion-item button id="more-hover-trigger">
+                  <ion-label>More</ion-label>
+                </ion-item>
+
+                <ion-popover
+                  trigger="more-hover-trigger"
+                  trigger-action="hover"
+                  dismiss-on-select="true"
+                  side="end"
+                  alignment="start"
+                >
+                  <ion-content>
+                    <ion-item button detail="false">
+                      <ion-label>My Item</ion-label>
+                    </ion-item>
+                  </ion-content>
+                </ion-popover>
+              </ion-list>
+            </ion-content>
+          </ion-popover>
+        </div>
+      </div>
+    </ion-content>
+
+  </ion-app>
+
+  <script>
+  class ListPage extends HTMLElement {
+    constructor() {
+      super();
+
+      this.innerHTML = `
+      <ion-content class="ion-padding">
+        Hello
+      </ion-content>
+      `;
+    }
+  }
+
+  customElements.define('list-page', ListPage);
+  </script>
+</body>
+
+</html>

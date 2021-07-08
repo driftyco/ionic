@@ -1,0 +1,27 @@
+@import "./accordion-group";
+@import "../accordion/accordion.md.vars";
+
+// Material Design Accordion Group
+// --------------------------------------------------
+
+:host(.accordion-group-expand-inset) ::slotted(ion-accordion) {
+  box-shadow: $accordion-md-box-shadow;
+}
+
+:host(.accordion-group-expand-inset) ::slotted(ion-accordion.accordion-expanding),
+:host(.accordion-group-expand-inset) ::slotted(ion-accordion.accordion-expanded) {
+  @include margin($accordion-md-expanded-margin, 0, $accordion-md-expanded-margin, 0);
+  @include border-radius($accordion-md-border-radius, $accordion-md-border-radius, $accordion-md-border-radius, $accordion-md-border-radius);
+}
+
+:host(.accordion-group-expand-inset) ::slotted(ion-accordion.accordion-previous) {
+  @include border-radius(null, null, $accordion-md-border-radius, $accordion-md-border-radius);
+}
+
+:host(.accordion-group-expand-inset) ::slotted(ion-accordion.accordion-next) {
+  @include border-radius($accordion-md-border-radius, $accordion-md-border-radius, null, null);
+}
+:host(.accordion-group-expand-inset) ::slotted(ion-accordion):first-of-type,
+:host(.accordion-group-expand-inset) ::slotted(ion-accordion):first-of-type {
+  @include margin(0, 0, 0, 0);
+}

@@ -1,10 +1,10 @@
 @import "./select-popover.vars";
 
-:host ion-list {
+ion-list {
   @include margin($select-popover-list-margin-top, $select-popover-list-margin-end, $select-popover-list-margin-bottom, $select-popover-list-margin-start);
 }
 
-:host ion-list-header,
-:host ion-label {
+ion-list-header,
+ion-label {
   @include margin(0);
 }

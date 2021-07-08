@@ -1,6 +1,6 @@
 ```tsx
 import React from 'react';
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonItem, IonLabel, IonList, IonText, IonAvatar, IonThumbnail, IonButton, IonIcon, IonDatetime, IonSelect, IonSelectOption, IonToggle, IonInput, IonCheckbox, IonRange } from '@ionic/react';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonItem, IonLabel, IonList, IonText, IonAvatar, IonThumbnail, IonButton, IonIcon, IonDatetime, IonSelect, IonSelectOption, IonToggle, IonInput, IonCheckbox, IonRange, IonNote } from '@ionic/react';
 import { closeCircle, home, star, navigate, informationCircle, checkmarkCircle, shuffle } from 'ionicons/icons';
 
 export const ItemExamples: React.FC = () => {
@@ -289,6 +289,23 @@ export const ItemExamples: React.FC = () => {
         <IonItem>
           <IonLabel>Input (placeholder)</IonLabel>
           <IonInput placeholder="Placeholder"></IonInput>
+        </IonItem>
+
+        <IonItem fill="solid">
+          <IonLabel position="stacked">Input (Fill: Solid)</IonLabel>
+          <IonInput></IonInput>
+        </IonItem>
+
+        <IonItem fill="outline">
+          <IonLabel position="floating">Input (Fill: Outline)</IonLabel>
+          <IonInput></IonInput>
+        </IonItem>
+
+        <IonItem>
+          <IonLabel>Helper and Error Text</IonLabel>
+          <IonInput></IonInput>
+          <IonNote slot="helper">Helper Text</IonNote>
+          <IonNote slot="error">Error Text</IonNote>
         </IonItem>
 
         <IonItem>

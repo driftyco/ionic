@@ -1,9 +1,10 @@
-import { Component, ComponentInterface, Element, Event, EventEmitter, Host, Method, Prop, Watch, h, writeTask } from '@stencil/core';
+import { Component, ComponentInterface, Element, Event, EventEmitter, Host, Method, Prop, State, Watch, h, writeTask } from '@stencil/core';
 
 import { config } from '../../global/config';
 import { getIonMode } from '../../global/ionic-global';
 import { Animation, AnimationBuilder, ComponentProps, ComponentRef, FrameworkDelegate, Gesture, OverlayEventDetail, OverlayInterface } from '../../interface';
-import { attachComponent, detachComponent } from '../../utils/framework-delegate';
+import { CoreDelegate, attachComponent, detachComponent } from '../../utils/framework-delegate';
+import { raf } from '../../utils/helpers';
 import { BACKDROP, activeAnimations, dismiss, eventMethod, prepareOverlay, present } from '../../utils/overlays';
 import { getClassMap } from '../../utils/theme';
 import { deepReady } from '../../utils/transition';
@@ -16,6 +17,11 @@ import { createSwipeToCloseGesture } from './gestures/swipe-to-close';
 
 /**
  * @virtualProp {"ios" | "md"} mode - The mode determines which platform styles to use.
+ *
+ * @slot = Content is placed inside of the `.modal-content` element.
+ *
+ * @part backdrop - The `ion-backdrop` element.
+ * @part content - The wrapper element for the default slot.
  */
 @Component({
   tag: 'ion-modal',
@@ -23,19 +29,28 @@ import { createSwipeToCloseGesture } from './gestures/swipe-to-close';
     ios: 'modal.ios.scss',
     md: 'modal.md.scss'
   },
-  scoped: true
+  shadow: true
 })
 export class Modal implements ComponentInterface, OverlayInterface {
   private gesture?: Gesture;
+  private modalIndex = modalIds++;
+  private modalId?: string;
+  private coreDelegate: FrameworkDelegate = CoreDelegate();
+  private currentTransition?: Promise<any>;
+  private destroyTriggerInteraction?: () => void;
+
+  private inline = false;
+  private workingDelegate?: FrameworkDelegate;
 
   // Reference to the user's provided modal content
   private usersElement?: HTMLElement;
 
   // Whether or not modal is being dismissed via gesture
   private gestureAnimationDismissing = false;
-  presented = false;
   lastFocus?: HTMLElement;
   animation?: Animation;
+
+  @State() presented = false;
 
   @Element() el!: HTMLIonModalElement;
 
@@ -62,17 +77,20 @@ export class Modal implements ComponentInterface, OverlayInterface {
 
   /**
    * The component to display inside of the modal.
+   * @internal
    */
-  @Prop() component!: ComponentRef;
+  @Prop() component?: ComponentRef;
 
   /**
    * The data to pass to the modal component.
+   * @internal
    */
   @Prop() componentProps?: ComponentProps;
 
   /**
    * Additional classes to apply for custom CSS. If multiple classes are
    * provided they should be separated by spaces.
+   * @internal
    */
   @Prop() cssClass?: string | string[];
 
@@ -103,6 +121,34 @@ export class Modal implements ComponentInterface, OverlayInterface {
   @Prop() presentingElement?: HTMLElement;
 
   /**
+   * If `true`, the modal will open. If `false`, the modal will close.
+   * Use this if you need finer grained control over presentation, otherwise
+   * just use the modalController or the `trigger` property.
+   * Note: `isOpen` will not automatically be set back to `false` when
+   * the modal dismisses. You will need to do that in your code.
+   */
+  @Prop() isOpen = false;
+
+  @Watch('isOpen')
+  onIsOpenChange(newValue: boolean, oldValue: boolean) {
+    if (newValue === true && oldValue === false) {
+      this.present();
+    } else if (newValue === false && oldValue === true) {
+      this.dismiss();
+    }
+  }
+
+  /**
+   * An ID corresponding to the trigger element that
+   * causes the modal to open when clicked.
+   */
+  @Prop() trigger: string | undefined;
+  @Watch('trigger')
+  onTriggerChange() {
+    this.configureTriggerInteraction();
+  }
+
+  /**
    * Emitted after the modal has presented.
    */
   @Event({ eventName: 'ionModalDidPresent' }) didPresent!: EventEmitter<void>;
@@ -122,6 +168,30 @@ export class Modal implements ComponentInterface, OverlayInterface {
    */
   @Event({ eventName: 'ionModalDidDismiss' }) didDismiss!: EventEmitter<OverlayEventDetail>;
 
+    /**
+     * Emitted after the modal has presented.
+     * Shorthand for ionModalWillDismiss.
+     */
+  @Event({ eventName: 'didPresent' }) didPresentShorthand!: EventEmitter<void>;
+
+    /**
+     * Emitted before the modal has presented.
+     * Shorthand for ionModalWillPresent.
+     */
+  @Event({ eventName: 'willPresent' }) willPresentShorthand!: EventEmitter<void>;
+
+    /**
+     * Emitted before the modal has dismissed.
+     * Shorthand for ionModalWillDismiss.
+     */
+  @Event({ eventName: 'willDismiss' }) willDismissShorthand!: EventEmitter<OverlayEventDetail>;
+
+    /**
+     * Emitted after the modal has dismissed.
+     * Shorthand for ionModalDidDismiss.
+     */
+  @Event({ eventName: 'didDismiss' }) didDismissShorthand!: EventEmitter<OverlayEventDetail>;
+
   @Watch('swipeToClose')
   swipeToCloseChanged(enable: boolean) {
     if (this.gesture) {
@@ -135,6 +205,83 @@ export class Modal implements ComponentInterface, OverlayInterface {
     prepareOverlay(this.el);
   }
 
+  componentWillLoad() {
+    /**
+     * If user has custom ID set then we should
+     * not assign the default incrementing ID.
+     */
+    this.modalId = (this.el.hasAttribute('id')) ? this.el.getAttribute('id')! : `ion-modal-${this.modalIndex}`;
+  }
+
+  componentDidLoad() {
+    /**
+     * If modal was rendered with isOpen="true"
+     * then we should open modal immediately.
+     */
+    if (this.isOpen === true) {
+      raf(() => this.present());
+    }
+
+    this.configureTriggerInteraction();
+  }
+
+  private configureTriggerInteraction = () => {
+    const { trigger, el, destroyTriggerInteraction } = this;
+
+    if (destroyTriggerInteraction) {
+      destroyTriggerInteraction();
+    }
+
+    const triggerEl = (trigger !== undefined) ? document.getElementById(trigger) : null;
+    if (!triggerEl) { return; }
+
+    const configureTriggerInteraction = (triggerEl: HTMLElement, modalEl: HTMLIonModalElement) => {
+      const openModal = () => {
+        modalEl.present();
+      }
+      triggerEl.addEventListener('click', openModal);
+
+      return () => {
+        triggerEl.removeEventListener('click', openModal);
+      }
+    }
+
+    this.destroyTriggerInteraction = configureTriggerInteraction(triggerEl, el);
+  }
+
+  /**
+   * Determines whether or not an overlay
+   * is being used inline or via a controller/JS
+   * and returns the correct delegate.
+   * By default, subsequent calls to getDelegate
+   * will use a cached version of the delegate.
+   * This is useful for calling dismiss after
+   * present so that the correct delegate is given.
+   */
+  private getDelegate(force = false) {
+    if (this.workingDelegate && !force) {
+      return {
+        delegate: this.workingDelegate,
+        inline: this.inline
+      }
+    }
+
+    /**
+     * If using overlay inline
+     * we potentially need to use the coreDelegate
+     * so that this works in vanilla JS apps.
+     * If a user has already placed the overlay
+     * as a direct descendant of ion-app or
+     * the body, then we can assume that
+     * the overlay is already in the correct place.
+     */
+    const parentEl = this.el.parentNode as HTMLElement | null;
+    const inline = this.inline = parentEl !== null && parentEl.tagName !== 'ION-APP' && parentEl.tagName !== 'BODY';
+    const delegate = this.workingDelegate = (inline) ? this.delegate || this.coreDelegate : this.delegate
+
+    return { inline, delegate }
+  }
+
   /**
    * Present the modal overlay after it has been created.
    */
@@ -143,20 +290,36 @@ export class Modal implements ComponentInterface, OverlayInterface {
     if (this.presented) {
       return;
     }
-    const container = this.el.querySelector(`.modal-wrapper`);
-    if (!container) {
-      throw new Error('container is undefined');
+
+    /**
+     * When using an inline modal
+     * and dismissing a modal it is possible to
+     * quickly present the modal while it is
+     * dismissing. We need to await any current
+     * transition to allow the dismiss to finish
+     * before presenting again.
+     */
+    if (this.currentTransition !== undefined) {
+      await this.currentTransition;
     }
-    const componentProps = {
+
+    const data = {
       ...this.componentProps,
       modal: this.el
     };
-    this.usersElement = await attachComponent(this.delegate, container, this.component, ['ion-page'], componentProps);
+
+    const { inline, delegate } = this.getDelegate(true);
+    this.usersElement = await attachComponent(delegate, this.el, this.component, ['ion-page'], data, inline);
+
     await deepReady(this.usersElement);
 
     writeTask(() => this.el.classList.add('show-modal'));
 
-    await present(this, 'modalEnter', iosEnterAnimation, mdEnterAnimation, this.presentingElement);
+    this.currentTransition = present(this, 'modalEnter', iosEnterAnimation, mdEnterAnimation, this.presentingElement);
+
+    await this.currentTransition;
+
+    this.currentTransition = undefined;
 
     if (this.swipeToClose) {
       this.initSwipeToClose();
@@ -207,11 +370,27 @@ export class Modal implements ComponentInterface, OverlayInterface {
       return false;
     }
 
+    /**
+     * When using an inline modal
+     * and presenting a modal it is possible to
+     * quickly dismiss the modal while it is
+     * presenting. We need to await any current
+     * transition to allow the present to finish
+     * before dismissing again.
+     */
+    if (this.currentTransition !== undefined) {
+      await this.currentTransition;
+    }
+
     const enteringAnimation = activeAnimations.get(this) || [];
-    const dismissed = await dismiss(this, data, role, 'modalLeave', iosLeaveAnimation, mdLeaveAnimation, this.presentingElement);
+
+    this.currentTransition = dismiss(this, data, role, 'modalLeave', iosLeaveAnimation, mdLeaveAnimation, this.presentingElement);
+
+    const dismissed = await this.currentTransition;
 
     if (dismissed) {
-      await detachComponent(this.delegate, this.usersElement);
+      const { delegate } = this.getDelegate();
+      await detachComponent(delegate, this.usersElement);
       if (this.animation) {
         this.animation.destroy();
       }
@@ -220,6 +399,7 @@ export class Modal implements ComponentInterface, OverlayInterface {
     }
 
     this.animation = undefined;
+    this.currentTransition = undefined;
 
     return dismissed;
   }
@@ -266,6 +446,7 @@ export class Modal implements ComponentInterface, OverlayInterface {
 
   render() {
     const mode = getIonMode(this);
+    const { presented, modalId } = this;
 
     return (
       <Host
@@ -275,8 +456,11 @@ export class Modal implements ComponentInterface, OverlayInterface {
         class={{
           [mode]: true,
           [`modal-card`]: this.presentingElement !== undefined && mode === 'ios',
+          'overlay-hidden': true,
+          'modal-interactive': presented,
           ...getClassMap(this.cssClass)
         }}
+        id={modalId}
         style={{
           zIndex: `${20000 + this.overlayIndex}`,
         }}
@@ -287,19 +471,18 @@ export class Modal implements ComponentInterface, OverlayInterface {
         onIonModalWillDismiss={this.onLifecycle}
         onIonModalDidDismiss={this.onLifecycle}
       >
-        <ion-backdrop visible={this.showBackdrop} tappable={this.backdropDismiss}/>
+        <ion-backdrop visible={this.showBackdrop} tappable={this.backdropDismiss} part="backdrop" />
 
         {mode === 'ios' && <div class="modal-shadow"></div>}
-
-        <div tabindex="0"></div>
 
         <div
           role="dialog"
           class="modal-wrapper ion-overlay-wrapper"
+          part="content"
         >
+          <slot></slot>
         </div>
 
-        <div tabindex="0"></div>
       </Host>
     );
   }
@@ -311,3 +494,5 @@ const LIFECYCLE_MAP: any = {
   'ionModalWillDismiss': 'ionViewWillLeave',
   'ionModalDidDismiss': 'ionViewDidLeave',
 };
+
+let modalIds = 0;

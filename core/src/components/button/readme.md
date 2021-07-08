@@ -365,6 +365,10 @@ export default defineComponent({
 
 ## Dependencies
 
+### Used by
+
+ - [ion-datetime](../datetime)
+
 ### Depends on
 
 - [ion-ripple-effect](../ripple-effect)
@@ -373,6 +377,7 @@ export default defineComponent({
 ```mermaid
 graph TD;
   ion-button --> ion-ripple-effect
+  ion-datetime --> ion-button
   style ion-button fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

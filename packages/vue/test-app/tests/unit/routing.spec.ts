@@ -191,10 +191,11 @@ describe('Routing', () => {
   // Verifies fix for https://github.com/ionic-team/ionic-framework/issues/22492
   it('should show correct view when replacing', async () => {
     const Tabs = {
-      components: { IonPage, IonTabs, IonTabBar, IonTabButton, IonLabel },
+      components: { IonPage, IonTabs, IonTabBar, IonTabButton, IonLabel, IonRouterOutlet },
       template: `
         <ion-page>
           <ion-tabs>
+            <ion-router-outlet></ion-router-outlet>
             <ion-tab-bar slot="top">
               <ion-tab-button tab="tab1" href="/tabs/tab1">
                 <ion-label>Tab 1</ion-label>
@@ -391,6 +392,8 @@ describe('Routing', () => {
     router.push('/page/2');
     await waitForRouter();
 
-    expect(page.props()).toEqual({ id: '2' });
+    const pageAgain = wrapper.findAllComponents(Page);
+    expect(pageAgain[0].props()).toEqual({ id: '1' });
+    expect(pageAgain[1].props()).toEqual({ id: '2' });
   });
 });

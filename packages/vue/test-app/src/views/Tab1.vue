@@ -17,7 +17,7 @@
 
       <ExploreContainer name="Tab 1 page" />
 
-      <ion-item button router-link="/tabs/tab1/child-one" id="child-one">
+      <ion-item button router-link="/tabs/tab1/childone" id="child-one">
         <ion-label>Go to Tab 1 Child 1</ion-label>
       </ion-item>
       <ion-item button router-link="/nested" id="nested">

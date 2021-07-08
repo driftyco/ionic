@@ -82,6 +82,41 @@ const spinners = {
 
   'lines': {
     dur: 1000,
+    lines: 8,
+    fn: (dur: number, index: number, total: number) => {
+      const transform = `rotate(${ (360 / total) * index + (index < (total / 2) ? 180 : -180) }deg)`;
+      const animationDelay = `${ (dur * index / total) - dur }ms`;
+
+      return {
+        y1: 14,
+        y2: 26,
+        style: {
+          'transform': transform,
+          'animation-delay': animationDelay,
+        }
+      };
+    }
+  },
+
+  'lines-small': {
+    dur: 1000,
+    lines: 8,
+    fn: (dur: number, index: number, total: number) => {
+      const transform = `rotate(${(360 / total) * index + (index < (total / 2) ? 180 : -180)}deg)`;
+      const animationDelay = `${ (dur * index / total) - dur }ms`;
+      return {
+        y1: 12,
+        y2: 20,
+        style: {
+          'transform': transform,
+          'animation-delay': animationDelay,
+        }
+      };
+    }
+  },
+
+  'lines-sharp': {
+    dur: 1000,
     lines: 12,
     fn: (dur: number, index: number, total: number) => {
       const transform = `rotate(${ 30 * index + (index < 6 ? 180 : -180) }deg)`;
@@ -98,7 +133,7 @@ const spinners = {
     }
   },
 
-  'lines-small': {
+  'lines-sharp-small': {
     dur: 1000,
     lines: 12,
     fn: (dur: number, index: number, total: number) => {

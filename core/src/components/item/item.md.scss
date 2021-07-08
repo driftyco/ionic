@@ -18,7 +18,6 @@
   --color: #{$item-md-color};
   --transition: opacity 15ms linear, background-color 15ms linear;
   --padding-start: #{$item-md-padding-start};
-  --border-color: #{$item-md-border-bottom-color};
   --inner-padding-end: #{$item-md-padding-end};
   --inner-border-width: #{0 0 $item-md-border-bottom-width 0};
   --highlight-height: 2px;
@@ -42,6 +41,9 @@
   }
 }
 
+:host(.item-has-focus) .item-native {
+  caret-color: var(--highlight-color-focused);
+}
 
 // Material Design Item Lines
 // --------------------------------------------------
@@ -83,6 +85,24 @@
   --show-inset-highlight: 0;
 }
 
+/**
+ * When `fill="outline"`, reposition the highlight element to cover everything but the `.item-bottom`
+ */
+:host(.item-fill-outline) .item-highlight {
+  --position-offset: calc(-1 * var(--border-width));
+
+  @include position(var(--position-offset), null, null, var(--position-offset));
+
+  width: calc(100% + 2 * var(--border-width));
+  height: calc(100% + 2 * var(--border-width));
+
+  transition: none;
+}
+
+:host(.item-fill-outline.ion-focused) .item-native,
+:host(.item-fill-outline.item-has-focus) .item-native {
+  border-color: transparent;
+}
 
 // Material Design Multi-line Item
 // --------------------------------------------------
@@ -107,6 +127,13 @@
   @include margin-horizontal($item-md-end-slot-margin-start, $item-md-end-slot-margin-end);
 }
 
+:host(.item-fill-solid) ::slotted([slot="start"]),
+:host(.item-fill-solid) ::slotted([slot="end"]),
+:host(.item-fill-outline) ::slotted([slot="start"]),
+:host(.item-fill-outline) ::slotted([slot="end"]) {
+  align-self: center;
+}
+
 
 // Material Design Slotted Icon
 // --------------------------------------------------
@@ -117,7 +144,7 @@
   font-size: $item-md-icon-slot-font-size;
 }
 
-:host(.ion-color) ::slotted(ion-icon) {
+:host(.ion-color:not(.item-fill-solid):not(.item-fill-outline)) ::slotted(ion-icon) {
   color: current-color(contrast);
 }
 
@@ -131,6 +158,11 @@
 
 ::slotted(ion-icon[slot="end"]) {
   @include margin-horizontal($item-md-icon-end-slot-margin-start, $item-md-icon-end-slot-margin-end);
+}
+
+:host(.item-fill-solid) ::slotted(ion-icon[slot="start"]),
+:host(.item-fill-outline) ::slotted(ion-icon[slot="start"]) {
+  @include margin-horizontal($item-md-icon-start-slot-margin-start, $item-md-input-icon-start-slot-margin-end);
 }
 
 
@@ -154,7 +186,7 @@
   font-size: $item-md-note-slot-font-size;
 }
 
-::slotted(ion-note[slot]) {
+::slotted(ion-note[slot]:not([slot="helper"]):not([slot="error"])) {
   @include padding($item-md-note-slot-padding-top, $item-md-note-slot-padding-end, $item-md-note-slot-padding-bottom, $item-md-note-slot-padding-start);
 }
 
@@ -277,6 +309,8 @@
   --padding-start: 0;
 }
 
+:host(.ion-focused:not(.ion-color)) ::slotted(.label-stacked),
+:host(.ion-focused:not(.ion-color)) ::slotted(.label-floating),
 :host(.item-has-focus:not(.ion-color)) ::slotted(.label-stacked),
 :host(.item-has-focus:not(.ion-color)) ::slotted(.label-floating) {
   color: $label-md-text-color-focused;
@@ -291,4 +325,109 @@
 
 :host(.item-label-color) {
   --highlight-color-focused: #{current-color(base)};
+}
+
+:host(.item-fill-solid.ion-color),
+:host(.item-fill-outline.ion-color) {
+  --highlight-background: #{current-color(base)};
+  --highlight-color-focused: #{current-color(base)};
+}
+
+// Material Design Item: Fill Solid
+// --------------------------------------------------
+
+:host(.item-fill-solid) {
+  --background: #{$item-md-input-fill-solid-background-color};
+  --background-hover: #{$item-md-input-fill-solid-background-color-hover};
+  --background-focused: #{$item-md-input-fill-solid-background-color-focus};
+  --border-width: 0 0 #{$item-md-border-bottom-width} 0;
+  --inner-border-width: 0;
+
+  @include border-radius(4px, 4px, 0, 0);
+}
+
+:host(.item-fill-solid) .item-native {
+  --border-color: #{$item-md-input-fill-border-color};
+}
+
+:host(.item-fill-solid.ion-focused) .item-native,
+:host(.item-fill-solid.item-has-focus) .item-native {
+  --background: var(--background-focused);
+
+  border-bottom-color: var(--highlight-color-focused);
+}
+
+:host(.item-fill-solid.item-shape-round) {
+  @include border-radius(16px, 16px, 0, 0);
+}
+
+@media (any-hover: hover) {
+  :host(.item-fill-solid:hover) .item-native {
+    --background: var(--background-hover);
+    --border-color: #{$item-md-input-fill-border-color-hover};
+  }
+}
+
+// Material Design Item: Fill Outline
+// --------------------------------------------------
+
+:host(.item-fill-outline) {
+  --ripple-color: transparent;
+  --background-focused: transparent;
+  --background-hover: transparent;
+  --border-color: #{$item-md-input-fill-border-color};
+  --border-width: #{$item-md-border-bottom-width};
+
+  border: none;
+
+  overflow: visible;
+}
+
+:host(.item-fill-outline) .item-native {
+  --native-padding-left: 16px;
+
+  @include border-radius(4px);
+}
+
+:host(.item-fill-outline.item-shape-round) .item-native {
+  --inner-padding-start: 16px;
+
+  @include border-radius(28px);
+}
+
+:host(.item-fill-outline.item-shape-round) .item-bottom {
+  @include padding-horizontal(32px, null);
+}
+
+:host(.item-fill-outline.item-label-floating.ion-focused) .item-native ::slotted(ion-input:not(:first-child)),
+:host(.item-fill-outline.item-label-floating.ion-focused) .item-native ::slotted(ion-textarea:not(:first-child)),
+:host(.item-fill-outline.item-label-floating.item-has-focus) .item-native ::slotted(ion-input:not(:first-child)),
+:host(.item-fill-outline.item-label-floating.item-has-focus) .item-native ::slotted(ion-textarea:not(:first-child)),
+:host(.item-fill-outline.item-label-floating.item-has-value) .item-native ::slotted(ion-input:not(:first-child)),
+:host(.item-fill-outline.item-label-floating.item-has-value) .item-native ::slotted(ion-textarea:not(:first-child)) {
+  transform: translateY(-25%);
+}
+
+@media (any-hover: hover) {
+  :host(.item-fill-outline:hover) .item-native {
+    --border-color: #{$item-md-input-fill-border-color-hover};
+  }
+}
+
+
+// Material Design Item: Invalid
+// --------------------------------------------------
+
+:host(.item-fill-outline.ion-invalid:not(.ion-color)) .item-native,
+:host(.item-fill-solid.ion-invalid:not(.ion-color)) .item-native {
+  caret-color: var(--highlight-color-invalid);
+}
+
+:host(.item-fill-outline.ion-invalid),
+:host(.item-fill-outline.ion-invalid) .item-native,
+:host(.item-fill-outline.ion-invalid:not(.ion-color)) .item-highlight,
+:host(.item-fill-solid.ion-invalid:not(.ion-color)),
+:host(.item-fill-solid.ion-invalid:not(.ion-color)) .item-native,
+:host(.item-fill-solid.ion-invalid:not(.ion-color)) .item-highlight {
+  border-color: var(--highlight-color-invalid);
 }

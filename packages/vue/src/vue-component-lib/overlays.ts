@@ -1,71 +1,20 @@
-import { defineComponent, h, ref, VNode, getCurrentInstance, ComponentInternalInstance } from 'vue';
-import { needsKebabCase } from '../utils';
+import { defineComponent, h, ref, VNode } from 'vue';
+import { defineCustomElement } from '../utils';
 
 export interface OverlayProps {
   isOpen?: boolean;
 }
 
-/**
- * Make sure we only
- * warn user about each
- * event at most once.
- */
-let willPresentWarn = false;
-let didPresentWarn = false;
-let willDismissWarn = false;
-let didDismissWarn = false;
-
-const checkForDeprecatedListeners = (instance: ComponentInternalInstance) => {
-  const props = instance.vnode.props;
-  if (!willPresentWarn && props.onOnWillPresent !== undefined) {
-    console.warn('[@ionic/vue Deprecation]: @onWillPresent has been deprecated in favor of @willPresent and will be removed in Ionic Vue v6.0.');
-    willPresentWarn = true;
-  }
-
-  if (!didPresentWarn && props.onOnDidPresent !== undefined) {
-    console.warn('[@ionic/vue Deprecation]: @onDidPresent has been deprecated in favor of @didPresent and will be removed in Ionic Vue v6.0.');
-    didPresentWarn = true;
-  }
-
-  if (!willDismissWarn && props.onOnWillDismiss !== undefined) {
-    console.warn('[@ionic/vue Deprecation]: @onWillDismiss has been deprecated in favor of @willDismiss and will be removed in Ionic Vue v6.0.');
-    willDismissWarn = true;
-  }
-
-  if (!didDismissWarn && props.onOnDidDismiss !== undefined) {
-    console.warn('[@ionic/vue Deprecation]: @onDidDismiss has been deprecated in favor of @didDismiss and will be removed in Ionic Vue v6.0.');
-    didDismissWarn = true;
-  }
-}
-
-export const defineOverlayContainer = <Props extends object>(name: string, componentProps: string[] = [], controller: any) => {
-  /**
-   * Vue 3.0.6 fixed a bug where events on custom elements
-   * were always converted to lower case, so "ionRefresh"
-   * became "ionrefresh". We need to account for the old
-   * issue as well as the new behavior where "ionRefresh"
-   * is converted to "ion-refresh".
-   * See https://github.com/vuejs/vue-next/pull/2847
-   */
-  const eventPrefix = name.toLowerCase().split('-').join('');
-  const lowerCaseListeners = [
-    { componentEv: `${eventPrefix}willpresent`, frameworkEv: 'willPresent', deprecatedEv: 'onWillPresent' },
-    { componentEv: `${eventPrefix}didpresent`, frameworkEv: 'didPresent', deprecatedEv: 'onDidPresent' },
-    { componentEv: `${eventPrefix}willdismiss`, frameworkEv: 'willDismiss', deprecatedEv: 'onWillDismiss' },
-    { componentEv: `${eventPrefix}diddismiss`, frameworkEv: 'didDismiss', deprecatedEv: 'onDidDismiss' },
-  ];
-  const kebabCaseListeners = [
-    { componentEv: `${name}-will-present`, frameworkEv: 'willPresent', deprecatedEv: 'onWillPresent' },
-    { componentEv: `${name}-did-present`, frameworkEv: 'didPresent', deprecatedEv: 'onDidPresent' },
-    { componentEv: `${name}-will-dismiss`, frameworkEv: 'willDismiss', deprecatedEv: 'onWillDismiss'  },
-    { componentEv: `${name}-did-dismiss`, frameworkEv: 'didDismiss', deprecatedEv: 'onDidDismiss' },
+export const defineOverlayContainer = <Props extends object>(name: string, customElement: any, componentProps: string[] = [], controller: any) => {
+  const eventListeners = [
+    { componentEv: `${name}-will-present`, frameworkEv: 'willPresent' },
+    { componentEv: `${name}-did-present`, frameworkEv: 'didPresent' },
+    { componentEv: `${name}-will-dismiss`, frameworkEv: 'willDismiss' },
+    { componentEv: `${name}-did-dismiss`, frameworkEv: 'didDismiss' },
   ];
 
   const Container = defineComponent<Props & OverlayProps>((props, { slots, emit }) => {
-    const instance = getCurrentInstance();
-    const adjustedEventListeners = needsKebabCase(instance.appContext.app.version) ? kebabCaseListeners : lowerCaseListeners;
-
-    checkForDeprecatedListeners(instance);
+    defineCustomElement(name, customElement);
 
     const overlay = ref();
     const onVnodeMounted = async () => {
@@ -121,10 +70,8 @@ export const defineOverlayContainer = <Props extends object>(name: string, compo
       }
 
       /**
-       * When supporting both the "on" prefixed and non-"on" prefixed
-       * events, there seems to be an issue where the handlers are
-       * getting passed as props. This should be resolved when we drop
-       * support for the "on" prefixed listeners.
+       * These are getting passed as props.
+       * Potentially a Vue bug with Web Components?
        */
       const restOfProps = { ...(props as any) };
       delete restOfProps.onWillPresent;
@@ -140,10 +87,9 @@ export const defineOverlayContainer = <Props extends object>(name: string, compo
 
       overlay.value = await overlay.value;
 
-      adjustedEventListeners.forEach(eventListener => {
+      eventListeners.forEach(eventListener => {
         overlay.value.addEventListener(eventListener.componentEv, () => {
           emit(eventListener.frameworkEv);
-          emit(eventListener.deprecatedEv);
         });
       })
 
@@ -166,10 +112,7 @@ export const defineOverlayContainer = <Props extends object>(name: string, compo
 
   Container.displayName = name;
   Container.props = [...componentProps, 'isOpen'];
-  Container.emits = [
-    'willPresent', 'didPresent', 'willDismiss', 'didDismiss',
-    'onWillPresent', 'onDidPresent', 'onWillDismiss', 'onDidDismiss'
-  ];
+  Container.emits = ['willPresent', 'didPresent', 'willDismiss', 'didDismiss'];
 
   return Container;
 }

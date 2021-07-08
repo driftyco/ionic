@@ -19,7 +19,7 @@
   .header-translucent-ios ion-toolbar {
     --opacity: .8;
   }
-  
+
   /**
    * Disable the saturation otherwise it distorts the content
    * background color when large header is not collapsed
@@ -56,8 +56,12 @@
  */
 .header-collapse-condense ion-toolbar {
   --background: var(--ion-background-color, #fff);
-  
+
   z-index: 0;
+}
+
+.header-collapse-condense ion-toolbar:last-of-type {
+  --border-width: 0px;
 }
 
 .header-collapse-condense ion-toolbar ion-searchbar {

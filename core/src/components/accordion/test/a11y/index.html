@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <title>Accordion - a11y</title>
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <link href="../../../../../css/ionic.bundle.css" rel="stylesheet">
+    <link href="../../../../../scripts/testing/styles.css" rel="stylesheet">
+    <script src="../../../../../scripts/testing/scripts.js"></script>
+    <script type="module" src="../../../../../dist/ionic/ionic.esm.js"></script>
+  </head>
+
+  <body>
+    <ion-app>
+      <ion-content>
+        <h1>Accordion Group - a11y</h1>
+
+        <ion-accordion-group expand="inset">
+          <ion-accordion value="personal-information">
+            <ion-item slot="header">
+              <ion-label>Personal Information</ion-label>
+            </ion-item>
+
+            <ion-list slot="content">
+              <ion-item>
+                <ion-label>Name</ion-label>
+                <ion-input type="text"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label>Email</ion-label>
+                <ion-input type="email"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label>Phone</ion-label>
+                <ion-input type="tel"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label>Extension</ion-label>
+                <ion-input type="text"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label>Country</ion-label>
+                <ion-input type="text"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label>City/Province</ion-label>
+                <ion-input type="text"></ion-input>
+              </ion-item>
+            </ion-list>
+          </ion-accordion>
+
+          <ion-accordion value="billing-address">
+            <ion-item slot="header">
+              <ion-label>Billing Address</ion-label>
+            </ion-item>
+
+            <ion-list slot="content">
+              <ion-item>
+                <ion-label>Address 1</ion-label>
+                <ion-input type="text"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label>Address 2</ion-label>
+                <ion-input type="email"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label>City</ion-label>
+                <ion-input type="tel"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label>State</ion-label>
+                <ion-input type="text"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label>Zip Code</ion-label>
+                <ion-input type="text"></ion-input>
+              </ion-item>
+            </ion-list>
+          </ion-accordion>
+
+          <ion-accordion value="shipping-address">
+            <ion-item slot="header">
+              <ion-label>Shipping Address</ion-label>
+            </ion-item>
+
+            <ion-list slot="content">
+              <ion-item>
+                <ion-label>Address 1</ion-label>
+                <ion-input type="text"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label>Address 2</ion-label>
+                <ion-input type="email"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label>City</ion-label>
+                <ion-input type="tel"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label>State</ion-label>
+                <ion-input type="text"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label>Zip Code</ion-label>
+                <ion-input type="text"></ion-input>
+              </ion-item>
+            </ion-list>
+          </ion-accordion>
+        </ion-accordion-group>
+      </ion-content>
+    </ion-app>
+  </body>
+</html>

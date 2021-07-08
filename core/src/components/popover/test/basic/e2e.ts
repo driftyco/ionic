@@ -62,21 +62,21 @@ test('popover: custom class', async () => {
  */
 
 test('popover:rtl: basic', async () => {
-  await testPopover(DIRECTORY, '#basic-popover', true);
+  await testPopover(DIRECTORY, '#basic-popover', true, true);
 });
 
 test('popover:rtl: translucent', async () => {
-  await testPopover(DIRECTORY, '#translucent-popover', true);
+  await testPopover(DIRECTORY, '#translucent-popover', true, true);
 });
 
 test('popover:rtl: long list', async () => {
-  await testPopover(DIRECTORY, '#long-list-popover', true);
+  await testPopover(DIRECTORY, '#long-list-popover', true, true);
 });
 
 test('popover:rtl: no event', async () => {
-  await testPopover(DIRECTORY, '#no-event-popover', true);
+  await testPopover(DIRECTORY, '#no-event-popover', true, true);
 });
 
 test('popover:rtl: custom class', async () => {
-  await testPopover(DIRECTORY, '#custom-class-popover', true);
+  await testPopover(DIRECTORY, '#custom-class-popover', true, true);
 });

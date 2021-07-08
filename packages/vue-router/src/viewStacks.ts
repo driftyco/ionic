@@ -22,40 +22,16 @@ export const createViewStacks = (router: Router) => {
     viewItem.ionRoute = true;
   }
 
-  const findViewItemByRouteInfo = (routeInfo: RouteInfo, outletId?: number, useDeprecatedRouteSetup: boolean = false) => {
-    let viewItem = findViewItemByPath(routeInfo.pathname, outletId, false, useDeprecatedRouteSetup);
-
-    /**
-     * Given a route such as /path/:id,
-     * going from /page/1 to /home
-     * to /page/2 will cause the same
-     * view item from /page/1 to match
-     * for /page/2 so we need to make
-     * sure any params get updated.
-     * Not normally an issue for accessing
-     * the params via useRouter from vue-router,
-     * but when passing params as props not doing
-     * this would cause the old props to show up.
-     */
-    if (viewItem && viewItem.params !== routeInfo.params) {
-      /**
-       * Clear the props function result
-       * as the value may have changed due
-       * to different props.
-       */
-      delete viewItem.vueComponentData.propsFunctionResult;
-      viewItem.params = routeInfo.params;
-    }
-
-    return viewItem;
+  const findViewItemByRouteInfo = (routeInfo: RouteInfo, outletId?: number) => {
+    return findViewItemByPath(routeInfo.pathname, outletId, false);
   }
 
-  const findLeavingViewItemByRouteInfo = (routeInfo: RouteInfo, outletId?: number, mustBeIonRoute: boolean = true, useDeprecatedRouteSetup: boolean = false) => {
-    return findViewItemByPath(routeInfo.lastPathname, outletId, mustBeIonRoute, useDeprecatedRouteSetup);
+  const findLeavingViewItemByRouteInfo = (routeInfo: RouteInfo, outletId?: number, mustBeIonRoute: boolean = true) => {
+    return findViewItemByPath(routeInfo.lastPathname, outletId, mustBeIonRoute);
   }
 
-  const findViewItemByPathname = (pathname: string, outletId?: number, useDeprecatedRouteSetup: boolean = false) => {
-    return findViewItemByPath(pathname, outletId, false, useDeprecatedRouteSetup);
+  const findViewItemByPathname = (pathname: string, outletId?: number) => {
+    return findViewItemByPath(pathname, outletId, false);
   }
 
   const findViewItemInStack = (path: string, stack: ViewItem[]): ViewItem | undefined => {
@@ -68,7 +44,7 @@ export const createViewStacks = (router: Router) => {
     })
   }
 
-  const findViewItemByPath = (path: string, outletId?: number, mustBeIonRoute: boolean = false, useDeprecatedRouteSetup: boolean = false): ViewItem | undefined => {
+  const findViewItemByPath = (path: string, outletId?: number, mustBeIonRoute: boolean = false): ViewItem | undefined => {
     const matchView = (viewItem: ViewItem) => {
       if (
         (mustBeIonRoute && !viewItem.ionRoute) ||
@@ -78,15 +54,23 @@ export const createViewStacks = (router: Router) => {
       }
 
       const resolvedPath = router.resolve(path);
-      let findMatchedRoute;
-      // TODO: Remove in Ionic Vue v6.0
-      if (useDeprecatedRouteSetup) {
-        findMatchedRoute = resolvedPath.matched.find((matchedRoute: RouteLocationMatched) => matchedRoute === viewItem.matchedRoute && (path === viewItem.pathname || matchedRoute.path.includes(':')));
-      } else {
-        findMatchedRoute = resolvedPath.matched.find((matchedRoute: RouteLocationMatched) => matchedRoute === viewItem.matchedRoute);
-      }
+      const findMatchedRoute = resolvedPath.matched.find((matchedRoute: RouteLocationMatched) => matchedRoute === viewItem.matchedRoute);
 
       if (findMatchedRoute) {
+
+        /**
+         * /page/1 and /page/2 should not match
+         * to the same view item otherwise there will
+         * be not page transition and we will need to
+         * explicitly clear out parameters from page 1
+         * so the page 2 params are properly passed
+         * to the developer's app.
+         */
+        const hasParameter = findMatchedRoute.path.includes(':');
+        if (hasParameter && path !== viewItem.pathname) {
+          return false;
+        }
+
         return viewItem;
       }
 

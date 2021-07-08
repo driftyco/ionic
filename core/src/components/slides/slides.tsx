@@ -136,6 +136,10 @@ export class Slides implements ComponentInterface {
    */
   @Event() ionSlideTouchEnd!: EventEmitter<void>;
 
+  componentWillLoad() {
+    console.warn(`[Deprecation Warning]: ion-slides has been deprecated and will be removed in Ionic Framework v7.0. We recommend using the framework-specific integrations that Swiper.js provides, allowing for faster bug fixes and an improved developer experience. See https://ionicframework.com/docs/api/slides for more information including migration steps.`);
+  }
+
   connectedCallback() {
     // tslint:disable-next-line: strict-type-predicates
     if (typeof MutationObserver !== 'undefined') {

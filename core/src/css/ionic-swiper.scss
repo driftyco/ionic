@@ -1,0 +1,109 @@
+@import "../themes/ionic.skip-warns.scss";
+@import "../components/slides/slides.ios.vars.scss";
+
+// Slides
+// --------------------------------------------------
+
+.swiper-container {
+
+  // These values are the same for iOS and MD
+  // We just do not add a .md or .ios class beforehand
+  // so the styles are easier to override by the user.
+  --bullet-background: #{$slides-ios-bullet-background};
+  --bullet-background-active: #{$slides-ios-bullet-background-active};
+  --progress-bar-background: #{$slides-ios-progress-bar-background};
+  --progress-bar-background-active: #{$slides-ios-progress-bar-background-active};
+  --scroll-bar-background: #{$slides-ios-scroll-bar-background};
+  --scroll-bar-background-active: #{$slides-ios-scroll-bar-drag-background};
+  /**
+   * @prop --bullet-background: Background of the pagination bullets
+   * @prop --bullet-background-active: Background of the active pagination bullet
+   *
+   * @prop --progress-bar-background: Background of the pagination progress-bar
+   * @prop --progress-bar-background-active: Background of the active pagination progress-bar
+   *
+   * @prop --scroll-bar-background: Background of the pagination scroll-bar
+   * @prop --scroll-bar-background-active: Background of the active pagination scroll-bar
+   */
+  display: block;
+
+  user-select: none;
+}
+
+// Pagination Bullets
+// --------------------------------------------------
+
+.swiper-pagination-bullet {
+  background: var(--bullet-background);
+}
+
+.swiper-pagination-bullet-active {
+  background: var(--bullet-background-active);
+}
+
+
+// Pagination Progress Bar
+// --------------------------------------------------
+
+.swiper-pagination-progressbar {
+  background: var(--progress-bar-background);
+}
+
+.swiper-pagination-progressbar .swiper-pagination-progressbar-fill {
+  background: var(--progress-bar-background-active);
+}
+
+// Scrollbar
+// --------------------------------------------------
+
+.swiper-scrollbar {
+  background: var(--scroll-bar-background);
+}
+
+.swiper-scrollbar-drag {
+  background: var(--scroll-bar-background-active);
+}
+
+// Slide
+// --------------------------------------------------
+
+ion-slide {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+}
+
+.slide-zoom {
+  display: block;
+
+  width: 100%;
+
+  text-align: center;
+}
+
+.swiper-slide {
+
+  // Center slide text vertically
+  display: flex;
+  position: relative;
+
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  height: 100%;
+
+  font-size: 18px;
+
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.swiper-slide img {
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: 100%;
+}

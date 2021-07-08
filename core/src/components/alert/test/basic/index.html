@@ -42,6 +42,9 @@
         --min-width: 0;
         --max-width: 200px;
       }
+      #delete-button {
+        color: #eb445a;
+      }
     </style>
   </ion-app>
 
@@ -79,6 +82,7 @@
           'Open Modal',
           {
             text: 'Delete',
+            id: 'delete-button',
             role: 'destructive',
           },
           'Cancel',
@@ -185,6 +189,7 @@
             text: 'Cancel',
             role: 'cancel',
             cssClass: 'secondary',
+            id: 'cancel-id',
             handler: () => {
               console.log('Confirm Cancel')
             }

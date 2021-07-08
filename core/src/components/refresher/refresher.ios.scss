@@ -30,22 +30,27 @@ ion-refresher.refresher-native {
   display: block;
 
   z-index: 1;
-  
+
   ion-spinner {
     @include margin(0, auto, 0, auto);
   }
 }
 
-.refresher-native {
-  .refresher-refreshing ion-spinner {
-    --refreshing-rotation-duration: 2s;
-    display: none;
-    animation: var(--refreshing-rotation-duration) ease-out refresher-rotate forwards;
-  }
-  .refresher-refreshing {
-    display: none;
-    animation: 250ms linear refresher-pop forwards;
-  }
+.refresher-native .refresher-refreshing ion-spinner {
+  --refreshing-rotation-duration: 2s;
+  display: none;
+  animation: var(--refreshing-rotation-duration) ease-out refresher-rotate forwards;
+}
+.refresher-native .refresher-refreshing {
+  display: none;
+  animation: 250ms linear refresher-pop forwards;
+}
+
+.refresher-native ion-spinner {
+  width: #{$refresher-ios-native-spinner-width};
+  height: #{$refresher-ios-native-spinner-height};
+
+  color: #{$refresher-ios-native-spinner-color};
 }
 
 .refresher-native.refresher-refreshing,
@@ -65,6 +70,12 @@ ion-refresher.refresher-native {
   .refresher-refreshing ion-spinner {
     display: none;
   }
+}
+
+.refresher-native.refresher-completing ion-refresher-content .refresher-refreshing-icon {
+  transform: scale(0) rotate(180deg);
+
+  transition: 300ms;
 }
 
 @keyframes refresher-pop {

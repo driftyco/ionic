@@ -5,7 +5,7 @@
 // Material Design Modals
 // --------------------------------------------------
 
-:host:first-of-type {
+:host(:first-of-type) {
   --backdrop-opacity: var(--ion-backdrop-opacity, 0.32);
 }
 
@@ -14,7 +14,7 @@
     --border-radius: 2px;
   }
 
-  :host:first-of-type {
+  :host(:first-of-type) {
     --box-shadow: #{$modal-inset-box-shadow};
   }
 }

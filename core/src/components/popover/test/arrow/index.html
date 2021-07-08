@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Popover - Arrow</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <link href="../../../../../css/ionic.bundle.css" rel="stylesheet">
+  <link href="../../../../../scripts/testing/styles.css" rel="stylesheet">
+  <script src="../../../../../scripts/testing/scripts.js"></script>
+  <script nomodule src="../../../../../dist/ionic/ionic.js"></script>
+  <script type="module" src="../../../../../dist/ionic/ionic.esm.js"></script></head>
+  <style>
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-row-gap: 20px;
+    grid-column-gap: 20px;
+
+    padding: 200px;
+  }
+  .grid-item {
+    margin: 0 auto;
+  }
+  h2 {
+    font-size: 12px;
+    font-weight: normal;
+
+    color: #6f7378;
+
+    margin-top: 10px;
+    margin-left: 5px;
+  }
+  @media screen and (max-width: 800px) {
+    .grid {
+      grid-template-columns: 1fr;
+      padding: 0;
+    }
+  }
+  </style>
+</head>
+<body>
+  <ion-app mode="ios">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Popover - Arrow</ion-title>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content class="ion-padding" id="content">
+      <div class="grid">
+        <div class="grid-item">
+          <h2>Top</h2>
+          <ion-button id="top-trigger">Click to Open</ion-button>
+          <ion-popover
+            class="top-popover"
+            trigger="top-trigger"
+            side="top"
+            size="cover"
+          >
+            <ion-content class="ion-padding">
+              Hello World
+            </ion-content>
+          </ion-popover>
+        </div>
+        <div class="grid-item">
+          <h2>Right</h2>
+          <ion-button id="right-trigger">Click to Open</ion-button>
+          <ion-popover
+            class="right-popover"
+            trigger="right-trigger"
+            side="right"
+            size="cover"
+          >
+            <ion-content class="ion-padding">
+              Hello World
+            </ion-content>
+          </ion-popover>
+        </div>
+        <div class="grid-item">
+          <h2>Bottom</h2>
+          <ion-button id="bottom-trigger">Click to Open</ion-button>
+          <ion-popover
+            class="bottom-popover"
+            trigger="bottom-trigger"
+            side="bottom"
+            size="cover"
+          >
+            <ion-content class="ion-padding">
+              Hello World
+            </ion-content>
+          </ion-popover>
+        </div>
+        <div class="grid-item">
+          <h2>Left</h2>
+          <ion-button id="left-trigger">Click to Open</ion-button>
+          <ion-popover
+            class="left-popover"
+            trigger="left-trigger"
+            side="left"
+            size="cover"
+          >
+            <ion-content class="ion-padding">
+              Hello World
+            </ion-content>
+          </ion-popover>
+        </div>
+        <div class="grid-item">
+          <h2>Start</h2>
+          <ion-button id="start-trigger">Click to Open</ion-button>
+          <ion-popover
+            class="start-popover"
+            trigger="start-trigger"
+            side="start"
+            size="cover"
+          >
+            <ion-content class="ion-padding">
+              Hello World
+            </ion-content>
+          </ion-popover>
+        </div>
+        <div class="grid-item">
+          <h2>End</h2>
+          <ion-button id="end-trigger">Click to Open</ion-button>
+          <ion-popover
+            class="end-popover"
+            trigger="end-trigger"
+            side="end"
+            size="cover"
+          >
+            <ion-content class="ion-padding">
+              Hello World
+            </ion-content>
+          </ion-popover>
+        </div>
+      </div>
+    </ion-content>
+
+  </ion-app>
+
+  <script>
+  class ListPage extends HTMLElement {
+    constructor() {
+      super();
+
+      this.innerHTML = `
+      <ion-content class="ion-padding">
+        Hello
+      </ion-content>
+      `;
+    }
+  }
+
+  customElements.define('list-page', ListPage);
+  </script>
+</body>
+
+</html>

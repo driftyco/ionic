@@ -1,24 +1,67 @@
+const testController = (overlay, shadow = false) => {
+  const selector = `.${overlay}-controller`;
+  cy.get(`ion-radio#${overlay}`).click();
+  cy.get('ion-radio#controller').click();
+
+  cy.get('ion-button#present-overlay').click();
+  cy.get(selector).should('exist').should('be.visible');
+
+  if (shadow) {
+    cy.get(selector).shadow().find('ion-backdrop').click({ force: true });
+  } else {
+    cy.get(`${selector} ion-backdrop`).click({ force: true });
+  }
+
+  cy.get(selector).should('not.exist');
+}
+
+const testComponent = (overlay, shadow = false) => {
+  cy.get(`ion-radio#${overlay}`).click();
+  cy.get('ion-radio#component').click();
+
+  cy.get('ion-button#present-overlay').click();
+  cy.get(overlay).should('exist').should('be.visible');
+
+  if (shadow) {
+    cy.get(overlay).shadow().find('ion-backdrop').click({ force: true });
+  } else {
+    cy.get(`${overlay} ion-backdrop`).click({ force: true });
+
+    /**
+     * Overlay components that are shadow can be used inline
+     * so they should not be removed from the DOM. This test
+     * might need to be revisited if other overlay components
+     * are converted to shadow as well.
+     */
+    cy.get(overlay).should('not.exist');
+  }
+}
+
 describe('Overlays', () => {
   beforeEach(() => {
     cy.viewport(1000, 900);
     cy.visit('http://localhost:8080/overlays')
   })
 
-  const overlays = ['ion-alert', 'ion-action-sheet', 'ion-loading', 'ion-modal', 'ion-popover'];
+  it(`should open and close ion-alert via controller`, () => {
+    testController('ion-alert');
+  });
 
-  for (let overlay of overlays) {
-    it(`should open and close ${overlay} via controller`, () => {
-      cy.get(`ion-radio#${overlay}`).click();
-      cy.get('ion-radio#controller').click();
+  it(`should open and close ion-action-sheet via controller`, () => {
+    testController('ion-action-sheet');
+  });
 
-      cy.get('ion-button#present-overlay').click();
-      cy.get(overlay).should('exist').should('be.visible');
+  it(`should open and close ion-loading via controller`, () => {
+    testController('ion-loading');
+  });
 
-      cy.get(`${overlay} ion-backdrop`).click({ force: true });
+  it(`should open and close ion-modal via controller`, () => {
+    testController('ion-modal', true);
+  });
 
-      cy.get(overlay).should('not.exist');
-    });
-  }
+  it(`should open and close ion-popover via controller`, () => {
+    testController('ion-popover', true);
+  });
 
   it(`should open and close ion-toast via controller`, () => {
     cy.get(`ion-radio#ion-toast`).click();
@@ -27,24 +70,30 @@ describe('Overlays', () => {
     cy.get('ion-button#present-overlay').click();
     cy.get('ion-toast').should('exist');
 
-    cy.get('ion-toast').find('button').click();
+    cy.get('ion-toast').shadow().find('button').click();
 
     cy.get('ion-toast').should('not.exist');
   });
 
-  for (let overlay of overlays) {
-    it(`should open and close ${overlay} via component`, () => {
-      cy.get(`ion-radio#${overlay}`).click();
-      cy.get('ion-radio#component').click();
+  it(`should open and close ion-alert via component`, () => {
+    testComponent('ion-alert');
+  });
 
-      cy.get('ion-button#present-overlay').click();
-      cy.get(overlay).should('exist').should('be.visible');
+  it(`should open and close ion-action-sheet via component`, () => {
+    testComponent('ion-action-sheet');
+  });
 
-      cy.get(`${overlay} ion-backdrop`).click({ force: true });
+  it(`should open and close ion-loading via component`, () => {
+    testComponent('ion-loading');
+  });
 
-      cy.get(overlay).should('not.exist');
-    });
-  }
+  it(`should open and close ion-modal via component`, () => {
+    testComponent('ion-modal', true);
+  });
+
+  it(`should open and close ion-popover via component`, () => {
+    testComponent('ion-popover', true);
+  });
 
   it(`should open and close ion-toast via component`, () => {
     cy.get(`ion-radio#ion-toast`).click();
@@ -53,7 +102,7 @@ describe('Overlays', () => {
     cy.get('ion-button#present-overlay').click();
     cy.get('ion-toast').should('exist');
 
-    cy.get('ion-toast').find('button').click();
+    cy.get('ion-toast').shadow().find('button').click();
 
     cy.get('ion-toast').should('not.exist');
   });
@@ -83,9 +132,9 @@ describe('Overlays', () => {
     cy.get('ion-radio#controller').click();
 
     cy.get('ion-button#present-overlay').click();
-    cy.get('ion-popover').should('exist');
+    cy.get('ion-popover.ion-popover-controller').should('exist');
 
-    cy.get('ion-popover ion-content').should('have.text', 'Custom Title');
+    cy.get('ion-popover.ion-popover-controller ion-content').should('have.text', 'Custom Title');
   });
 
   it('should pass props to popover via component', () => {
@@ -95,7 +144,7 @@ describe('Overlays', () => {
     cy.get('ion-button#present-overlay').click();
     cy.get('ion-popover').should('exist');
 
-    cy.get('ion-popover ion-content').should('have.text', 'Custom Title');
+    cy.get('ion-popover.popover-inline ion-content').should('have.text', 'Custom Title');
   });
 
   it('should only open one instance at a time when props change quickly on component', () => {

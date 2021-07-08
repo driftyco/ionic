@@ -1,6 +1,6 @@
 {
   "name": "@ionic/angular",
-  "version": "5.6.11",
+  "version": "6.0.0-beta.1",
   "description": "Angular specific wrappers for @ionic/core",
   "keywords": [
     "ionic",
@@ -42,7 +42,7 @@
     "validate": "npm i && npm run lint && npm run test && npm run build"
   },
   "dependencies": {
-    "@ionic/core": "5.6.11",
+    "@ionic/core": "6.0.0-beta.1",
     "tslib": "^1.9.3"
   },
   "peerDependencies": {

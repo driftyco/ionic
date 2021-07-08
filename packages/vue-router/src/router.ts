@@ -2,7 +2,8 @@ import {
   parseQuery,
   Router,
   RouteLocationNormalized,
-  NavigationFailure
+  NavigationFailure,
+  RouteLocationRaw
 } from 'vue-router';
 import { createLocationHistory } from './locationHistory';
 import { generateId } from './utils';
@@ -115,13 +116,8 @@ export const createIonRouter = (opts: IonicVueRouterOptions, router: Router) => 
     }
   }
 
-  const handleNavigate = (path: string, routerAction?: RouteAction, routerDirection?: RouteDirection, routerAnimation?: AnimationBuilder, tab?: string) => {
-    incomingRouteParams = {
-      routerAction,
-      routerDirection,
-      routerAnimation,
-      tab
-    }
+  const handleNavigate = (path: RouteLocationRaw, routerAction?: RouteAction, routerDirection?: RouteDirection, routerAnimation?: AnimationBuilder, tab?: string) => {
+    setIncomingRouteParams(routerAction, routerDirection, routerAnimation, tab);
 
     if (routerAction === 'push') {
       router.push(path);
@@ -247,11 +243,7 @@ export const createIonRouter = (opts: IonicVueRouterOptions, router: Router) => 
   const navigate = (navigationOptions: ExternalNavigationOptions) => {
     const { routerAnimation, routerDirection, routerLink } = navigationOptions;
 
-    incomingRouteParams = {
-      routerAnimation,
-      routerDirection: routerDirection || 'forward',
-      routerAction: 'push'
-    }
+    setIncomingRouteParams('push', routerDirection, routerAnimation);
 
     router.push(routerLink);
   }
@@ -313,7 +305,26 @@ export const createIonRouter = (opts: IonicVueRouterOptions, router: Router) => 
     historyChangeListeners.push(cb);
   }
 
+  const setIncomingRouteParams = (routerAction: RouteAction = 'push', routerDirection: RouteDirection = 'forward', routerAnimation?: AnimationBuilder, tab?: string) => {
+    incomingRouteParams = {
+      routerAction,
+      routerDirection,
+      routerAnimation,
+      tab
+    };
+  }
+
+  const goBack = (routerAnimation?: AnimationBuilder) => {
+    setIncomingRouteParams('pop', 'back', routerAnimation);
+    router.back()
+  };
+  const goForward = (routerAnimation?: AnimationBuilder) => {
+    setIncomingRouteParams('push', 'forward', routerAnimation);
+    router.forward();
+  }
+
   return {
+    handleNavigate,
     handleNavigateBack,
     handleSetCurrentTab,
     getCurrentRouteInfo,
@@ -321,6 +332,8 @@ export const createIonRouter = (opts: IonicVueRouterOptions, router: Router) => 
     navigate,
     resetTab,
     changeTab,
-    registerHistoryChangeListener
+    registerHistoryChangeListener,
+    goBack,
+    goForward
   }
 }
