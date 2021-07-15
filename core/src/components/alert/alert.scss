@@ -102,6 +102,8 @@
 
   width: 100%;
 
+  min-height: $alert-input-min-height;
+
   border: 0;
 
   background: inherit;
@@ -201,6 +203,6 @@
 }
 
 textarea.alert-input {
-  min-height: $alert-input-min-height;
+  min-height: $alert-textarea-min-height;
   resize: none;
 }

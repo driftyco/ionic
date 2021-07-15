@@ -105,6 +105,10 @@
   &::-ms-clear {
     display: none;
   }
+
+  &[type="date"], &[type="time"] {
+    -webkit-appearance: textfield;
+  }
 }
 
 
