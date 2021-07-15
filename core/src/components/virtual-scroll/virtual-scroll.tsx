@@ -444,9 +444,9 @@ const VirtualProxy: FunctionalComponent<{dom: VirtualNode[]}> = ({ dom }, childr
     const node = dom[i];
     const vattrs = child.vattrs || {};
     let classes = vattrs.class || '';
-    classes += 'virtual-item ';
+    classes += ' virtual-item';
     if (!node.visible) {
-      classes += 'virtual-loading';
+      classes += ' virtual-loading';
     }
     return {
       ...child,
