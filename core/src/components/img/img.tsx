@@ -103,6 +103,7 @@ export class Img implements ComponentInterface {
         <img
           decoding="async"
           src={this.loadSrc}
+          draggable={this.el.hasAttribute('draggable') ? this.el.draggable : undefined}
           alt={this.alt}
           onLoad={this.onLoad}
           onError={this.loadError}
