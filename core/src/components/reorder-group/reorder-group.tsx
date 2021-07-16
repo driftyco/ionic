@@ -119,11 +119,14 @@ export class ReorderGroup implements ComponentInterface {
   private onStart(ev: GestureDetail) {
     ev.event.preventDefault();
 
+    const target = ev.event.target as HTMLElement;
+    const reorderEl = target.closest('ion-item') as HTMLElement;
     const item = this.selectedItemEl = ev.data;
     const heights = this.cachedHeights;
     heights.length = 0;
     const el = this.el;
-    const children: any = el.children;
+    const listEl = el.parentElement as HTMLElement;
+    const children: any = el.querySelectorAll('ion-item');
     if (!children || children.length === 0) {
       return;
     }
@@ -136,7 +139,7 @@ export class ReorderGroup implements ComponentInterface {
       child.$ionIndex = i;
     }
 
-    const box = el.getBoundingClientRect();
+    const box = listEl.getBoundingClientRect();
     this.containerTop = box.top;
     this.containerBottom = box.bottom;
 
@@ -152,7 +155,7 @@ export class ReorderGroup implements ComponentInterface {
     }
 
     this.lastToIndex = indexForItem(item);
-    this.selectedItemHeight = item.offsetHeight;
+    this.selectedItemHeight = item.offsetHeight || reorderEl.offsetHeight;
     this.state = ReorderGroupState.Active;
 
     item.classList.add(ITEM_REORDER_SELECTED);
@@ -270,6 +273,7 @@ export class ReorderGroup implements ComponentInterface {
       } else if (i < fromIndex && i >= toIndex) {
         value = `translateY(${itemHeight}px)`;
       }
+      style['display'] = 'block';
       style['transform'] = value;
     }
   }
@@ -308,7 +312,7 @@ export class ReorderGroup implements ComponentInterface {
 }
 
 const indexForItem = (element: any): number => {
-  return element['$ionIndex'];
+  return element['$ionIndex'] !== undefined ? element['$ionIndex'] : element.querySelector('ion-item')['$ionIndex'];
 };
 
 const findReorderItem = (node: HTMLElement | null, container: HTMLElement): HTMLElement | undefined => {
