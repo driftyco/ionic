@@ -1273,6 +1273,7 @@ ion-toast,prop,leaveAnimation,((baseEl: any, opts?: any) => Animation) | undefin
 ion-toast,prop,message,IonicSafeString | string | undefined,undefined,false,false
 ion-toast,prop,mode,"ios" | "md",undefined,false,false
 ion-toast,prop,position,"bottom" | "middle" | "top",'bottom',false,false
+ion-toast,prop,swipeGesture,"bottom" | "left" | "right" | "top" | "horizontal" | "vertical" | undefined,undefined,false,false
 ion-toast,prop,translucent,boolean,false,false,false
 ion-toast,method,dismiss,dismiss(data?: any, role?: string | undefined) => Promise<boolean>
 ion-toast,method,onDidDismiss,onDidDismiss<T = any>() => Promise<OverlayEventDetail<T>>

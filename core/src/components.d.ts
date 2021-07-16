@@ -2599,6 +2599,10 @@ export namespace Components {
          */
         "present": () => Promise<void>;
         /**
+          * The direction of the swipe gesture to dismiss the toast.
+         */
+        "swipeGesture": undefined | 'left' | 'right' | 'top' | 'bottom' | 'horizontal' | 'vertical';
+        /**
           * If `true`, the toast will be translucent. Only applies when the mode is `"ios"` and the device supports [`backdrop-filter`](https://developer.mozilla.org/en-US/docs/Web/CSS/backdrop-filter#Browser_compatibility).
          */
         "translucent": boolean;
@@ -5931,6 +5935,10 @@ declare namespace LocalJSX {
           * The position of the toast on the screen.
          */
         "position"?: 'top' | 'bottom' | 'middle';
+        /**
+          * The direction of the swipe gesture to dismiss the toast.
+         */
+        "swipeGesture"?: undefined | 'left' | 'right' | 'top' | 'bottom' | 'horizontal' | 'vertical';
         /**
           * If `true`, the toast will be translucent. Only applies when the mode is `"ios"` and the device supports [`backdrop-filter`](https://developer.mozilla.org/en-US/docs/Web/CSS/backdrop-filter#Browser_compatibility).
          */
