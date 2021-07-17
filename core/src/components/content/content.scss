@@ -139,6 +139,16 @@
   top: -1px;
 }
 
+.scroll-snap {
+  scroll-snap-type: y mandatory;
+  scroll-padding-top: calc(var(--padding-top) + var(--offset-top));
+}
+
+::slotted(ion-header),
+::slotted(.scroll-snap-content) {
+  scroll-snap-align: start;
+}
+
 :host(.content-sizing) {
   contain: none;
 }

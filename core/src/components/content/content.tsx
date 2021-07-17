@@ -135,6 +135,11 @@ export class Content implements ComponentInterface {
       : forceOverscroll;
   }
 
+  private shouldScrollSnap() {
+    return (getIonMode(this) === 'ios' || isPlatform('ios')) &&
+      !!this.el.querySelector('ion-header[collapse="condense"]')
+  }
+
   private resize() {
     if (this.fullscreen) {
       readTask(() => this.readDimensions());
@@ -335,7 +340,8 @@ export class Content implements ComponentInterface {
             'inner-scroll': true,
             'scroll-x': scrollX,
             'scroll-y': scrollY,
-            'overscroll': (scrollX || scrollY) && forceOverscroll
+            'overscroll': (scrollX || scrollY) && forceOverscroll,
+            'scroll-snap': this.shouldScrollSnap()
           }}
           ref={(el: HTMLElement) => this.scrollEl = el!}
           onScroll={(this.scrollEvents) ? (ev: UIEvent) => this.onScroll(ev) : undefined}
