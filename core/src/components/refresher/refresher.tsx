@@ -609,8 +609,9 @@ export class Refresher implements ComponentInterface {
     }
 
     if (deltaY > this.pullMax) {
-      // they pulled farther than the max, so kick off the refresh
-      this.beginRefresh();
+      // they pulled farther than the max, so end the related gesture, which will kick off the refresh
+      this.state = RefresherState.Ready;
+      this.gesture?.end();
       return;
     }
 

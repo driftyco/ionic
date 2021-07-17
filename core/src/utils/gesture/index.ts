@@ -231,6 +231,9 @@ export const createGesture = (config: GestureConfig): Gesture => {
     destroy() {
       gesture.destroy();
       pointerEvents.destroy();
+    },
+    end() {
+      pointerUp(undefined);
     }
   };
 };
@@ -305,6 +308,7 @@ export type GestureCallback = (detail: GestureDetail) => boolean | void;
 export interface Gesture {
   enable(enable?: boolean): void;
   destroy(): void;
+  end(): void;
 }
 
 export interface GestureConfig {
