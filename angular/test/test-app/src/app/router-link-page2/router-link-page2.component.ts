@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-router-link-page2',
@@ -6,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RouterLinkPage2Component implements OnInit {
 
-  constructor() { }
+  constructor(
+    private navCtrl: NavController,
+  ) { }
 
   ngOnInit() {
+  }
+
+  pop(deep) {
+    this.navCtrl.pop(deep);
   }
 
 }
