@@ -1819,6 +1819,10 @@ export namespace Components {
           * Time it takes the refresher to to snap back to the `refreshing` state. Does not apply when the refresher content uses a spinner, enabling the native refresher.
          */
         "snapbackDuration": string;
+        /**
+          * Call `start()` to manually start Refreshing
+         */
+        "start": () => Promise<void>;
     }
     interface IonRefresherContent {
         /**

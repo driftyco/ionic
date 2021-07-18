@@ -573,7 +573,7 @@ export class IonRange {
 }
 export declare interface IonRefresher extends Components.IonRefresher {
 }
-@ProxyCmp({ inputs: ["closeDuration", "disabled", "pullFactor", "pullMax", "pullMin", "snapbackDuration"], "methods": ["complete", "cancel", "getProgress"] })
+@ProxyCmp({ inputs: ["closeDuration", "disabled", "pullFactor", "pullMax", "pullMin", "snapbackDuration"], "methods": ["start", "complete", "cancel", "getProgress"] })
 @Component({ selector: "ion-refresher", changeDetection: ChangeDetectionStrategy.OnPush, template: "<ng-content></ng-content>", inputs: ["closeDuration", "disabled", "pullFactor", "pullMax", "pullMin", "snapbackDuration"] })
 export class IonRefresher {
   ionRefresh!: EventEmitter<CustomEvent>;

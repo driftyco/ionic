@@ -29,6 +29,8 @@
         </ion-refresher-content>
       </ion-refresher>
 
+      <ion-button id="start-btn">Start Manually</ion-button>
+
       <ion-list id="list"></ion-list>
     </ion-content>
   </ion-app>
@@ -42,6 +44,7 @@
     }
     const list = document.getElementById('list');
     const refresher = document.getElementById('refresher');
+    const startBtn = document.getElementById('start-btn');
     refresher.addEventListener('ionRefresh', async function () {
       console.log('Loading data...');
       const data = await getAsyncData();
@@ -49,6 +52,10 @@
       refresher.complete();
       render();
       console.log('Done');
+    });
+    startBtn.addEventListener('click', function () {
+      console.log('Manually start Refreshing');
+      refresher.start();
     });
     function render() {
       let html = '';

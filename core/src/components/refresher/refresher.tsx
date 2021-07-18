@@ -447,6 +447,18 @@ export class Refresher implements ComponentInterface {
   }
 
   /**
+   * Call `start()` to manually start Refreshing
+   */
+  @Method()
+  async start() {
+    if (this.canStart()) {
+      writeTask(() => {
+        this.beginRefresh();
+      });
+    }
+  }
+
+  /**
    * Call `complete()` when your async operation has completed.
    * For example, the `refreshing` state is while the app is performing
    * an asynchronous operation, such as receiving more data from an
