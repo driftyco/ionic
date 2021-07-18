@@ -242,3 +242,17 @@ ion-icon {
 :host(.in-toolbar:not(.in-toolbar-color)) {
   color: #{var(--ion-toolbar-color, var(--color))};
 }
+
+// Back Button Text: Truncate long Texts
+
+.button-text {
+  flex: 1;
+
+  min-width: 1px;
+
+  text-overflow: ellipsis;
+
+  white-space: nowrap;
+
+  overflow: hidden;
+}

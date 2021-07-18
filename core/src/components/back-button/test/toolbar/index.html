@@ -91,7 +91,21 @@
         </ion-buttons>
         <ion-title>Success</ion-title>
       </ion-toolbar>
+
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-back-button default-href="/" text="Go back with long description text" style="max-width: 50vw;">
+          </ion-back-button>
+        </ion-buttons>
+        <ion-buttons slot="end">
+          <ion-button color="secondary" fill="outline" class="ion-activated">
+            <ion-icon slot="icon-only" name="person-circle"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+
     </ion-content>
+
   </ion-app>
 
   <script>
