@@ -1,15 +1,17 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html dir="ltr">
 
 <head>
   <meta charset="UTF-8">
   <title>Button - Form</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <link href="../../../../../css/ionic.bundle.css" rel="stylesheet">
   <link href="../../../../../scripts/testing/styles.css" rel="stylesheet">
   <script src="../../../../../scripts/testing/scripts.js"></script>
   <script nomodule src="../../../../../dist/ionic/ionic.js"></script>
-  <script type="module" src="../../../../../dist/ionic/ionic.esm.js"></script></head>
+  <script type="module" src="../../../../../dist/ionic/ionic.esm.js"></script>
+</head>
 
 <body>
   <ion-app>
@@ -21,7 +23,7 @@
     </ion-header>
 
     <ion-content class="ion-padding ion-text-center" id="content" no-bounce>
-
+      <h3>Button Inside Form</h3>
       <form onsubmit="return validate(event)" action="http://httpbin.org/get" method="GET">
 
         <div>
@@ -33,6 +35,18 @@
         </ion-button>
 
       </form>
+      <h3 class="ion-margin-top">Button Outside Form</h3>
+      <form id="outside-form" onsubmit="return validate(event)" action="http://httpbin.org/get" method="GET">
+
+        <div>
+          <input name="name" required>
+        </div>
+
+      </form>
+
+      <ion-button type="submit" form="outside-form">
+        Submit Form
+      </ion-button>
 
     </ion-content>
 
