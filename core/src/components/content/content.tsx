@@ -241,6 +241,9 @@ export class Content implements ComponentInterface {
       return;
     }
 
+    // Stop possible Momentum Scroll
+    el.style.setProperty('--overflow', 'hidden');
+
     let resolve!: () => void;
     let startTime = 0;
     const promise = new Promise<void>(r => resolve = r);
@@ -270,6 +273,11 @@ export class Content implements ComponentInterface {
 
       } else {
         resolve();
+
+        // Reset the Overflow Property to Auto
+        setTimeout(() => {
+          el.style.setProperty('--overflow', 'auto');
+        }, 10);
       }
     };
     // chill out for a frame first
