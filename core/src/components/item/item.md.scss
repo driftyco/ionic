@@ -56,6 +56,10 @@
   --show-inset-highlight: 0;
 }
 
+:host(.item-interactive:not(.item-fill-outline):not(.item-fill-solid)) .item-highlight {
+  transform: translateY(#{$item-md-border-bottom-width});
+}
+
 // Full lines - apply the border to the item
 // Inset lines - apply the border to the item inner
 :host(.item-lines-full) {

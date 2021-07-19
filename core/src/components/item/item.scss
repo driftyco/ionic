@@ -221,7 +221,7 @@
 
   background: var(--background);
 
-  overflow: inherit;
+  overflow: visible;
   box-sizing: border-box;
 
   z-index: 1;
@@ -377,6 +377,8 @@ button, a {
   border-style: var(--border-style);
   border-color: var(--highlight-background);
 }
+
+//TODO: change transform to animation
 
 :host(.item-has-focus) .item-highlight {
   border-width: var(--full-highlight-height);
