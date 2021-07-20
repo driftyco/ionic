@@ -316,24 +316,24 @@ export class Alert implements ComponentInterface, OverlayInterface {
     forceUpdate(this);
   }
 
-  private buttonClick(button: AlertButton) {
+  private async buttonClick(button: AlertButton) {
     const role = button.role;
     const values = this.getValues();
     if (isCancel(role)) {
       return this.dismiss({ values }, role);
     }
-    const returnData = this.callButtonHandler(button, values);
+    const returnData = await this.callButtonHandler(button, values);
     if (returnData !== false) {
       return this.dismiss({ values, ...returnData }, button.role);
     }
-    return Promise.resolve(false);
+    return false;
   }
 
-  private callButtonHandler(button: AlertButton | undefined, data?: any) {
+  private async callButtonHandler(button: AlertButton | undefined, data?: any) {
     if (button && button.handler) {
       // a handler has been provided, execute it
       // pass the handler the values from the inputs
-      const returnData = safeCall(button.handler, data);
+      const returnData = await safeCall(button.handler, data);
       if (returnData === false) {
         // if the return value of the handler is false then do not dismiss
         return false;
