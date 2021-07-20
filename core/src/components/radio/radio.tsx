@@ -117,6 +117,7 @@ export class Radio implements ComponentInterface {
   @Watch('disabled')
   emitStyle() {
     this.ionStyle.emit({
+      'radio': true,
       'radio-checked': this.checked,
       'interactive-disabled': this.disabled,
     });
@@ -156,12 +157,14 @@ export class Radio implements ComponentInterface {
           'interactive': true,
           'radio-checked': checked,
           'radio-disabled': disabled,
+          'ion-activatable': true
         })}
       >
         <div class="radio-icon" part="container">
           <div class="radio-inner" part="mark" />
-          <div class="radio-ripple"></div>
         </div>
+        <div class="radio-focus"></div>
+        {mode === 'md' && <ion-ripple-effect></ion-ripple-effect>}
         <label htmlFor={inputId}>
           {labelText}
         </label>

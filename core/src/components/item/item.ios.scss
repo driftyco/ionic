@@ -118,6 +118,24 @@
   @include margin(0);
 }
 
+
+// iOS Slotted Radio
+// --------------------------------------------------
+
+::slotted(ion-radio[slot="start"]),
+::slotted(ion-radio[slot="end"]) {
+  @include margin(0);
+}
+
+::slotted(ion-radio[slot="start"]) {
+  @include margin(null, 14px, null, -4px);
+}
+
+::slotted(ion-radio[slot="end"]) {
+  @include margin(null, 5px, null, null);
+}
+
+
 // iOS Stacked / Floating Labels
 // --------------------------------------------------
 

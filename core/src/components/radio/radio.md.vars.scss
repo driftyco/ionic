@@ -13,6 +13,12 @@ $radio-md-background-color-focused:  ion-color(primary, tint) !default;
 /// @prop - Color of the unchecked radio
 $radio-md-color-off:                 $text-color-step-600 !default;
 
+/// @prop - Width of the radio
+$radio-md-width:                     40px !default;
+
+/// @prop - Height of the radio
+$radio-md-height:                    $radio-md-width !default;
+
 /// @prop - Width of the radio icon
 $radio-md-icon-width:                20px !default;
 
@@ -27,6 +33,9 @@ $radio-md-icon-border-style:         solid !default;
 
 /// @prop - Border radius of the radio icon
 $radio-md-icon-border-radius:        50% !default;
+
+/// @prop - Padding of the radio
+$radio-md-padding:                   ($radio-md-width - $radio-md-icon-width) / 2 !default;
 
 /// @prop - Transition duration of the radio
 $radio-md-transition-duration:       280ms !default;

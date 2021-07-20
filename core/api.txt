@@ -860,6 +860,7 @@ ion-radio,css-prop,--border-radius
 ion-radio,css-prop,--color
 ion-radio,css-prop,--color-checked
 ion-radio,css-prop,--inner-border-radius
+ion-radio,css-prop,--ripple-color
 ion-radio,part,container
 ion-radio,part,mark
 

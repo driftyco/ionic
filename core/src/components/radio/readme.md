@@ -216,6 +216,7 @@ export default defineComponent({
 | `--color`               | Color of the radio                       |
 | `--color-checked`       | Color of the checked radio               |
 | `--inner-border-radius` | Border radius of the inner checked radio |
+| `--ripple-color`        | Color of the radio ripple effect         |
 
 
 ## Dependencies
@@ -224,9 +225,14 @@ export default defineComponent({
 
  - ion-select-popover
 
+### Depends on
+
+- [ion-ripple-effect](../ripple-effect)
+
 ### Graph
 ```mermaid
 graph TD;
+  ion-radio --> ion-ripple-effect
   ion-select-popover --> ion-radio
   style ion-radio fill:#f9f,stroke:#333,stroke-width:4px
 ```

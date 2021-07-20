@@ -7,8 +7,11 @@
 :host {
   --color-checked: #{ion-color(primary, base)};
 
-  width: $radio-ios-icon-width;
-  height: $radio-ios-icon-height;
+  @include border-radius(50%);
+  @include padding($radio-ios-padding-vertical, $radio-ios-padding-horizontal);
+
+  width: $radio-ios-width;
+  height: $radio-ios-height;
 }
 
 :host(.ion-color.radio-checked) .radio-inner {
@@ -50,22 +53,13 @@
 // iOS Radio: Keyboard Focus
 // -----------------------------------------
 
-:host(.ion-focused) .radio-icon::after {
-  @include border-radius(var(--inner-border-radius));
-  @include position(-8px, null, null, -9px);
-
-  display: block;
-  position: absolute;
-
-  width: 36px;
-  height: 36px;
-
-  background: $radio-ios-background-color-focused;
-
-  content: "";
-  opacity: .2;
+.radio-focus {
+  background: ion-color(primary, base, 0.1);
 }
 
+:host(.ion-color) .radio-focus {
+  background: current-color(base, 0.1);
+}
 
 // iOS Radio Within An Item
 // -----------------------------------------
@@ -74,7 +68,6 @@
   @include margin($radio-ios-item-end-margin-top, $radio-ios-item-end-margin-end, $radio-ios-item-end-margin-bottom, $radio-ios-item-end-margin-start);
 
   display: block;
-  position: static;
 }
 
 :host(.in-item[slot="start"]) {

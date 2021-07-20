@@ -476,3 +476,13 @@ button, a {
 ion-ripple-effect {
   color: var(--ripple-color);
 }
+
+// Item: Radio
+// --------------------------------------------------
+
+:host(.item-radio) {
+  --background-activated: transparent;
+  --background-focused: transparent;
+  --background-hover: transparent;
+  --ripple-color: transparent;
+}

@@ -143,6 +143,23 @@
 }
 
 
+// Material Design Slotted Radio
+// --------------------------------------------------
+
+::slotted(ion-radio[slot="start"]),
+::slotted(ion-radio[slot="end"]) {
+  @include margin(0);
+}
+
+::slotted(ion-radio[slot="start"]) {
+  @include margin(2px, 22px, null, -6px);
+}
+
+::slotted(ion-radio[slot="end"]) {
+  @include margin(null, -10px, null, null);
+}
+
+
 // Material Design Slotted Note
 // --------------------------------------------------
 

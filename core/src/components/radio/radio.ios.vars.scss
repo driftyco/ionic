@@ -10,6 +10,12 @@ $radio-ios-color-on:                  current-color(base) !default;
 /// @prop - Background color of focus indicator for radio when focused
 $radio-ios-background-color-focused:  ion-color(primary, tint) !default;
 
+/// @prop - Width of the radio
+$radio-ios-width:                     25px !default;
+
+/// @prop - Height of the radio
+$radio-ios-height:                    25px !default;
+
 /// @prop - Width of the radio icon
 $radio-ios-icon-width:                15px !default;
 
@@ -21,6 +27,12 @@ $radio-ios-icon-border-width:         2px !default;
 
 /// @prop - Border style of the radio icon
 $radio-ios-icon-border-style:         solid !default;
+
+/// @prop - Vertical padding of the radio
+$radio-ios-padding-vertical:          1px !default;
+
+/// @prop - Horizontal padding of the radio
+$radio-ios-padding-horizontal:        ($radio-ios-width - $radio-ios-icon-width) / 2 !default;
 
 /// @prop - Opacity of the disabled radio
 $radio-ios-disabled-opacity:          .3 !default;
