@@ -113,6 +113,11 @@ export class Item implements ComponentInterface, AnchorInterface, ButtonInterfac
    */
   @Prop() type: 'submit' | 'reset' | 'button' = 'button';
 
+  /**
+   * Specifies if the first input should be focused if the ion-item is clicked
+   */
+  @Prop() delegateClick = true;
+
   @Listen('ionColor')
   labelColorChanged(ev: CustomEvent<string>) {
     const { color } = this;
@@ -166,7 +171,7 @@ export class Item implements ComponentInterface, AnchorInterface, ButtonInterfac
 
   disconnectedCallback() {
     const input = this.getFirstInput();
-    if (input && this.clickListener) {
+    if (input && this.delegateClick && !this.clickListener) {
       this.el.removeEventListener('click', this.clickListener);
       this.clickListener = undefined;
     }
