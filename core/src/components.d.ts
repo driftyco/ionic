@@ -2566,6 +2566,10 @@ export namespace Components {
          */
         "header"?: string;
         /**
+          * The name of the icon to display. See `ion-icon`. https://ionic.io/ionicons
+         */
+        "icon"?: string;
+        /**
           * If `true`, the keyboard will be automatically dismissed when the overlay is presented.
          */
         "keyboardClose": boolean;
@@ -5894,6 +5898,10 @@ declare namespace LocalJSX {
           * Header to be shown in the toast.
          */
         "header"?: string;
+        /**
+          * The name of the icon to display. See `ion-icon`. https://ionic.io/ionicons
+         */
+        "icon"?: string;
         /**
           * If `true`, the keyboard will be automatically dismissed when the overlay is presented.
          */

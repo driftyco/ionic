@@ -120,6 +120,10 @@
   justify-content: center;
 }
 
+.toast-icon {
+  @include margin(0, 0, 0, 15px);
+  @include padding(10px, 10px, 10px, 10px);
+}
 
 .toast-message {
   flex: 1;
@@ -141,7 +145,8 @@
   z-index: 0;
 }
 
-.toast-icon {
+.toast-icon,
+.toast-button-icon {
   font-size: 1.4em;
 }
 

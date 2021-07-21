@@ -35,7 +35,7 @@
         Position Middle
       </ion-button>
 
-      <ion-button expand="block" onclick="openToast({header: 'Toast header', message: 'Toast message'})">
+      <ion-button expand="block" onclick="openToast({header: 'Toast header', message: 'Toast message', duration: 2000})">
         Header Toast
       </ion-button>
 
@@ -81,6 +81,18 @@
 
       <ion-button expand="block" id="toast-html" onclick="openToast({message: '<ion-button>Button in a Toast!</ion-button>', buttons: ['Close'] })">
         Show HTML Toast
+      </ion-button>
+
+      <ion-button expand="block" id="toast-with-icon" onclick="openToast({ header: 'Bluetooth', message: 'Device connected.', icon: 'bluetooth', duration: 2000 })">
+        Toast with Icon
+      </ion-button>
+
+      <ion-button expand="block" id="toast-with-icon-2" onclick="openToast({ message: 'An error has occurred!', icon: 'warning', color: 'danger', duration: 2000 })">
+        Toast with Icon 2
+      </ion-button>
+
+      <ion-button expand="block" id="toast-with-icon-3" onclick="openToast({ message: 'Debug me...', icon: 'bug', buttons: ['Close'] })">
+        Toast with Icon 3
       </ion-button>
 
       <ion-grid>

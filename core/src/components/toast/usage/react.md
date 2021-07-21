@@ -63,6 +63,7 @@ export const ToastExample: React.FC = () => {
         isOpen={showToast2}
         onDidDismiss={() => setShowToast2(false)}
         message="Click to Close"
+        icon="information-circle"
         position="top"
         buttons={[
           {

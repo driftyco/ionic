@@ -1268,6 +1268,7 @@ ion-toast,prop,cssClass,string | string[] | undefined,undefined,false,false
 ion-toast,prop,duration,number,0,false,false
 ion-toast,prop,enterAnimation,((baseEl: any, opts?: any) => Animation) | undefined,undefined,false,false
 ion-toast,prop,header,string | undefined,undefined,false,false
+ion-toast,prop,icon,string | undefined,undefined,false,false
 ion-toast,prop,keyboardClose,boolean,false,false,false
 ion-toast,prop,leaveAnimation,((baseEl: any, opts?: any) => Animation) | undefined,undefined,false,false
 ion-toast,prop,message,IonicSafeString | string | undefined,undefined,false,false
@@ -1302,6 +1303,7 @@ ion-toast,css-prop,--width
 ion-toast,part,button
 ion-toast,part,container
 ion-toast,part,header
+ion-toast,part,icon
 ion-toast,part,message
 
 ion-toggle,shadow

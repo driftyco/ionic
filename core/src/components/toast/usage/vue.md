@@ -27,6 +27,7 @@ export default {
         .create({
           header: 'Toast header',
           message: 'Click to Close',
+          icon: 'information-circle',
           position: 'top',
           buttons: [
             {
@@ -46,7 +47,7 @@ export default {
           ]
         })
       await toast.present();
-  
+
       const { role } = await toast.onDidDismiss();
       console.log('onDidDismiss resolved with role', role);
     },
@@ -78,7 +79,7 @@ export default defineComponent({
   setup() {
     const isOpenRef = ref(false);
     const setOpen = (state: boolean) => isOpenRef.value = state;
-    
+
     return { isOpenRef, setOpen }
   }
 });
