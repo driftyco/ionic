@@ -27,6 +27,11 @@ export class SelectPopover implements ComponentInterface {
   /** Array of options for the popover */
   @Prop() options: SelectPopoverOption[] = [];
 
+  /**
+   * If `true`, the radios can be deselected.
+   */
+  @Prop() allowEmptySelection = false;
+
   @Listen('ionChange')
   onSelect(ev: any) {
     const option = this.options.find(o => o.value === ev.target.value);
@@ -50,7 +55,7 @@ export class SelectPopover implements ComponentInterface {
               </ion-label>
             </ion-item>
           }
-          <ion-radio-group value={checkedValue}>
+          <ion-radio-group value={checkedValue} allowEmptySelection={allowEmptySelection}>
             {this.options.map(option =>
               <ion-item class={getClassMap(option.cssClass)}>
                 <ion-label>
