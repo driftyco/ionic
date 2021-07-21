@@ -311,7 +311,7 @@ export interface GestureConfig {
   el: Node;
   disableScroll?: boolean;
 
-  direction?: 'x' | 'y';
+  direction?: 'x' | 'y' | 'all';
   gestureName: string;
   gesturePriority?: number;
   passive?: boolean;

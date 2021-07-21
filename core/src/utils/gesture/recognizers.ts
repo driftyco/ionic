@@ -9,6 +9,7 @@ export interface PanRecognizer {
 export const createPanRecognizer = (direction: string, thresh: number, maxAngle: number): PanRecognizer => {
   const radians = maxAngle * (Math.PI / 180);
   const isDirX = direction === 'x';
+  const isDirAll = direction === 'all';
   const maxCosine = Math.cos(radians);
   const threshold = thresh * thresh;
 
@@ -39,6 +40,13 @@ export const createPanRecognizer = (direction: string, thresh: number, maxAngle:
         return false;
       }
       const hypotenuse = Math.sqrt(distance);
+
+      if (isDirAll) {
+        isPan = distance > 0 ? 1 : 0;
+        dirty = false;
+        return true;
+      }
+
       const cosine = (isDirX ? deltaX : deltaY) / hypotenuse;
 
       if (cosine > maxCosine) {
