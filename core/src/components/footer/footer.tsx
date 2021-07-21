@@ -1,4 +1,4 @@
-import { Component, ComponentInterface, Host, Prop, h } from '@stencil/core';
+import { Component, ComponentInterface, Element, Host, Prop, State, h } from '@stencil/core';
 
 import { getIonMode } from '../../global/ionic-global';
 
@@ -13,6 +13,12 @@ import { getIonMode } from '../../global/ionic-global';
   }
 })
 export class Footer implements ComponentInterface {
+  private keyboardWillShowHandler?: () => void;
+  private keyboardWillHideHandler?: () => void;
+
+  @State() keyboardVisible = false;
+
+  @Element() el!: HTMLElement;
 
   /**
    * If `true`, the footer will be translucent.
@@ -24,9 +30,35 @@ export class Footer implements ComponentInterface {
    */
   @Prop() translucent = false;
 
+  connectedCallback() {
+    if (typeof (window as any) !== 'undefined') {
+      this.keyboardWillShowHandler = () => {
+        this.keyboardVisible = true;
+      }
+
+      this.keyboardWillHideHandler = () => {
+        setTimeout(() => this.keyboardVisible = false, 50);
+      }
+
+      window.addEventListener('keyboardWillShow', this.keyboardWillShowHandler!);
+      window.addEventListener('keyboardWillHide', this.keyboardWillHideHandler!);
+    }
+  }
+
+  disconnectedCallback() {
+    if (typeof (window as any) !== 'undefined' && !this.keyboardWillShowHandler) {
+      window.removeEventListener('keyboardWillShow', this.keyboardWillShowHandler!);
+      window.removeEventListener('keyboardWillHide', this.keyboardWillHideHandler!);
+
+      this.keyboardWillShowHandler = this.keyboardWillHideHandler = undefined;
+    }
+  }
+
   render() {
     const mode = getIonMode(this);
     const translucent = this.translucent;
+    const tabs = this.el.closest('ion-tabs');
+    const tabBar = tabs ? tabs.querySelector('ion-tab-bar') : null;
     return (
       <Host
         role="contentinfo"
@@ -38,6 +70,7 @@ export class Footer implements ComponentInterface {
 
           [`footer-translucent`]: translucent,
           [`footer-translucent-${mode}`]: translucent,
+          'footer-toolbar-padding': !this.keyboardVisible && (!tabBar || tabBar.slot === 'top')
         }}
       >
         { mode === 'ios' && translucent &&

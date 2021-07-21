@@ -14,6 +14,6 @@ ion-footer {
   z-index: $z-index-toolbar;
 }
 
-ion-footer ion-toolbar:last-of-type {
+ion-footer.footer-toolbar-padding ion-toolbar:last-of-type {
   padding-bottom: var(--ion-safe-area-bottom, 0);
 }
