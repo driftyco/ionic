@@ -3,6 +3,22 @@
 // Picker Column
 // --------------------------------------------------
 
+.picker-col-container {
+  display: flex;
+  position: relative;
+
+  flex: 1;
+  
+  flex-direction: column;
+
+  justify-content: center;
+
+  height: 100%;
+  box-sizing: content-box;
+
+  contain: content;
+}
+
 .picker-col {
   display: flex;
   position: relative;
@@ -66,6 +82,16 @@
   &:focus {
     outline: none;
   }
+}
+
+.picker-name {
+  position: relative;
+
+  padding-bottom: 1rem;
+  
+  text-align: center;
+
+  white-space: nowrap;
 }
 
 .picker-prefix {

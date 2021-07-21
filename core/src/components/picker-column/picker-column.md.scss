@@ -25,6 +25,20 @@
   pointer-events: none;
 }
 
+.picker-name {
+  height: $picker-md-option-height;
+  
+  transform-style: preserve-3d;
+
+  color: inherit;
+
+  font-size: $picker-md-option-font-size;
+
+  line-height: $picker-md-option-height;
+  pointer-events: none;
+
+}
+
 
 .picker-opt {
   @include margin(0);
@@ -46,6 +60,7 @@
 
 .picker-prefix,
 .picker-suffix,
+.picker-name,
 .picker-opt.picker-opt-selected {
   color: $picker-md-option-selected-color;
 }

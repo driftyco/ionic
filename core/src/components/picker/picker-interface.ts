@@ -25,6 +25,7 @@ export interface PickerButton {
 
 export interface PickerColumn {
   name: string;
+  showName?: boolean;
   align?: string;
   selectedIndex?: number;
   prevSelected?: number;

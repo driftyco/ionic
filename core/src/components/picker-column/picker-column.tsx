@@ -373,39 +373,66 @@ export class PickerColumnCmp implements ComponentInterface {
       <Host
         class={{
           [mode]: true,
-          'picker-col': true,
-          'picker-opts-left': this.col.align === 'left',
-          'picker-opts-right': this.col.align === 'right'
+          'picker-col-container': true
         }}
         style={{
           'max-width': this.col.columnWidth
         }}
       >
-        {col.prefix && (
-          <div class="picker-prefix" style={{ width: col.prefixWidth! }}>
-            {col.prefix}
+
+        {col.showName && (
+          <div class="picker-name" style={{ width: this.col.columnWidth }}>
+            {
+              col.name
+            }
           </div>
         )}
+
+        {!col.showName && (
+          <div class="picker-name" style={{ width: this.col.columnWidth }}>
+          </div>
+        )}
+
         <div
-          class="picker-opts"
-          style={{ maxWidth: col.optionsWidth! }}
-          ref={el => this.optsEl = el}
+          class={{
+            [mode]: true,
+            'picker-col': true,
+            'picker-opts-left': this.col.align === 'left',
+            'picker-opts-right': this.col.align === 'right'
+          }}
+          style={{
+            'max-width': this.col.columnWidth
+          }}
         >
-          { col.options.map((o, index) =>
-            <Button
-              type="button"
-              class={{ 'picker-opt': true, 'picker-opt-disabled': !!o.disabled }}
-              opt-index={index}
-            >
-              {o.text}
-            </Button>
+
+          {col.prefix && (
+            <div class="picker-prefix" style={{ width: col.prefixWidth! }}>
+              {col.prefix}
+            </div>
           )}
-        </div>
-        {col.suffix && (
-          <div class="picker-suffix" style={{ width: col.suffixWidth! }}>
-            {col.suffix}
+          <div
+            class="picker-opts"
+            style={{ maxWidth: col.optionsWidth! }}
+            ref={el => this.optsEl = el}
+          >
+            { col.options.map((o, index) =>
+              <Button
+                type="button"
+                class={{ 'picker-opt': true, 'picker-opt-disabled': !!o.disabled }}
+                opt-index={index}
+              >
+                {o.text}
+              </Button>
+            )}
           </div>
-        )}
+          {col.suffix && (
+            <div class="picker-suffix" style={{ width: col.suffixWidth! }}>
+              {col.suffix}
+            </div>
+          )}
+
+        </div>
+
       </Host>
     );
   }

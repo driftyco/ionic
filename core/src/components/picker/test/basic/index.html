@@ -26,6 +26,7 @@
     <ion-content class="ion-padding">
       <ion-button id="basic" expand="block" onclick="presentPicker()">Show Picker</ion-button>
       <ion-button id="custom" expand="block" onclick="presentPicker('my-custom-class')">Show Custom Picker</ion-button>
+      <ion-button id="custom" expand="block" onclick="presentPickerMultiColumn()">Show Picker Multi Column</ion-button>
     </ion-content>
 
   </ion-app>
@@ -124,7 +125,142 @@
 
       console.log('Picker dismissed!', data, role);
     }
+    async function presentPickerMultiColumn(customClass) {
+      const pickerElement = await pickerController.create({
+        buttons: [{
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => console.log('Clicked Cancel!')
+        }, {
+          text: 'Save',
+          handler: () => console.log('Clicked Save!')
+        }, {
+          text: 'Log',
+          handler: (val) => {
+            console.log('Clicked Log. Do not Dismiss.', val);
+            return false;
+          }
+        }],
+        columns: [{
+          name: 'hours',
+          showName: true,
+          prefix: 'total',
+          suffix: 'hours',
+          options: [{
+            text: '1',
+            value: '01'
+          },
+          {
+            text: '2',
+            value: '02'
+          },
+          {
+            text: '3',
+            value: '03'
+          },
+          {
+            text: '4',
+            value: '04'
+          },
+          {
+            text: '5',
+            value: '05'
+          },
+          {
+            text: '6',
+            value: '06'
+          },
+          {
+            text: '7',
+            value: '07'
+          },
+          {
+            text: '8',
+            value: '08'
+          },
+          {
+            text: '9',
+            value: '09'
+          },
+          {
+            text: '10',
+            value: '10'
+          },
+          {
+            text: '11',
+            value: '11'
+          },
+          {
+            text: '12',
+            value: '12'
+          }]
+        },
+        {
+          name: 'minutes',
+          showName: false,
+          prefix: 'total',
+          suffix: 'minutes',
+          options: [{
+            text: '1',
+            value: '01'
+          },
+          {
+            text: '2',
+            value: '02'
+          },
+          {
+            text: '3',
+            value: '03'
+          },
+          {
+            text: '4',
+            value: '04'
+          },
+          {
+            text: '5',
+            value: '05'
+          },
+          {
+            text: '6',
+            value: '06'
+          },
+          {
+            text: '7',
+            value: '07'
+          },
+          {
+            text: '8',
+            value: '08'
+          },
+          {
+            text: '9',
+            value: '09'
+          },
+          {
+            text: '10',
+            value: '10'
+          },
+          {
+            text: '11',
+            value: '11'
+          },
+          {
+            text: '12',
+            value: '12'
+          }]
+        }],
+        cssClass: customClass
+      });
+
+      await pickerElement.present();
+
+      const { data, role } = await pickerElement.onDidDismiss();
+
+      console.log('Picker dismissed!', data, role);
+    }
   </script>
+
+
 </body>
 
 </html>
