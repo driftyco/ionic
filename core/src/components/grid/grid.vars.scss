@@ -5,22 +5,30 @@
 // --------------------------------------------------
 
 /// @prop - The padding for the grid
-$grid-padding:               var(--ion-grid-padding, 5px) !default;
+$grid-padding: var(--ion-grid-padding, 5px) !default;
 
 /// @prop - The padding for the grid at different breakpoints
-$grid-paddings: (
-  xs: var(--ion-grid-padding-xs, $grid-padding),
-  sm: var(--ion-grid-padding-sm, $grid-padding),
-  md: var(--ion-grid-padding-md, $grid-padding),
-  lg: var(--ion-grid-padding-lg, $grid-padding),
-  xl: var(--ion-grid-padding-xl, $grid-padding)
-) !default;
+$grid-paddings: () !default;
 
 /// @prop - Width of the grid for different screen sizes when fixed is enabled
-$grid-widths: (
-  xs: var(--ion-grid-width-xs, var(--ion-grid-width, 100%)),
-  sm: var(--ion-grid-width-sm, var(--ion-grid-width, 540px)),
-  md: var(--ion-grid-width-md, var(--ion-grid-width, 720px)),
-  lg: var(--ion-grid-width-lg, var(--ion-grid-width, 960px)),
-  xl: var(--ion-grid-width-xl, var(--ion-grid-width, 1140px))
-) !default;
+$grid-widths: () !default;
+
+/// @prop - The grid definition containing grid sizes and widths
+$grid: (
+  xs: var(--ion-grid-width, 100%),
+  sm: var(--ion-grid-width, 540px),
+  md: var(--ion-grid-width, 720px),
+  lg: var(--ion-grid-width, 960px),
+  xl: var(--ion-grid-width, 1140px)
+);
+
+@each $key, $value in $grid {
+  $grid-paddings: map-merge(
+                    $grid-paddings,
+                    ( $key: var(--ion-grid-padding-#{$key}, $grid-padding) 
+                            calc(var(--ion-grid-padding-#{$key}, #{$grid-padding}) + var(--ion-safe-area-right)) 
+                            var(--ion-grid-padding-#{$key}, $grid-padding) 
+                            calc(var(--ion-grid-padding-#{$key}, #{$grid-padding}) + var(--ion-safe-area-left)) )
+                  );
+  $grid-widths: map-merge( $grid-widths, ( $key: var(--ion-grid-width-#{$key}, $value) ) );
+}

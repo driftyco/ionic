@@ -27,7 +27,7 @@
     @include media-breakpoint-up($breakpoint) {
       $padding: map-get($paddings, $breakpoint);
 
-      @include padding($padding);
+      @include padding($padding...);
     }
   }
 }
