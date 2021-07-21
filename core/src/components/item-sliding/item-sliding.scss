@@ -3,6 +3,10 @@
 // Item Sliding
 // --------------------------------------------------
 
+.no-slide {
+  --overflow: hidden;
+}
+
 ion-item-sliding {
   display: block;
   position: relative;
