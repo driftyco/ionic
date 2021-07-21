@@ -205,6 +205,12 @@
   height: #{$fab-small-size};
 }
 
+:host(.fab-button-small) .button-native {
+  position: static;
+
+  contain: none;
+}
+
 // FAB Close Icon
 // --------------------------------------------------
 
