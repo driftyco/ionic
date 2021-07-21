@@ -4,7 +4,7 @@ import { config } from '../../global/config';
 import { getIonMode } from '../../global/ionic-global';
 import { Animation, AnimationBuilder, ComponentProps, ComponentRef, FrameworkDelegate, Gesture, OverlayEventDetail, OverlayInterface } from '../../interface';
 import { attachComponent, detachComponent } from '../../utils/framework-delegate';
-import { BACKDROP, activeAnimations, dismiss, eventMethod, prepareOverlay, present } from '../../utils/overlays';
+import { BACKDROP, activeAnimations, dismiss, eventMethod, prepareOverlay, present, safeCall } from '../../utils/overlays';
 import { getClassMap } from '../../utils/theme';
 import { deepReady } from '../../utils/transition';
 
@@ -103,6 +103,11 @@ export class Modal implements ComponentInterface, OverlayInterface {
   @Prop() presentingElement?: HTMLElement;
 
   /**
+   * If present, emitted before modal will dismiss. Only if returns `true`, modal will be closed.
+   */
+  @Prop() canDismiss?: () => boolean | Promise<boolean>;
+
+  /**
    * Emitted after the modal has presented.
    */
   @Event({ eventName: 'ionModalDidPresent' }) didPresent!: EventEmitter<void>;
@@ -127,6 +132,13 @@ export class Modal implements ComponentInterface, OverlayInterface {
     if (this.gesture) {
       this.gesture.enable(enable);
     } else if (enable) {
+      this.initSwipeToClose();
+    }
+  }
+
+  @Watch('canDismiss')
+  canDismissChanged() {
+    if (this.swipeToClose) {
       this.initSwipeToClose();
     }
   }
@@ -174,6 +186,7 @@ export class Modal implements ComponentInterface, OverlayInterface {
     this.gesture = createSwipeToCloseGesture(
       this.el,
       ani,
+      !!this.canDismiss,
       () => {
         /**
          * While the gesture animation is finishing
@@ -191,6 +204,9 @@ export class Modal implements ComponentInterface, OverlayInterface {
           this.gestureAnimationDismissing = false;
         });
       },
+      () => {
+        this.dismiss(undefined, 'canDismissCallback');
+      }
     );
     this.gesture.enable(true);
   }
@@ -205,6 +221,13 @@ export class Modal implements ComponentInterface, OverlayInterface {
   async dismiss(data?: any, role?: string): Promise<boolean> {
     if (this.gestureAnimationDismissing && role !== 'gesture') {
       return false;
+    }
+
+    if (this.canDismiss) {
+      const canDismiss = await safeCall(this.canDismiss);
+      if (!canDismiss) {
+        return false;
+      }
     }
 
     const enteringAnimation = activeAnimations.get(this) || [];

@@ -11,7 +11,9 @@ export const SwipeToCloseDefaults = {
 export const createSwipeToCloseGesture = (
   el: HTMLIonModalElement,
   animation: Animation,
-  onDismiss: () => void
+  canDismissPresent: boolean,
+  onDismiss: () => void,
+  onCanDismiss: () => void
 ) => {
   const height = el.offsetHeight;
   let isOpen = false;
@@ -39,7 +41,8 @@ export const createSwipeToCloseGesture = (
   };
 
   const onMove = (detail: GestureDetail) => {
-    const step = clamp(0.0001, detail.deltaY / height, 0.9999);
+    const n = detail.deltaY / height;
+    const step = clamp(0.0001, canDismissPresent ? n / 6 : n, 0.9999);
 
     animation.progressStep(step);
   };
@@ -47,14 +50,15 @@ export const createSwipeToCloseGesture = (
   const onEnd = (detail: GestureDetail) => {
     const velocity = detail.velocityY;
 
-    const step = clamp(0.0001, detail.deltaY / height, 0.9999);
+    const n = detail.deltaY / height;
+    const step = clamp(0.0001, canDismissPresent ? n / 6 : n, 0.9999);
 
     const threshold = (detail.deltaY + velocity * 1000) / height;
 
     const shouldComplete = threshold >= 0.5;
-    let newStepValue = (shouldComplete) ? -0.001 : 0.001;
+    let newStepValue = (shouldComplete && !canDismissPresent) ? -0.001 : 0.001;
 
-    if (!shouldComplete) {
+    if (!shouldComplete || canDismissPresent) {
       animation.easing('cubic-bezier(1, 0, 0.68, 0.28)');
       newStepValue += getTimeGivenProgression([0, 0], [1, 0], [0.68, 0.28], [1, 1], step)[0];
     } else {
@@ -62,20 +66,25 @@ export const createSwipeToCloseGesture = (
       newStepValue += getTimeGivenProgression([0, 0], [0.32, 0.72], [0, 1], [1, 1], step)[0];
     }
 
-    const duration = (shouldComplete) ? computeDuration(step * height, velocity) : computeDuration((1 - step) * height, velocity);
+    const duration = (shouldComplete && !canDismissPresent) ? computeDuration(step * height, velocity) : computeDuration((1 - step) * height, velocity);
     isOpen = shouldComplete;
 
     gesture.enable(false);
 
     animation
       .onFinish(() => {
-        if (!shouldComplete) {
+        if (shouldComplete && canDismissPresent) {
+          onCanDismiss();
+        }
+        if (!shouldComplete || canDismissPresent) {
           gesture.enable(true);
         }
+      }, {
+        oneTimeCallback: true
       })
-      .progressEnd((shouldComplete) ? 1 : 0, newStepValue, duration);
+      .progressEnd((shouldComplete && !canDismissPresent) ? 1 : 0, newStepValue, duration);
 
-    if (shouldComplete) {
+    if (shouldComplete && !canDismissPresent) {
       onDismiss();
     }
   };

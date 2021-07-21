@@ -704,6 +704,7 @@ ion-menu-toggle,prop,menu,string | undefined,undefined,false,false
 ion-modal,scoped
 ion-modal,prop,animated,boolean,true,false,false
 ion-modal,prop,backdropDismiss,boolean,true,false,false
+ion-modal,prop,canDismiss,(() => boolean | Promise<boolean>) | undefined,undefined,false,false
 ion-modal,prop,component,Function | HTMLElement | null | string,undefined,true,false
 ion-modal,prop,componentProps,undefined | { [key: string]: any; },undefined,false,false
 ion-modal,prop,cssClass,string | string[] | undefined,undefined,false,false

@@ -1319,6 +1319,10 @@ export namespace Components {
          */
         "backdropDismiss": boolean;
         /**
+          * If present, emitted before modal will dismiss. Only if returns `true`, modal will be closed.
+         */
+        "canDismiss"?: () => boolean | Promise<boolean>;
+        /**
           * The component to display inside of the modal.
          */
         "component": ComponentRef;
@@ -4661,6 +4665,10 @@ declare namespace LocalJSX {
           * If `true`, the modal will be dismissed when the backdrop is clicked.
          */
         "backdropDismiss"?: boolean;
+        /**
+          * If present, emitted before modal will dismiss. Only if returns `true`, modal will be closed.
+         */
+        "canDismiss"?: () => boolean | Promise<boolean>;
         /**
           * The component to display inside of the modal.
          */

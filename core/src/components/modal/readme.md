@@ -5,6 +5,7 @@ A Modal is a dialog that appears on top of the app's content, and must be dismis
 ## Dismissing
 
 The modal can be dismissed after creation by calling the `dismiss()` method on the modal controller. The `onDidDismiss` function can be called to perform an action after the modal is dismissed.
+Before dismissing and if present the `canDismiss()` callback will be invoked.
 
 ## Customization
 
@@ -825,6 +826,7 @@ export default defineComponent({
 | ------------------------ | ------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------- | ----------- |
 | `animated`               | `animated`         | If `true`, the modal will animate.                                                                                                                                | `boolean`                                               | `true`      |
 | `backdropDismiss`        | `backdrop-dismiss` | If `true`, the modal will be dismissed when the backdrop is clicked.                                                                                              | `boolean`                                               | `true`      |
+| `canDismiss`             | --                 | If present, emitted before modal will dismiss. Only if returns `true`, modal will be closed.                                                                      | `(() => boolean \| Promise<boolean>) \| undefined`      | `undefined` |
 | `component` _(required)_ | `component`        | The component to display inside of the modal.                                                                                                                     | `Function \| HTMLElement \| null \| string`             | `undefined` |
 | `componentProps`         | --                 | The data to pass to the modal component.                                                                                                                          | `undefined \| { [key: string]: any; }`                  | `undefined` |
 | `cssClass`               | `css-class`        | Additional classes to apply for custom CSS. If multiple classes are provided they should be separated by spaces.                                                  | `string \| string[] \| undefined`                       | `undefined` |
